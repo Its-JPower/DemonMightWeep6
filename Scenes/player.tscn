@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://c8dmjl15wp2dr"]
 
 [ext_resource type="Script" uid="uid://dasvqxme4o874" path="res://Scripts/player.gd" id="1_v0iea"]
+[ext_resource type="Script" uid="uid://camdmnsmasdba" path="res://Scripts/camera.gd" id="2_cvnsp"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_cvnsp"]
 
@@ -19,3 +20,4 @@ mesh = SubResource("CapsuleMesh_6t5aa")
 
 [node name="Camera3D" type="Camera3D" parent="CameraManager" unique_id=513598977]
 transform = Transform3D(1, 0, 0, 0, 0.9659259, 0.25881907, 0, -0.25881907, 0.9659258, 0.5, 1.5, 2)
+script = ExtResource("2_cvnsp")
