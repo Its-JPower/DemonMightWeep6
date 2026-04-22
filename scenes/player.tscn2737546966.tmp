@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" uid="uid://cb2g1lhebocn" path="res://scripts/player.gd" id="1_v0iea"]
 [ext_resource type="Script" uid="uid://crdi13g4wqmmd" path="res://scripts/state_machine.gd" id="2_cvnsp"]
-[ext_resource type="Script" uid="uid://4k51j4v87low" path="res://scripts/states/idle_state.gd" id="3_tuyoq"]
 [ext_resource type="Script" uid="uid://ddvyxmtmnykt6" path="res://scripts/states/walk_state.gd" id="4_tuyoq"]
 [ext_resource type="Script" uid="uid://crthkaqtidon3" path="res://scripts/states/run_state.gd" id="5_fjrip"]
 [ext_resource type="Script" uid="uid://bf1dvnj6bd2to" path="res://scripts/states/jump_state.gd" id="6_smehm"]
@@ -10,6 +9,8 @@
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_cvnsp"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_6t5aa"]
+
+[sub_resource type="GDScript" id="GDScript_qlg0r"]
 
 [node name="Node3D" type="CharacterBody3D" unique_id=1620402980]
 script = ExtResource("1_v0iea")
@@ -37,7 +38,7 @@ script = ExtResource("2_cvnsp")
 initial_state = NodePath("IdleState")
 
 [node name="IdleState" type="Node" parent="StateMachine" unique_id=666571857]
-script = ExtResource("3_tuyoq")
+script = SubResource("GDScript_qlg0r")
 
 [node name="WalkState" type="Node" parent="StateMachine" unique_id=423194729]
 script = ExtResource("4_tuyoq")
