@@ -11,24 +11,36 @@
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_6t5aa"]
 
+[sub_resource type="BoxMesh" id="BoxMesh_tuyoq"]
+
 [node name="Node3D" type="CharacterBody3D" unique_id=1620402980]
 script = ExtResource("1_v0iea")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1823396936]
 shape = SubResource("CapsuleShape3D_cvnsp")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1466490502]
+[node name="Mesh" type="Node3D" parent="." unique_id=701746625]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Mesh" unique_id=1466490502]
 mesh = SubResource("CapsuleMesh_6t5aa")
 
-[node name="CameraPivot" type="Node3D" parent="." unique_id=2032851110]
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Mesh" unique_id=807882651]
+transform = Transform3D(0.16270965, 0, 0, 0, 0.8842796, 0.08507022, 0, -0.46695778, 0.16109778, 0.27353376, 0, -0.5184716)
+mesh = SubResource("BoxMesh_tuyoq")
+
+[node name="CameraPivotYaw" type="Node3D" parent="." unique_id=2032851110]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 
-[node name="SpringArm" type="SpringArm3D" parent="CameraPivot" unique_id=1650024927]
+[node name="CameraPivotPitch" type="Node3D" parent="CameraPivotYaw" unique_id=1273992800]
+unique_name_in_owner = true
+
+[node name="SpringArm" type="SpringArm3D" parent="CameraPivotYaw/CameraPivotPitch" unique_id=1650024927]
+unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.75, 0, 0)
 spring_length = 3.0
 
-[node name="Camera3D" type="Camera3D" parent="CameraPivot/SpringArm" unique_id=513598977]
+[node name="Camera3D" type="Camera3D" parent="CameraPivotYaw/CameraPivotPitch/SpringArm" unique_id=513598977]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 0.9659259, 0.25881907, 0, -0.25881907, 0.9659258, 0, 0, 0)
 

@@ -12,10 +12,6 @@ func physics_process(delta: float) -> void:
 	player.velocity.x = dir.x * player.RUN_SPEED
 	player.velocity.z = dir.z * player.RUN_SPEED
 
-	if dir.length() > 0.1:
-		var target_angle = atan2(dir.x, dir.z)
-		player.rotation.y = lerp_angle(player.rotation.y, target_angle, player.ROTATION_SPEED * delta)
-
 	player.move_and_slide()
 
 	if dir.length() < 0.1:
