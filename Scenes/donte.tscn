@@ -107,6 +107,10 @@ bind/24/name = &"foot_right"
 bind/24/bone = -1
 bind/24/pose = Transform3D(0.9999863, -0.0029590523, 0.004260614, -0.0050677694, -0.38139573, 0.9243972, -0.0011102774, -0.9244068, -0.3814059, 0.0015982182, 0.0011243658, 0.0004417564)
 
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_upu3b"]
+radius = 0.35302734
+height = 1.791748
+
 [node name="Donte" type="CharacterBody3D" unique_id=1194998649]
 
 [node name="rig" type="Node3D" parent="." unique_id=1348534188]
@@ -342,3 +346,7 @@ bones/31/scale = Vector3(1, 1, 1)
 mesh = SubResource("ArrayMesh_hg06n")
 skin = SubResource("Skin_0ln7n")
 skeleton = NodePath("..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1070447012]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8087158, 0)
+shape = SubResource("CapsuleShape3D_upu3b")
