@@ -14,6 +14,10 @@ config/name="DemonMightWeep6"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 
+[filesystem]
+
+import/blender/enabled=false
+
 [input]
 
 move_forward={
