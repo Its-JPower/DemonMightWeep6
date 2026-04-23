@@ -7,10 +7,8 @@ func enter() -> void:
 
 func physics_process(delta: float) -> void:
 	player.apply_gravity(delta)
-
+	player.apply_movement(delta)
 	var dir = player.get_movement_input()
-	player.velocity.x = dir.x * player.RUN_SPEED
-	player.velocity.z = dir.z * player.RUN_SPEED
 
 	player.move_and_slide()
 

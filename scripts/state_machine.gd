@@ -26,7 +26,13 @@ func process(delta: float) -> void:
 	current_state.process(delta)
 
 func physics_process(delta: float) -> void:
+	if current_state == null:
+		push_error("StateMachine: current_state is null!")
+		return
 	current_state.physics_process(delta)
 
 func handle_input(event: InputEvent) -> void:
+	if current_state == null:
+		push_error("StateMachine: current_state is null!")
+		return
 	current_state.handle_input(event)
