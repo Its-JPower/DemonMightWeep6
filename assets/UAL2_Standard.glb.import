@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://bvdi8xhfiy0l"
-path="res://.godot/imported/UAL1_Standard.glb-bdd8fd6a05550301d375e0cc79520cb9.scn"
+uid="uid://ddqeduw1tynm8"
+path="res://.godot/imported/UAL2_Standard.glb-a196edd20edfab20564f4ffc9a8bc53b.scn"
 
 [deps]
 
-source_file="res://Scenes/Universal Animation Library[Standard] (1)/Universal Animation Library[Standard]/Unreal-Godot/UAL1_Standard.glb"
-dest_files=["res://.godot/imported/UAL1_Standard.glb-bdd8fd6a05550301d375e0cc79520cb9.scn"]
+source_file="res://assets/UAL2_Standard.glb"
+dest_files=["res://.godot/imported/UAL2_Standard.glb-a196edd20edfab20564f4ffc9a8bc53b.scn"]
 
 [params]
 
