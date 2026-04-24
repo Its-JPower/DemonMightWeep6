@@ -2,8 +2,8 @@ class_name RunState
 extends State
 
 func enter() -> void:
+	player.rotation_mode = Player.RotationMode.MOVEMENT
 	#player.animation_player.play("run")
-	pass
 
 func physics_process(delta: float) -> void:
 	player.apply_gravity(delta)

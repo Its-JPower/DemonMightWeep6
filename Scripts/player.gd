@@ -8,6 +8,7 @@ const JUMP_VELOCITY := 5.0
 const ROTATION_SPEED := 6.7
 const ACCELERATION := 15.0
 const DECELERATION := 20.0
+const DASH_SPEED := 15.0
 
 @onready var _camera : Camera3D = %Camera3D
 @onready var _camera_pivot_yaw : Node3D = %CameraPivotYaw
@@ -19,6 +20,9 @@ const DECELERATION := 20.0
 @export var tilt_limit = deg_to_rad(75)
 
 var is_aiming = false
+
+enum RotationMode { MOVEMENT, CAMERA, LOCKED }
+var rotation_mode := RotationMode.MOVEMENT
 
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
@@ -34,19 +38,17 @@ func _input(event: InputEvent) -> void:
 		_camera_pivot_pitch.rotate_x(-event.relative.y * mouse_sensitivity)
 		_camera_pivot_pitch.rotation.x = clamp(_camera_pivot_pitch.rotation.x, -0.6, 0.4)
 	if Input.is_action_just_pressed("aim"):
-		is_aiming = true
-	if Input.is_action_just_released("aim"):
-		is_aiming = false
+		is_aiming = !is_aiming
 
 func _process(delta: float) -> void:
 	state_machine.process(delta)
 	
 func _physics_process(delta: float) -> void:
 	state_machine.physics_process(delta)
-	if is_aiming:
-		rotate_model_toward_camera(delta)
-	else:
-		rotate_model_toward_movement(delta)
+	match rotation_mode:
+		RotationMode.MOVEMENT: rotate_model_toward_movement(delta)
+		RotationMode.CAMERA:   rotate_model_toward_camera(delta)
+		RotationMode.LOCKED:   pass  # state handles it or holds last rotation
 
 func get_movement_input() -> Vector3:
 	var input_dir = Input.get_vector("move_left", "move_right", "move_forward", "move_back")
@@ -82,9 +84,24 @@ func apply_movement(delta: float) -> void:
 func rotate_model_toward_movement(delta: float) -> void:
 	var direction = get_movement_input()
 	
+	# Use input direction if available, otherwise fall back to current velocity direction
+	var rotate_toward: Vector3
 	if direction.length() > 0.1:
-		var target_basis = Basis.looking_at(direction, Vector3.UP)
-		player_model.global_basis = player_model.global_basis.slerp(target_basis, ROTATION_SPEED * delta)
+		rotate_toward = direction
+	else:
+		var horizontal_velocity = Vector3(velocity.x, 0.0, velocity.z)
+		if horizontal_velocity.length() > 0.1:
+			rotate_toward = horizontal_velocity.normalized()
+		else:
+			return  # Fully stopped, no rotation needed
+	
+	var target_basis = Basis.looking_at(rotate_toward, Vector3.UP)
+	player_model.global_basis = player_model.global_basis.slerp(target_basis, ROTATION_SPEED * delta)
+
+func get_camera_forward() -> Vector3:
+	var forward = -_camera_pivot_yaw.global_transform.basis.z
+	forward.y = 0
+	return forward.normalized()
 
 func rotate_model_toward_camera(delta: float) -> void:
 	var target_basis = Basis.looking_at(-_camera_pivot_yaw.global_transform.basis.z, Vector3.UP)

@@ -6,6 +6,8 @@
 [ext_resource type="Script" uid="uid://ddvyxmtmnykt6" path="res://scripts/states/walk_state.gd" id="4_tuyoq"]
 [ext_resource type="Script" uid="uid://crthkaqtidon3" path="res://scripts/states/run_state.gd" id="5_fjrip"]
 [ext_resource type="Script" uid="uid://bf1dvnj6bd2to" path="res://scripts/states/jump_state.gd" id="6_smehm"]
+[ext_resource type="Script" uid="uid://blc71b6bedo5l" path="res://scripts/states/abdomen_piercer_state.gd" id="7_fjrip"]
+[ext_resource type="Script" uid="uid://b0upo36onthnu" path="res://scripts/fall_state.gd" id="8_smehm"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_cvnsp"]
 
@@ -48,6 +50,9 @@ transform = Transform3D(1, 0, 0, 0, 0.9659259, 0.25881907, 0, -0.25881907, 0.965
 script = ExtResource("2_cvnsp")
 initial_state = NodePath("IdleState")
 
+[node name="AbdomenPiercerState" type="Node" parent="StateMachine" unique_id=1242184591]
+script = ExtResource("7_fjrip")
+
 [node name="IdleState" type="Node" parent="StateMachine" unique_id=666571857]
 script = ExtResource("3_tuyoq")
 
@@ -59,3 +64,6 @@ script = ExtResource("5_fjrip")
 
 [node name="JumpState" type="Node" parent="StateMachine" unique_id=1843036585]
 script = ExtResource("6_smehm")
+
+[node name="FallState" type="Node" parent="StateMachine" unique_id=2112435641]
+script = ExtResource("8_smehm")

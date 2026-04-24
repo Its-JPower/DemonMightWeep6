@@ -2,6 +2,7 @@ class_name IdleState
 extends State
 
 func enter() -> void:
+	player.rotation_mode = Player.RotationMode.MOVEMENT
 #	player.animation_player.play("idle")
 	player.velocity.x = 0
 	player.velocity.z = 0
