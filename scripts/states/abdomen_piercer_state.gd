@@ -9,7 +9,6 @@ const VERTICAL_LOCK_TIME := 0.5  # how long to suppress gravity
 var dash_direction := Vector3.ZERO
 
 func enter() -> void:
-	player.rotation_mode = Player.RotationMode.LOCKED
 	timer = 0.0
 	
 	# Use model's current facing direction, not camera

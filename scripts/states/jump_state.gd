@@ -12,7 +12,6 @@ var peak_timer := 0.0
 var jump_consumed := false  # blocks input until button is released and repressed
 
 func enter() -> void:
-	player.rotation_mode = Player.RotationMode.MOVEMENT
 	player.velocity.y = player.JUMP_VELOCITY
 	jumps_remaining = 1
 	peak_reached = false
@@ -51,3 +50,4 @@ func handle_input(event: InputEvent) -> void:
 			jumps_remaining -= 1
 			peak_reached = false
 			peak_timer = 0.0
+	

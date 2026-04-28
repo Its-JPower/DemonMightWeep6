@@ -19,6 +19,7 @@ const DASH_SPEED := 15.0
 @export_range(0.0, 1.0) var mouse_sensitivity = 0.0025
 @export var tilt_limit = deg_to_rad(75)
 
+var is_sprinting = false
 var is_aiming = false
 
 enum RotationMode { MOVEMENT, CAMERA, LOCKED }
@@ -31,14 +32,14 @@ func _ready() -> void:
 func _input(event: InputEvent) -> void:
 	state_machine.handle_input(event)
 	if event is InputEventMouseMotion:
-		if is_aiming:
-			rotate_y(-event.relative.x * mouse_sensitivity)
-		else:
-			_camera_pivot_yaw.rotate_y(-event.relative.x * mouse_sensitivity)
+		_camera_pivot_yaw.rotate_y(-event.relative.x * mouse_sensitivity)
 		_camera_pivot_pitch.rotate_x(-event.relative.y * mouse_sensitivity)
 		_camera_pivot_pitch.rotation.x = clamp(_camera_pivot_pitch.rotation.x, -0.6, 0.4)
 	if Input.is_action_just_pressed("aim"):
 		is_aiming = !is_aiming
+		rotation_mode = RotationMode.CAMERA if is_aiming else RotationMode.MOVEMENT
+	if Input.is_action_just_pressed("run"):
+		is_sprinting = !is_sprinting
 
 func _process(delta: float) -> void:
 	state_machine.process(delta)
@@ -49,6 +50,7 @@ func _physics_process(delta: float) -> void:
 		RotationMode.MOVEMENT: rotate_model_toward_movement(delta)
 		RotationMode.CAMERA:   rotate_model_toward_camera(delta)
 		RotationMode.LOCKED:   pass  # state handles it or holds last rotation
+	print(rotation_mode)
 
 func get_movement_input() -> Vector3:
 	var input_dir = Input.get_vector("move_left", "move_right", "move_forward", "move_back")
@@ -69,7 +71,7 @@ func apply_gravity(delta: float) -> void:
 
 func apply_movement(delta: float) -> void:
 	var direction = get_movement_input()
-	var target_speed = RUN_SPEED if Input.is_action_pressed("run") else WALK_SPEED
+	var target_speed = RUN_SPEED if is_sprinting else WALK_SPEED
 
 	if direction.length() > 0.1:
 		# Accelerate toward target velocity
@@ -104,5 +106,9 @@ func get_camera_forward() -> Vector3:
 	return forward.normalized()
 
 func rotate_model_toward_camera(delta: float) -> void:
-	var target_basis = Basis.looking_at(-_camera_pivot_yaw.global_transform.basis.z, Vector3.UP)
+	var forward = -_camera_pivot_yaw.global_transform.basis.z
+	forward.y = 0
+	if forward.length() < 0.01:
+		return  # guard against zero vector crash
+	var target_basis = Basis.looking_at(forward, Vector3.UP)
 	player_model.global_basis = player_model.global_basis.slerp(target_basis, ROTATION_SPEED * delta)

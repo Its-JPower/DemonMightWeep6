@@ -2,7 +2,7 @@ class_name WalkState
 extends State
 
 func enter() -> void:
-	player.rotation_mode = Player.RotationMode.MOVEMENT
+	pass
 #	player.animation_player.play("walk")
 
 
@@ -14,7 +14,7 @@ func physics_process(delta: float) -> void:
 
 	if dir.length() < 0.1:
 		state_machine.transition_to(state_machine.get_node("IdleState"))
-	elif Input.is_action_pressed("run"):
+	elif player.is_sprinting:
 		state_machine.transition_to(state_machine.get_node("RunState"))
 	elif Input.is_action_just_pressed("jump"):
 		state_machine.transition_to(state_machine.get_node("JumpState"))

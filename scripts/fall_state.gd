@@ -2,7 +2,7 @@ class_name FallState
 extends State
 
 func enter() -> void:
-	player.rotation_mode = Player.RotationMode.MOVEMENT
+	pass
 
 func physics_process(delta: float) -> void:
 	player.apply_gravity(delta)
