@@ -5,7 +5,7 @@ func enter() -> void:
 #	player.animation_player.play("idle")
 	player.velocity.x = 0
 	player.velocity.z = 0
-	player.is_sprinting = false
+	PlayerStats.is_sprinting = false
 
 func physics_process(delta: float) -> void:
 	player.apply_gravity(delta)

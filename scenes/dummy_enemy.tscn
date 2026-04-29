@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://bv5dt7022ftl8"]
+
+[ext_resource type="Script" uid="uid://dgwyek34kq5hr" path="res://scripts/dummy_enemy.gd" id="1_wpb4l"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_8e6ga"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8e6ga"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_wpb4l"]
+material = SubResource("StandardMaterial3D_8e6ga")
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_thcns"]
+radius = 0.55029297
+height = 2.1083984
+
+[node name="DummyEnemy" type="CharacterBody3D" unique_id=136791282]
+script = ExtResource("1_wpb4l")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1893738057]
+shape = SubResource("CapsuleShape3D_8e6ga")
+
+[node name="Mesh" type="MeshInstance3D" parent="." unique_id=2104070090]
+mesh = SubResource("CapsuleMesh_wpb4l")
+
+[node name="Hitbox" type="Area3D" parent="." unique_id=1299738987]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox" unique_id=526108978]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0034179688, 0)
+shape = SubResource("CapsuleShape3D_thcns")

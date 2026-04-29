@@ -8,6 +8,10 @@
 [ext_resource type="Script" uid="uid://bf1dvnj6bd2to" path="res://scripts/states/jump_state.gd" id="6_smehm"]
 [ext_resource type="Script" uid="uid://blc71b6bedo5l" path="res://scripts/states/abdomen_piercer_state.gd" id="7_fjrip"]
 [ext_resource type="Script" uid="uid://b0upo36onthnu" path="res://scripts/fall_state.gd" id="8_smehm"]
+[ext_resource type="Script" uid="uid://bu1c4jpoiwplk" path="res://scripts/states/uppercut_slash_state.gd" id="9_ur7pv"]
+[ext_resource type="Script" uid="uid://8dplhjlnsmxq" path="res://scripts/states/sword_slash_a_state.gd" id="10_y4r1p"]
+[ext_resource type="Script" uid="uid://dvmcxlt1svjua" path="res://scripts/states/sword_slash_b_state.gd" id="11_3v2ag"]
+[ext_resource type="Script" uid="uid://c723ibwwkmuba" path="res://scripts/states/sword_slash_c_state.gd" id="12_jej6c"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_cvnsp"]
 
@@ -67,3 +71,15 @@ script = ExtResource("6_smehm")
 
 [node name="FallState" type="Node" parent="StateMachine" unique_id=2112435641]
 script = ExtResource("8_smehm")
+
+[node name="UppercutSlashState" type="Node" parent="StateMachine" unique_id=722250227]
+script = ExtResource("9_ur7pv")
+
+[node name="SwordSlashAState" type="Node" parent="StateMachine" unique_id=1885363502]
+script = ExtResource("10_y4r1p")
+
+[node name="SwordSlashBState" type="Node" parent="StateMachine" unique_id=944111654]
+script = ExtResource("11_3v2ag")
+
+[node name="SwordSlashCState" type="Node" parent="StateMachine" unique_id=293450583]
+script = ExtResource("12_jej6c")

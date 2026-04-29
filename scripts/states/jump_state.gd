@@ -12,7 +12,7 @@ var peak_timer := 0.0
 var jump_consumed := false  # blocks input until button is released and repressed
 
 func enter() -> void:
-	player.velocity.y = player.JUMP_VELOCITY
+	player.velocity.y = PlayerStats.JUMP_VELOCITY
 	jumps_remaining = 1
 	peak_reached = false
 	peak_timer = 0.0
