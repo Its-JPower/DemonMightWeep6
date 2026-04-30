@@ -9,7 +9,16 @@ const MOUSE_SENSITIVITY = 0.003
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-
+	var anim_player = $Donte_With_Animations/AnimationPlayer
+	for lib_name in anim_player.get_animation_library_list():
+		var lib = anim_player.get_animation_library(lib_name)
+		for anim_name in lib.get_animation_list():
+			var anim = lib.get_animation(anim_name)
+			for i in anim.get_track_count():
+				var path = str(anim.track_get_path(i))
+				if path.begins_with("Armature/"):
+					var new_path = path.replace("Armature/", "")
+					anim.track_set_path(i, new_path)
 func _unhandled_input(event):
 	if event is InputEventMouseMotion:
 		rotate_y(-event.relative.x * MOUSE_SENSITIVITY)

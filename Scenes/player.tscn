@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://c8dmjl15wp2dr"]
 
 [ext_resource type="Script" uid="uid://dasvqxme4o874" path="res://Scripts/player.gd" id="1_v0iea"]
-[ext_resource type="PackedScene" uid="uid://ddqeduw1tynm8" path="res://assets/UAL2_Standard.glb" id="2_6t5aa"]
 [ext_resource type="Script" uid="uid://camdmnsmasdba" path="res://Scripts/camera.gd" id="2_cvnsp"]
+[ext_resource type="PackedScene" uid="uid://bdr00mnylssoe" path="res://Donte In Progress/Donte_With_Animations.glb" id="3_6t5aa"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_cvnsp"]
 radius = 0.4
@@ -21,5 +21,5 @@ shape = SubResource("CapsuleShape3D_cvnsp")
 transform = Transform3D(1, 0, 0, 0, 0.9659259, 0.25881907, 0, -0.25881907, 0.9659258, 0.5, 1.5, 2)
 script = ExtResource("2_cvnsp")
 
-[node name="UAL2_Standard" parent="." unique_id=1112585023 instance=ExtResource("2_6t5aa")]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, -1, 0)
+[node name="Donte_With_Animations" parent="." unique_id=808791566 instance=ExtResource("3_6t5aa")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -0.006, -1.0095952, 0)
