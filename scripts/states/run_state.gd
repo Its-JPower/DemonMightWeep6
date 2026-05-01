@@ -16,3 +16,6 @@ func physics_process(delta: float) -> void:
 		state_machine.transition_to(state_machine.get_node("IdleState"))
 	elif not player.is_sprinting:
 		state_machine.transition_to(state_machine.get_node("WalkState"))
+	if Input.is_action_pressed("attack"):
+		if player.velocity.length() > 0.1:
+			state_machine.transition_to(state_machine.get_node("AbdomenPiercerState"))

@@ -1,15 +1,6 @@
 class_name Player
 extends CharacterBody3D
 
-const GRAVITY := 9.8
-const WALK_SPEED := 4.0
-const RUN_SPEED := 8.0
-const JUMP_VELOCITY := 5.0
-const ROTATION_SPEED := 6.7
-const ACCELERATION := 15.0
-const DECELERATION := 20.0
-const DASH_SPEED := 15.0
-
 @onready var _camera : Camera3D = %Camera3D
 @onready var _camera_pivot_yaw : Node3D = %CameraPivotYaw
 @onready var _camera_pivot_pitch: Node3D = %CameraPivotPitch
@@ -20,11 +11,19 @@ const DASH_SPEED := 15.0
 @export_range(0.0, 1.0) var mouse_sensitivity = 0.0025
 @export var tilt_limit = deg_to_rad(75)
 
-var is_sprinting = false
-var is_aiming = false
+var GRAVITY := 9.8
+var WALK_SPEED := 4.0
+var RUN_SPEED := 8.0
+var JUMP_VELOCITY := 5.0
+var ROTATION_SPEED := 6.7
+var ACCELERATION := 15.0
+var DECELERATION := 20.0
 
 enum RotationMode { MOVEMENT, CAMERA, LOCKED }
 var rotation_mode := RotationMode.MOVEMENT
+var is_sprinting = false
+var is_aiming = false
+var is_specialing_it = false
 
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
@@ -47,11 +46,15 @@ func _input(event: InputEvent) -> void:
 		_camera_pivot_yaw.rotate_y(-event.relative.x * mouse_sensitivity)
 		_camera_pivot_pitch.rotate_x(-event.relative.y * mouse_sensitivity)
 		_camera_pivot_pitch.rotation.x = clamp(_camera_pivot_pitch.rotation.x, -0.6, 0.4)
-	if Input.is_action_just_pressed("aim"):
+	if Input.is_action_just_pressed("cam_lock"):
 		is_aiming = !is_aiming
 		rotation_mode = RotationMode.CAMERA if is_aiming else RotationMode.MOVEMENT
 	if Input.is_action_just_pressed("run"):
 		is_sprinting = !is_sprinting
+	#if Input.is_action_pressed("special"):
+		#is_specialing_it = true
+	#if Input.is_action_just_released("special"):
+		#is_specialing_it = false
 
 func _process(delta: float) -> void:
 	state_machine.process(delta)
