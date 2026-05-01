@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://crdi13g4wqmmd" path="res://Scripts/state_machine.gd" id="2_cvnsp"]
 [ext_resource type="PackedScene" uid="uid://bdr00mnylssoe" path="res://Donte In Progress/Donte_With_Animations.glb" id="2_f1ek2"]
 [ext_resource type="Script" uid="uid://4k51j4v87low" path="res://Scripts/states/idle_state.gd" id="3_tuyoq"]
+[ext_resource type="AnimationLibrary" uid="uid://b0r7k8cwdoyh6" path="res://assets/Stash 2.res" id="3_tx1dd"]
 [ext_resource type="Script" uid="uid://ddvyxmtmnykt6" path="res://Scripts/states/walk_state.gd" id="4_tuyoq"]
 [ext_resource type="Script" uid="uid://crthkaqtidon3" path="res://Scripts/states/run_state.gd" id="5_fjrip"]
 [ext_resource type="Script" uid="uid://bf1dvnj6bd2to" path="res://Scripts/states/jump_state.gd" id="6_smehm"]
@@ -19,6 +20,68 @@ script = ExtResource("1_v0iea")
 
 [node name="Donte_With_Animations" parent="." unique_id=808791566 instance=ExtResource("2_f1ek2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.7973151, 0)
+
+[node name="Skeleton3D" parent="Donte_With_Animations" index="0" unique_id=969548552]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
+bones/2/position = Vector3(7.771561e-16, 0.05010003, 0.9167)
+bones/2/rotation = Quaternion(0.7904686, 9.127005e-09, 1.1778899e-08, 0.61250275)
+bones/4/rotation = Quaternion(-0.0772799, -6.326935e-08, -1.5767903e-08, 0.99700946)
+bones/5/rotation = Quaternion(-0.00026863068, -5.309264e-09, -3.6327573e-11, 1)
+bones/6/rotation = Quaternion(0.110985965, -4.8805275e-09, 1.3878556e-08, 0.993822)
+bones/7/rotation = Quaternion(-0.078674, 1.4970556e-08, -1.063316e-08, 0.9969004)
+bones/8/rotation = Quaternion(-0.60402054, -0.34510306, -0.3567178, 0.62355083)
+bones/9/rotation = Quaternion(0.16652338, 0.6873266, -0.1935095, 0.6800046)
+bones/10/rotation = Quaternion(0.15498985, 0.0030879895, 0.01981022, 0.9877127)
+bones/11/rotation = Quaternion(0.010190561, -0.0012341974, -0.08163195, 0.9966097)
+bones/12/rotation = Quaternion(0.022793522, 0.68748885, -0.12668985, 0.7146952)
+bones/13/rotation = Quaternion(3.9488083e-07, -9.947688e-08, -1.8056022e-07, 1)
+bones/14/rotation = Quaternion(-1.6398263e-06, -1.7959974e-07, -9.444188e-09, 1)
+bones/16/rotation = Quaternion(0.021250237, 0.68384296, -0.13996796, 0.7157627)
+bones/17/rotation = Quaternion(-8.130206e-05, 0.0006098014, 0.0015113108, 0.9999987)
+bones/18/rotation = Quaternion(6.174184e-05, -0.0004552082, -0.0011277115, 0.9999993)
+bones/20/rotation = Quaternion(0.044446975, 0.66992915, -0.113093846, 0.73241335)
+bones/21/rotation = Quaternion(-3.9096096e-05, -0.00032539212, -0.0008333269, 0.9999997)
+bones/22/rotation = Quaternion(2.8976947e-05, 0.00023752134, 0.0006089343, 0.9999999)
+bones/24/rotation = Quaternion(0.06599952, 0.68552303, -0.14212732, 0.71098673)
+bones/25/rotation = Quaternion(8.3586343e-07, 5.6322897e-06, 1.2296891e-05, 1)
+bones/26/rotation = Quaternion(8.7078515e-05, -0.0004943511, -0.001063662, 0.9999994)
+bones/28/rotation = Quaternion(0.18459126, 0.95747465, 0.19636007, 0.103009984)
+bones/29/rotation = Quaternion(0.13609765, -7.4309006e-05, -0.04204463, 0.98980284)
+bones/30/rotation = Quaternion(0.00024811563, 8.07999e-05, -0.0005359176, 0.9999998)
+bones/32/rotation = Quaternion(-0.60402054, 0.34510297, 0.3567177, 0.62355095)
+bones/33/rotation = Quaternion(0.18026969, -0.6838501, 0.17983642, 0.6837476)
+bones/34/rotation = Quaternion(0.10355234, 2.0591653e-05, -2.2390302e-06, 0.994624)
+bones/35/rotation = Quaternion(0.047805022, -2.8614969e-07, -2.5121312e-07, 0.9988567)
+bones/36/rotation = Quaternion(0.09785436, -0.70606124, 0.21499753, 0.66759133)
+bones/37/rotation = Quaternion(2.4051408e-06, -2.3283071e-07, -2.2631113e-07, 1)
+bones/38/rotation = Quaternion(-5.1432295e-07, -3.0733656e-08, -6.1839825e-07, 1)
+bones/39/rotation = Quaternion(-1.203269e-06, 1, -1.5278349e-06, -4.1220337e-06)
+bones/40/rotation = Quaternion(0.14144745, -0.6913527, 0.17141809, 0.6874881)
+bones/41/rotation = Quaternion(-0.00022335365, -0.00066946447, -0.001497296, 0.9999986)
+bones/42/rotation = Quaternion(0.00016725497, 0.000499243, 0.0011171559, 0.9999993)
+bones/43/rotation = Quaternion(-4.1013112e-07, 1, -3.4179538e-07, -3.6496203e-06)
+bones/44/rotation = Quaternion(0.1523705, -0.68578386, 0.1620036, 0.69299257)
+bones/45/rotation = Quaternion(9.178411e-05, 0.00037675168, 0.0008290785, 0.9999996)
+bones/46/rotation = Quaternion(-6.750974e-05, -0.00027487412, -0.00060544536, 0.9999999)
+bones/47/rotation = Quaternion(2.2741726e-07, 1, -1.4631075e-06, -3.29467e-06)
+bones/48/rotation = Quaternion(0.1343709, -0.69462925, 0.17778522, 0.68397886)
+bones/49/rotation = Quaternion(-2.1075812e-06, -5.1362435e-06, -1.1749566e-05, 1)
+bones/50/rotation = Quaternion(0.00017542683, 0.0004655712, 0.0010523503, 0.99999934)
+bones/51/rotation = Quaternion(3.5739515e-07, 1, 2.0600855e-06, -3.2950195e-06)
+bones/52/rotation = Quaternion(-0.28885427, 0.9036293, 0.2874284, -0.13191794)
+bones/53/rotation = Quaternion(0.0036417923, 2.201869e-05, 0.0018176425, 0.9999917)
+bones/54/rotation = Quaternion(0.24786638, 0.0020321107, 0.0857194, 0.9649924)
+bones/56/rotation = Quaternion(0.9924843, 3.6207455e-09, 2.9366513e-08, 0.12237253)
+bones/57/rotation = Quaternion(0.036589622, -0.00013118816, -4.7940252e-06, 0.9993304)
+bones/58/rotation = Quaternion(-0.52907306, -0.00032809138, 0.00034345087, 0.8485762)
+bones/59/rotation = Quaternion(-0.0001371441, 0.9643068, -0.26478744, -0.00049954205)
+bones/61/rotation = Quaternion(0.9924843, 1.7650672e-08, 6.710881e-08, 0.12237252)
+bones/62/rotation = Quaternion(0.036589622, -0.00013122692, -4.7918757e-06, 0.9993304)
+bones/63/rotation = Quaternion(-0.5290731, -0.00032809624, 0.00034345727, 0.8485761)
+bones/64/rotation = Quaternion(-0.00013714509, 0.96430665, -0.2647875, -0.00049954205)
+
+[node name="AnimationPlayer" parent="Donte_With_Animations" index="1" unique_id=1329162510]
+"libraries/Stash 2" = ExtResource("3_tx1dd")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1823396936]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05102539, 0)
@@ -61,3 +124,5 @@ script = ExtResource("6_smehm")
 
 [node name="FallState" type="Node" parent="StateMachine" unique_id=2112435641]
 script = ExtResource("8_smehm")
+
+[editable path="Donte_With_Animations"]
