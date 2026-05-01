@@ -1,15 +1,15 @@
 [gd_scene format=3 uid="uid://c8dmjl15wp2dr"]
 
-[ext_resource type="Script" uid="uid://cb2g1lhebocn" path="res://Scripts/player.gd" id="1_v0iea"]
-[ext_resource type="Script" uid="uid://crdi13g4wqmmd" path="res://Scripts/state_machine.gd" id="2_cvnsp"]
+[ext_resource type="Script" uid="uid://cb2g1lhebocn" path="res://scripts/player.gd" id="1_v0iea"]
+[ext_resource type="Script" uid="uid://crdi13g4wqmmd" path="res://scripts/state_machine.gd" id="2_cvnsp"]
 [ext_resource type="PackedScene" uid="uid://bdr00mnylssoe" path="res://Donte In Progress/Donte_With_Animations.glb" id="2_f1ek2"]
-[ext_resource type="Script" uid="uid://4k51j4v87low" path="res://Scripts/states/idle_state.gd" id="3_tuyoq"]
+[ext_resource type="Script" uid="uid://4k51j4v87low" path="res://scripts/states/idle_state.gd" id="3_tuyoq"]
 [ext_resource type="AnimationLibrary" uid="uid://b0r7k8cwdoyh6" path="res://assets/Stash 2.res" id="3_tx1dd"]
-[ext_resource type="Script" uid="uid://ddvyxmtmnykt6" path="res://Scripts/states/walk_state.gd" id="4_tuyoq"]
-[ext_resource type="Script" uid="uid://crthkaqtidon3" path="res://Scripts/states/run_state.gd" id="5_fjrip"]
-[ext_resource type="Script" uid="uid://bf1dvnj6bd2to" path="res://Scripts/states/jump_state.gd" id="6_smehm"]
-[ext_resource type="Script" uid="uid://blc71b6bedo5l" path="res://Scripts/states/abdomen_piercer_state.gd" id="7_fjrip"]
-[ext_resource type="Script" uid="uid://b0upo36onthnu" path="res://Scripts/fall_state.gd" id="8_smehm"]
+[ext_resource type="Script" uid="uid://ddvyxmtmnykt6" path="res://scripts/states/walk_state.gd" id="4_tuyoq"]
+[ext_resource type="Script" uid="uid://crthkaqtidon3" path="res://scripts/states/run_state.gd" id="5_fjrip"]
+[ext_resource type="Script" uid="uid://bf1dvnj6bd2to" path="res://scripts/states/jump_state.gd" id="6_smehm"]
+[ext_resource type="Script" uid="uid://blc71b6bedo5l" path="res://scripts/states/abdomen_piercer_state.gd" id="7_fjrip"]
+[ext_resource type="Script" uid="uid://b0upo36onthnu" path="res://scripts/fall_state.gd" id="8_smehm"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_cvnsp"]
 radius = 0.22509766
@@ -21,7 +21,7 @@ script = ExtResource("1_v0iea")
 [node name="Donte_With_Animations" parent="." unique_id=808791566 instance=ExtResource("2_f1ek2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.7973151, 0)
 
-[node name="Skeleton3D" parent="Donte_With_Animations" index="0" unique_id=969548552]
+[node name="Skeleton3D" parent="Donte_With_Animations" index="0" unique_id=38294976]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
 bones/2/position = Vector3(7.771561e-16, 0.05010003, 0.9167)
 bones/2/rotation = Quaternion(0.7904686, 9.127005e-09, 1.1778899e-08, 0.61250275)
@@ -80,7 +80,7 @@ bones/62/rotation = Quaternion(0.036589622, -0.00013122692, -4.7918757e-06, 0.99
 bones/63/rotation = Quaternion(-0.5290731, -0.00032809624, 0.00034345727, 0.8485761)
 bones/64/rotation = Quaternion(-0.00013714509, 0.96430665, -0.2647875, -0.00049954205)
 
-[node name="AnimationPlayer" parent="Donte_With_Animations" index="1" unique_id=1329162510]
+[node name="AnimationPlayer" parent="Donte_With_Animations" index="1" unique_id=1462808816]
 "libraries/Stash 2" = ExtResource("3_tx1dd")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1823396936]

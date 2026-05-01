@@ -68,7 +68,7 @@ func _physics_process(delta: float) -> void:
 	print(rotation_mode)
 
 func get_movement_input() -> Vector3:
-	var input_dir = Input.get_vector("move_left", "move_right", "move_forward", "move_backward")
+	var input_dir = Input.get_vector("move_left", "move_right", "move_forward", "move_back")
 	var forward = -_camera_pivot_yaw.global_transform.basis.z
 	var right = _camera_pivot_yaw.global_transform.basis.x
 	forward.y = 0
