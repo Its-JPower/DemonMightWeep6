@@ -1,18 +1,13 @@
 extends Node
 
-#non upgradeables
-var GRAVITY := 9.8
-var WALK_SPEED := 4.0
-var RUN_SPEED := 8.0
-var JUMP_VELOCITY := 5.0
-var ROTATION_SPEED := 6.7
-var ACCELERATION := 15.0
-var DECELERATION := 20.0
-var DURATION := 0.3
-var DASH_SPEED := 20.0
+var abdomen_piercer_damage := 25.0
+var abdomen_piercer_kb_strength := 18.0
+var abdomen_piercer_kb_vertical := 4.0
 
-var is_sprinting = false
-var is_aiming = false
+var upper_slash_damage := 30.0
+var upper_slash_kb_strength := 2.0
+var upper_slash_kb_vertical := 18.0
 
-#upgradables
-var AP_LEVEL := 1
+var max_health := 100.0
+var health := 100.0
+var ap_level := 1

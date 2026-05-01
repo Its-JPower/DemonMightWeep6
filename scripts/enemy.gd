@@ -13,9 +13,10 @@ signal died
 func _ready() -> void:
 	health = max_health
 
-func take_damage(amount: float, knockback: Vector3 = Vector3.ZERO) -> void:
+func take_damage(amount: float, knockback: Vector3 = Vector3.ZERO, vertical_knockback: float = 0.0) -> void:
 	health -= amount
 	knockback_velocity = knockback / knockback_resistance
+	knockback_velocity.y = vertical_knockback / knockback_resistance  # overrides y entirely
 	emit_signal("damaged", amount)
 	_on_damaged(amount)
 	if health <= 0:

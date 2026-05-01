@@ -3,14 +3,17 @@ extends State
 
 var timer := 0.0
 const VERTICAL_LOCK_TIME := 0.5  # how long to suppress gravity
+const DASH_DURATION := 0.3
+const DASH_SPEED := 20.0
+
 
 var local_dash_speed
 var local_duration
 var dash_direction := Vector3.ZERO
 
 func enter() -> void:
-	local_dash_speed = PlayerStats.DASH_SPEED + ((PlayerStats.AP_LEVEL-1)*5.0)
-	local_duration = PlayerStats.DURATION + ((PlayerStats.AP_LEVEL-1)*0.15)
+	local_dash_speed = DASH_SPEED + ((PlayerStats.ap_level-1)*5.0)
+	local_duration = DASH_DURATION + ((PlayerStats.ap_level-1)*0.15)
 	timer = 0.0
 	
 	# Use model's current facing direction, not camera
@@ -41,8 +44,12 @@ func physics_process(delta: float) -> void:
 		var collider = col.get_collider()
 		if collider is Enemy:
 			# Dash knockback: strong forward push, slight upward launch
-			var kb = dash_direction * 6.0*PlayerStats.AP_LEVEL + Vector3.UP * 4.0
-			collider.take_damage(25.0, kb)
+			
+			var kb = dash_direction * 6.0*PlayerStats.ap_level
+			collider.take_damage(
+				PlayerStats.abdomen_piercer_damage,
+				kb * PlayerStats.abdomen_piercer_kb_strength,
+				PlayerStats.abdomen_piercer_kb_vertical)
 			_end_state()
 			return
 	

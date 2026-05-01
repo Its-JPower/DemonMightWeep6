@@ -14,7 +14,7 @@ func physics_process(delta: float) -> void:
 
 	if dir.length() < 0.1:
 		state_machine.transition_to(state_machine.get_node("IdleState"))
-	elif PlayerStats.is_sprinting:
+	elif player.is_sprinting:
 		state_machine.transition_to(state_machine.get_node("RunState"))
 	elif Input.is_action_just_pressed("jump"):
 		state_machine.transition_to(state_machine.get_node("JumpState"))
