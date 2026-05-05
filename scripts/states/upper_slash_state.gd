@@ -20,7 +20,7 @@ func enter() -> void:
 	player.velocity.z = lunge_direction.z * HORIZONTAL_SPEED
 	player.velocity.y = 0.0
 
-	hitbox.monitoring = true   # activate on swing start
+	#hitbox.monitoring = true   # activate on swing start
 
 func physics_process(delta: float) -> void:
 	timer += delta

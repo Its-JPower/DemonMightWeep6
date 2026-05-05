@@ -4,9 +4,10 @@ extends CharacterBody3D
 @onready var _camera : Camera3D = %Camera3D
 @onready var _camera_pivot_yaw : Node3D = %CameraPivotYaw
 @onready var _camera_pivot_pitch: Node3D = %CameraPivotPitch
+@onready var _spring_arm : SpringArm3D = %SpringArm3D
 @onready var state_machine: StateMachine = $StateMachine
 @onready var player_model: Node3D = $Donte_With_Animations
-@onready var anim_player = $Donte_With_Animations/AnimationPlayer
+@onready var anim_player: AnimationPlayer = $Donte_With_Animations/AnimationPlayer
 
 @export_range(0.0, 1.0) var mouse_sensitivity = 0.0025
 @export var tilt_limit = deg_to_rad(75)
@@ -18,6 +19,10 @@ var JUMP_VELOCITY := 5.0
 var ROTATION_SPEED := 6.7
 var ACCELERATION := 15.0
 var DECELERATION := 20.0
+
+const PIVOT_HEIGHT := 1.6
+const PIVOT_WALL_MARGIN := 0.35
+const PIVOT_LERP_SPEED := 20.0
 
 enum RotationMode { MOVEMENT, CAMERA, LOCKED }
 var rotation_mode := RotationMode.MOVEMENT
@@ -51,21 +56,47 @@ func _input(event: InputEvent) -> void:
 		rotation_mode = RotationMode.CAMERA if is_aiming else RotationMode.MOVEMENT
 	if Input.is_action_just_pressed("run"):
 		is_sprinting = !is_sprinting
-	#if Input.is_action_pressed("special"):
-		#is_specialing_it = true
-	#if Input.is_action_just_released("special"):
-		#is_specialing_it = false
+	if Input.is_action_pressed("special"):
+		is_specialing_it = true
+	if Input.is_action_just_released("special"):
+		is_specialing_it = false
 
 func _process(delta: float) -> void:
 	state_machine.process(delta)
-	
+
 func _physics_process(delta: float) -> void:
 	state_machine.physics_process(delta)
+	_update_camera_pivot(delta)
 	match rotation_mode:
 		RotationMode.MOVEMENT: rotate_model_toward_movement(delta)
 		RotationMode.CAMERA:   rotate_model_toward_camera(delta)
 		RotationMode.LOCKED:   pass
-	print(rotation_mode)
+
+func _update_camera_pivot(delta: float) -> void:
+	var current_yaw := _camera_pivot_yaw.global_rotation.y
+	var desired := global_position + Vector3.UP * PIVOT_HEIGHT
+	var safe := _push_from_walls(desired)
+	_camera_pivot_yaw.global_position = _camera_pivot_yaw.global_position.lerp(safe, PIVOT_LERP_SPEED * delta)
+	_camera_pivot_yaw.global_rotation.y = current_yaw
+
+func _push_from_walls(origin: Vector3) -> Vector3:
+	var space := get_world_3d().direct_space_state
+	var mask := _spring_arm.collision_mask
+	var exclude := [self.get_rid()]
+	var result_pos := origin
+
+	for dir in [Vector3.LEFT, Vector3.RIGHT, Vector3.FORWARD, Vector3.BACK]:
+		var params := PhysicsRayQueryParameters3D.new()
+		params.from = origin
+		params.to = origin + dir * PIVOT_WALL_MARGIN
+		params.collision_mask = mask
+		params.exclude = exclude
+		var hit := space.intersect_ray(params)
+		if hit:
+			var dist := origin.distance_to(hit.position)
+			result_pos -= dir * (PIVOT_WALL_MARGIN - dist)
+
+	return result_pos
 
 func get_movement_input() -> Vector3:
 	var input_dir = Input.get_vector("move_left", "move_right", "move_forward", "move_back")
@@ -89,10 +120,6 @@ func apply_movement(delta: float) -> void:
 		var target_velocity = direction * target_speed
 		velocity.x = move_toward(velocity.x, target_velocity.x, ACCELERATION * delta)
 		velocity.z = move_toward(velocity.z, target_velocity.z, ACCELERATION * delta)
-		if is_sprinting:
-			anim_player.play("Stash 2/Sprint")
-		else:
-			anim_player.play("Stash 2/Walk")
 	else:
 		velocity.x = move_toward(velocity.x, 0.0, DECELERATION * delta)
 		velocity.z = move_toward(velocity.z, 0.0, DECELERATION * delta)

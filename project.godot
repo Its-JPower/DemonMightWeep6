@@ -19,6 +19,10 @@ config/icon="res://icon.svg"
 
 PlayerStats="*uid://301k1e70jilf"
 
+[filesystem]
+
+import/blender/enabled=false
+
 [input]
 
 move_forward={
