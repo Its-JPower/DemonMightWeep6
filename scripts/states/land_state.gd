@@ -5,7 +5,7 @@ var _done: bool = false
 
 func enter() -> void:
 	_done = false
-	player.anim_player.play("NinjaJump_Land")
+	player.anim_player.play("Stash 2/Jump_Land")
 	player.anim_player.animation_finished.connect(_on_anim_finished, CONNECT_ONE_SHOT)
 
 func _on_anim_finished(_anim_name: String) -> void:

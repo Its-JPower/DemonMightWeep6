@@ -4,10 +4,10 @@ extends CharacterBody3D
 @onready var _camera : Camera3D = %Camera3D
 @onready var _camera_pivot_yaw : Node3D = %CameraPivotYaw
 @onready var _camera_pivot_pitch: Node3D = %CameraPivotPitch
-@onready var _spring_arm : SpringArm3D = %SpringArm3D
+@onready var _spring_arm : SpringArm3D = %SpringArm
 @onready var state_machine: StateMachine = $StateMachine
-@onready var player_model: Node3D = $Donte_With_Animations
-@onready var anim_player: AnimationPlayer = $Donte_With_Animations/AnimationPlayer
+@onready var player_model: Node3D = $Mesh
+@onready var anim_player: AnimationPlayer = $Mesh/AnimationPlayer
 
 @export_range(0.0, 1.0) var mouse_sensitivity = 0.0025
 @export var tilt_limit = deg_to_rad(75)

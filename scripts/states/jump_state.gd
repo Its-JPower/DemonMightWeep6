@@ -12,7 +12,7 @@ var peak_timer := 0.0
 var jump_consumed := false  # blocks input until button is released and repressed
 
 func enter() -> void:
-	player.anim_player.play("NinjaJump_Start")
+	player.anim_player.play("Stash 2/Jump_Start")
 	player.velocity.y = player.JUMP_VELOCITY
 	jumps_remaining = 1
 	peak_reached = false

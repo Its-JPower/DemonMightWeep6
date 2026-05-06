@@ -10,8 +10,11 @@ const DASH_SPEED := 20.0
 var local_dash_speed
 var local_duration
 var dash_direction := Vector3.ZERO
+var hit_enemies := []
 
 func enter() -> void:
+	player.anim_player.play("Sword_Dash_RM")
+	hit_enemies.clear()
 	local_dash_speed = DASH_SPEED + ((PlayerStats.ap_level-1)*5.0)
 	local_duration = DASH_DURATION + ((PlayerStats.ap_level-1)*0.15)
 	timer = 0.0
@@ -42,13 +45,12 @@ func physics_process(delta: float) -> void:
 	for i in player.get_slide_collision_count():
 		var col = player.get_slide_collision(i)
 		var collider = col.get_collider()
-		if collider is Enemy:
-			# Dash knockback: strong forward push, slight upward launch
-			
-			var kb = dash_direction * 6.0*PlayerStats.ap_level
+		if collider is Enemy and collider not in hit_enemies:
+			hit_enemies.append(collider)
+			var kb = dash_direction
 			collider.take_damage(
 				PlayerStats.abdomen_piercer_damage,
-				kb * PlayerStats.abdomen_piercer_kb_strength,
+				kb * (PlayerStats.abdomen_piercer_kb_strength+(6.0*(PlayerStats.ap_level-1))),
 				PlayerStats.abdomen_piercer_kb_vertical)
 			_end_state()
 			return

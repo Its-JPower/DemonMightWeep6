@@ -24,11 +24,15 @@ func take_damage(amount: float, knockback: Vector3 = Vector3.ZERO, vertical_knoc
 
 func _physics_process(delta: float) -> void:
 	if not is_on_floor():
-		velocity.y -= 9.8 * delta
+		knockback_velocity.y -= 9.8 * delta
+		# only decay horizontal while airborne, let gravity handle Y
+		knockback_velocity.x = move_toward(knockback_velocity.x, 0.0, 40.0 * delta)
+		knockback_velocity.z = move_toward(knockback_velocity.z, 0.0, 40.0 * delta)
+	else:
+		knockback_velocity = knockback_velocity.move_toward(Vector3.ZERO, 40.0 * delta)
 
-	# Bleed off knockback over time
-	knockback_velocity = knockback_velocity.move_toward(Vector3.ZERO, 18.0 * delta)
 	velocity.x = knockback_velocity.x
+	velocity.y = knockback_velocity.y
 	velocity.z = knockback_velocity.z
 
 	move_and_slide()
