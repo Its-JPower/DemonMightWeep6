@@ -9,9 +9,12 @@ func physics_process(delta: float) -> void:
 	player.apply_movement(delta)
 	player.move_and_slide()
 
+	if not player.is_on_floor():
+		state_machine.transition_to(state_machine.get_node("FallState"))
+		return
+
 	var dir = player.get_movement_input()
 
-	# Keep animation in sync with actual speed
 	if player.is_sprinting:
 		player.anim_player.play("Stash 2/Sprint", 1.0)
 	else:
