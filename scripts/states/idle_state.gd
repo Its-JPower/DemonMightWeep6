@@ -11,6 +11,13 @@ func physics_process(delta: float) -> void:
 	player.apply_gravity(delta)
 	player.move_and_slide()
 
+	# Tick combo timeout
+	if state_machine.combo_index > 0:
+		state_machine.combo_timer += delta
+		if state_machine.combo_timer >= state_machine.COMBO_TIMEOUT:
+			state_machine.combo_index = 0
+			state_machine.combo_timer = 0.0
+
 	if not player.is_on_floor():
 		state_machine.transition_to(state_machine.get_node("JumpState"))
 		return
@@ -22,13 +29,21 @@ func physics_process(delta: float) -> void:
 				state_machine.transition_to(state_machine.get_node("RunState"))
 			else:
 				state_machine.transition_to(state_machine.get_node("WalkState"))
+			return
+
 		if Input.is_action_just_pressed("attack"):
-			if state_machine.previous_state == state_machine.get_node("SwordSlashAState"):
-				state_machine.transition_to(state_machine.get_node("SwordSlashBState"))
-			elif state_machine.previous_state == state_machine.get_node("SwordSlashBState"):
-				state_machine.transition_to(state_machine.get_node("SwordSlashCState"))
-			else:
-				state_machine.transition_to(state_machine.get_node("SwordSlashAState"))
+			state_machine.combo_timer = 0.0
+			match state_machine.combo_index:
+				0:
+					state_machine.transition_to(state_machine.get_node("SwordSlashAState"))
+				1:
+					state_machine.transition_to(state_machine.get_node("SwordSlashBState"))
+				2:
+					state_machine.transition_to(state_machine.get_node("SwordSlashCState"))
+				# A/B fast cycle — C resets back to A
+				3:
+					state_machine.combo_index = 0
+					state_machine.transition_to(state_machine.get_node("SwordSlashAState"))
 	else:
 		if Input.is_action_just_pressed("dance"):
 			player.anim_player.play("Stash 2/Dance", 1.0)

@@ -1,6 +1,11 @@
 class_name StateMachine
 extends Node
 
+var combo_index := 0
+var combo_timer := 0.0
+var attack_buffered := false
+const COMBO_TIMEOUT := 0.6
+
 @export var initial_state: NodePath
 var current_state: State
 var previous_state: State

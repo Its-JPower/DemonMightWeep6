@@ -6,7 +6,7 @@ var abdomen_piercer_kb_vertical := 2.0
 
 var upper_slash_damage := 30.0
 var upper_slash_kb_strength := 2.0
-var upper_slash_kb_vertical := 18.0
+var upper_slash_kb_vertical := 9.0
 
 var sword_slash_a_damage := 5.0
 var sword_slash_b_damage := 5.0
