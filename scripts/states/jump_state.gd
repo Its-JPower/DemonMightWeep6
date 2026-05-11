@@ -52,4 +52,6 @@ func handle_input(event: InputEvent) -> void:
 			jumps_remaining -= 1
 			peak_reached = false
 			peak_timer = 0.0
-	
+	if not player.is_on_floor() and Input.is_action_just_pressed("attack") and player.is_specialing_it:
+		state_machine.transition_to(state_machine.get_node("DownSlamState"))
+		return

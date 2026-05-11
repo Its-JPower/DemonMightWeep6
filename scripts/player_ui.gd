@@ -11,4 +11,4 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	stateui.text = str(state_machine.current_state)
+	stateui.text = str(state_machine.current_state) + "\n" + str($"../../../../..".velocity.y)

@@ -1,23 +1,22 @@
 [gd_scene format=3 uid="uid://c8dmjl15wp2dr"]
 
-[ext_resource type="Script" uid="uid://cb2g1lhebocn" path="res://scripts/player.gd" id="1_v0iea"]
-[ext_resource type="Script" uid="uid://crdi13g4wqmmd" path="res://scripts/state_machine.gd" id="2_cvnsp"]
+[ext_resource type="Script" uid="uid://cb2g1lhebocn" path="res://Scripts/player.gd" id="1_v0iea"]
+[ext_resource type="Script" uid="uid://crdi13g4wqmmd" path="res://Scripts/state_machine.gd" id="2_cvnsp"]
 [ext_resource type="PackedScene" uid="uid://bdr00mnylssoe" path="res://Donte In Progress/Donte_With_Animations.glb" id="2_f1ek2"]
-[ext_resource type="Script" uid="uid://i3o4bdjqn47" path="res://scripts/sword.gd" id="3_f1ej7"]
-[ext_resource type="Script" uid="uid://4k51j4v87low" path="res://scripts/states/idle_state.gd" id="3_tuyoq"]
+[ext_resource type="Script" uid="uid://i3o4bdjqn47" path="res://Scripts/sword.gd" id="3_f1ej7"]
+[ext_resource type="Script" uid="uid://4k51j4v87low" path="res://Scripts/states/idle_state.gd" id="3_tuyoq"]
 [ext_resource type="AnimationLibrary" uid="uid://b0r7k8cwdoyh6" path="res://assets/Stash 2.res" id="3_tx1dd"]
 [ext_resource type="PackedScene" uid="uid://cwd0i0y8vl5cj" path="res://Scenes/player_ui.tscn" id="4_jej6c"]
-[ext_resource type="Script" uid="uid://ddvyxmtmnykt6" path="res://scripts/states/walk_state.gd" id="4_tuyoq"]
-[ext_resource type="Script" uid="uid://crthkaqtidon3" path="res://scripts/states/run_state.gd" id="5_fjrip"]
-[ext_resource type="Script" uid="uid://bf1dvnj6bd2to" path="res://scripts/states/jump_state.gd" id="6_smehm"]
-[ext_resource type="Script" uid="uid://blc71b6bedo5l" path="res://scripts/states/abdomen_piercer_state.gd" id="7_fjrip"]
-[ext_resource type="Script" uid="uid://b0upo36onthnu" path="res://scripts/states/fall_state.gd" id="8_smehm"]
-[ext_resource type="Script" uid="uid://c6sjh3iy3ebgv" path="res://scripts/states/land_state.gd" id="11_d2wvv"]
-[ext_resource type="Script" uid="uid://bu1c4jpoiwplk" path="res://scripts/states/upper_slash_state.gd" id="12_3v2ag"]
-[ext_resource type="Script" uid="uid://8dplhjlnsmxq" path="res://scripts/states/sword_slash_a_state.gd" id="15_qfm1y"]
-[ext_resource type="Script" uid="uid://dvmcxlt1svjua" path="res://scripts/states/sword_slash_b_state.gd" id="16_fulsm"]
-[ext_resource type="Script" uid="uid://c723ibwwkmuba" path="res://scripts/states/sword_slash_c_state.gd" id="17_4r5pv"]
-[ext_resource type="Script" uid="uid://craks73e1kgxx" path="res://scripts/states/down_slam_state.gd" id="18_igrcy"]
+[ext_resource type="Script" uid="uid://ddvyxmtmnykt6" path="res://Scripts/states/walk_state.gd" id="4_tuyoq"]
+[ext_resource type="Script" uid="uid://crthkaqtidon3" path="res://Scripts/states/run_state.gd" id="5_fjrip"]
+[ext_resource type="Script" uid="uid://bf1dvnj6bd2to" path="res://Scripts/states/jump_state.gd" id="6_smehm"]
+[ext_resource type="Script" uid="uid://blc71b6bedo5l" path="res://Scripts/states/abdomen_piercer_state.gd" id="7_fjrip"]
+[ext_resource type="Script" path="res://scripts/states/fall_state.gd" id="8_smehm"]
+[ext_resource type="Script" path="res://scripts/states/land_state.gd" id="11_d2wvv"]
+[ext_resource type="Script" uid="uid://bu1c4jpoiwplk" path="res://Scripts/states/upper_slash_state.gd" id="12_3v2ag"]
+[ext_resource type="Script" uid="uid://8dplhjlnsmxq" path="res://Scripts/states/sword_slash_a_state.gd" id="15_qfm1y"]
+[ext_resource type="Script" uid="uid://dvmcxlt1svjua" path="res://Scripts/states/sword_slash_b_state.gd" id="16_fulsm"]
+[ext_resource type="Script" uid="uid://c723ibwwkmuba" path="res://Scripts/states/sword_slash_c_state.gd" id="17_4r5pv"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_jej6c"]
 
@@ -180,8 +179,5 @@ script = ExtResource("16_fulsm")
 
 [node name="SwordSlashCState" type="Node" parent="StateMachine" unique_id=1243981121]
 script = ExtResource("17_4r5pv")
-
-[node name="DownSlamState" type="Node" parent="StateMachine" unique_id=1912694094]
-script = ExtResource("18_igrcy")
 
 [editable path="Mesh"]

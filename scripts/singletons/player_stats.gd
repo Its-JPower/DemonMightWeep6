@@ -12,6 +12,10 @@ var sword_slash_a_damage := 5.0
 var sword_slash_b_damage := 5.0
 var sword_slash_c_damage := 7.5
 
+var down_slam_damage := 30
+var down_slam_kb_strength := 8.0
+var down_slam_kb_vertical := 5.0
+
 var max_health := 100.0
 var health := 100.0
 var ap_level := 3

@@ -19,6 +19,9 @@ var JUMP_VELOCITY := 5.0
 var ROTATION_SPEED := 6.7
 var ACCELERATION := 15.0
 var DECELERATION := 20.0
+var SPECIALING_IT_SPEED := 2.0
+
+const JOY_SENSITIVITY := 2.5
 
 const PIVOT_HEIGHT := 1.6
 const PIVOT_WALL_MARGIN := 0.35
@@ -29,6 +32,8 @@ var rotation_mode := RotationMode.MOVEMENT
 var is_sprinting = false
 var is_aiming = false
 var is_specialing_it = false
+var _joy_look := Vector2.ZERO
+var last_fall_speed
 
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
@@ -51,6 +56,11 @@ func _input(event: InputEvent) -> void:
 		_camera_pivot_yaw.rotate_y(-event.relative.x * mouse_sensitivity)
 		_camera_pivot_pitch.rotate_x(-event.relative.y * mouse_sensitivity)
 		_camera_pivot_pitch.rotation.x = clamp(_camera_pivot_pitch.rotation.x, -0.6, 0.4)
+	elif event is InputEventJoypadMotion:
+		if event.axis == JOY_AXIS_RIGHT_X:
+			_joy_look.x = event.axis_value
+		elif event.axis == JOY_AXIS_RIGHT_Y:
+			_joy_look.y = event.axis_value
 	if Input.is_action_just_pressed("cam_lock"):
 		is_aiming = !is_aiming
 		rotation_mode = RotationMode.CAMERA if is_aiming else RotationMode.MOVEMENT
@@ -63,8 +73,14 @@ func _input(event: InputEvent) -> void:
 
 func _process(delta: float) -> void:
 	state_machine.process(delta)
+	if _joy_look.length() > 0.1:  # deadzone
+		_camera_pivot_yaw.rotate_y(-_joy_look.x * JOY_SENSITIVITY * delta)
+		_camera_pivot_pitch.rotate_x(-_joy_look.y * JOY_SENSITIVITY * delta)
+		_camera_pivot_pitch.rotation.x = clamp(_camera_pivot_pitch.rotation.x, -0.6, 0.4)
 
 func _physics_process(delta: float) -> void:
+	if velocity.y < 0:
+		last_fall_speed = -velocity.y
 	state_machine.physics_process(delta)
 	_update_camera_pivot(delta)
 	match rotation_mode:
@@ -114,7 +130,13 @@ func apply_gravity(delta: float) -> void:
 
 func apply_movement(delta: float) -> void:
 	var direction = get_movement_input()
-	var target_speed = RUN_SPEED if is_sprinting else WALK_SPEED
+	var target_speed: float
+	if is_sprinting:
+		target_speed = RUN_SPEED
+	elif is_specialing_it:
+		target_speed = SPECIALING_IT_SPEED
+	else:
+		target_speed = WALK_SPEED
 
 	if direction.length() > 0.1:
 		var target_velocity = direction * target_speed
