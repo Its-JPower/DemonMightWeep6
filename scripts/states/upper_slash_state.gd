@@ -10,6 +10,7 @@ var lunge_direction := Vector3.ZERO
 var has_hit := false
 
 func enter() -> void:
+	player._lock_on_idle_timer = 0.0
 	timer = 0.0
 	has_hit = false  # reset so re-entry works
 	lunge_direction = -player.player_model.global_transform.basis.z
@@ -46,7 +47,7 @@ func _on_hit(enemy: Enemy) -> void:
 	if has_hit:
 		return
 	has_hit = true
-
+	player.set_lock_on_target(enemy)
 	var kb := lunge_direction * PlayerStats.upper_slash_kb_strength
 	enemy.take_damage(
 		PlayerStats.upper_slash_damage,

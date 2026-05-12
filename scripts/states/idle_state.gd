@@ -31,18 +31,25 @@ func physics_process(delta: float) -> void:
 		return
 
 	if Input.is_action_just_pressed("attack"):
-		state_machine.combo_timer = 0.0
-		match state_machine.combo_index:
-			0:
-				state_machine.transition_to(state_machine.get_node("SwordSlashAState"))
-			1:
-				state_machine.transition_to(state_machine.get_node("SwordSlashBState"))
-			2:
-				state_machine.transition_to(state_machine.get_node("SwordSlashCState"))
-			# A/B fast cycle — C resets back to A
-			3:
-				state_machine.combo_index = 0
-				state_machine.transition_to(state_machine.get_node("SwordSlashAState"))
+		var forward = -player.player_model.global_transform.basis.z
+		if player.is_specialing_it:
+			if dir.dot(forward) > 0.5:
+				state_machine.transition_to(state_machine.get_node("AbdomenPiercerState"))
+			elif dir.dot(-forward) > 0.5:
+				state_machine.transition_to(state_machine.get_node("UpperSlashState"))
+		else:
+			state_machine.combo_timer = 0.0
+			match state_machine.combo_index:
+				0:
+					state_machine.transition_to(state_machine.get_node("SwordSlashAState"))
+				1:
+					state_machine.transition_to(state_machine.get_node("SwordSlashBState"))
+				2:
+					state_machine.transition_to(state_machine.get_node("SwordSlashCState"))
+				# A/B fast cycle — C resets back to A
+				3:
+					state_machine.combo_index = 0
+					state_machine.transition_to(state_machine.get_node("SwordSlashAState"))
 
 	if Input.is_action_just_pressed("jump"):
 		state_machine.transition_to(state_machine.get_node("JumpState"))

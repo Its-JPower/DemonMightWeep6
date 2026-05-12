@@ -12,6 +12,12 @@ extends CharacterBody3D
 @export_range(0.0, 1.0) var mouse_sensitivity = 0.0025
 @export var tilt_limit = deg_to_rad(75)
 
+@export var lock_on_timeout := 3.0        # seconds of no attack before dropping lock
+@export var lock_on_cam_speed := 5.0      # how fast camera swings to target
+
+var lock_on_target: Node3D = null         # currently locked enemy
+var _lock_on_idle_timer := 0.0            # counts up when not attacking
+
 var GRAVITY := 9.8
 var WALK_SPEED := 4.0
 var RUN_SPEED := 8.0
@@ -20,6 +26,8 @@ var ROTATION_SPEED := 6.7
 var ACCELERATION := 15.0
 var DECELERATION := 20.0
 var SPECIALING_IT_SPEED := 2.0
+
+
 
 const JOY_SENSITIVITY := 2.5
 
@@ -50,6 +58,10 @@ func _fix_ual1_tracks() -> void:
 				if path.begins_with("Armature/"):
 					anim.track_set_path(i, path.replace("Armature/", ""))
 
+func _drop_lock_on() -> void:
+	lock_on_target = null
+	rotation_mode = RotationMode.MOVEMENT
+
 func _input(event: InputEvent) -> void:
 	state_machine.handle_input(event)
 	if event is InputEventMouseMotion:
@@ -70,6 +82,9 @@ func _input(event: InputEvent) -> void:
 		is_specialing_it = true
 	if Input.is_action_just_released("special"):
 		is_specialing_it = false
+	if Input.is_action_just_pressed("lock_on"):
+		if lock_on_target != null:
+			_drop_lock_on()
 
 func _process(delta: float) -> void:
 	state_machine.process(delta)
@@ -87,6 +102,7 @@ func _physics_process(delta: float) -> void:
 		RotationMode.MOVEMENT: rotate_model_toward_movement(delta)
 		RotationMode.CAMERA:   rotate_model_toward_camera(delta)
 		RotationMode.LOCKED:   pass
+	_update_lock_on(delta)
 
 func _update_camera_pivot(delta: float) -> void:
 	var current_yaw := _camera_pivot_yaw.global_rotation.y
@@ -158,6 +174,42 @@ func rotate_model_toward_movement(delta: float) -> void:
 		else:
 			return
 	var target_basis = Basis.looking_at(rotate_toward, Vector3.UP)
+	player_model.global_basis = player_model.global_basis.slerp(target_basis, ROTATION_SPEED * delta)
+
+func set_lock_on_target(enemy: Node3D) -> void:
+	print("set_lock_on_target called: ", enemy)
+	lock_on_target = enemy
+	_lock_on_idle_timer = 0.0
+	rotation_mode = RotationMode.LOCKED
+
+func _update_lock_on(delta: float) -> void:
+	if lock_on_target == null:
+		return
+	print("updating lock on, target: ", lock_on_target.global_position)
+
+	# Drop if enemy died / left scene
+	if not is_instance_valid(lock_on_target):
+		_drop_lock_on()
+		return
+
+	# Idle timer — drop lock if player hasn't attacked recently
+	_lock_on_idle_timer += delta
+	if _lock_on_idle_timer >= lock_on_timeout:
+		_drop_lock_on()
+		return
+
+	# Rotate camera YAW toward the target
+	var to_target := lock_on_target.global_position - _camera_pivot_yaw.global_position
+	to_target.y = 0.0
+	if to_target.length() < 0.01:
+		return
+
+	var target_yaw := atan2(-to_target.x, -to_target.z)
+	var current_yaw := _camera_pivot_yaw.global_rotation.y
+	_camera_pivot_yaw.global_rotation.y = lerp_angle(current_yaw, target_yaw, lock_on_cam_speed * delta)
+
+	# Also face the model toward the enemy
+	var target_basis := Basis.looking_at(to_target.normalized(), Vector3.UP)
 	player_model.global_basis = player_model.global_basis.slerp(target_basis, ROTATION_SPEED * delta)
 
 func get_camera_forward() -> Vector3:

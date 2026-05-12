@@ -7,6 +7,7 @@ var has_hit := false
 var duration := 0.6
 
 func enter() -> void:
+	player._lock_on_idle_timer = 0.0
 	player.anim_player.play("Sword_Regular_C")
 	var anim = player.anim_player.get_animation("Sword_Regular_C")
 	duration = anim.length if anim else 0.6
@@ -33,6 +34,7 @@ func _on_hit(enemy: Enemy) -> void:
 	if has_hit:
 		return
 	has_hit = true
+	player.set_lock_on_target(enemy)
 	enemy.take_damage(
 		PlayerStats.sword_slash_c_damage,
 		Vector3.ZERO,

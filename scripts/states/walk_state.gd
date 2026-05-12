@@ -26,5 +26,10 @@ func physics_process(delta: float) -> void:
 		state_machine.transition_to(state_machine.get_node("RunState"))
 	elif Input.is_action_just_pressed("jump"):
 		state_machine.transition_to(state_machine.get_node("JumpState"))
-	elif Input.is_action_pressed("attack") and player.velocity.length() > 0.1:
-		state_machine.transition_to(state_machine.get_node("AbdomenPiercerState"))
+	elif Input.is_action_pressed("attack"):
+		var forward = -player.player_model.global_transform.basis.z
+		if player.is_specialing_it:
+			if dir.dot(forward) > 0.5:
+				state_machine.transition_to(state_machine.get_node("AbdomenPiercerState"))
+			elif dir.dot(-forward) > 0.5:
+				state_machine.transition_to(state_machine.get_node("UpperSlashState"))
