@@ -42,6 +42,7 @@ var is_aiming = false
 var is_specialing_it = false
 var _joy_look := Vector2.ZERO
 var last_fall_speed
+var last_rotation_mode
 
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
@@ -57,10 +58,6 @@ func _fix_ual1_tracks() -> void:
 				var path = str(anim.track_get_path(i))
 				if path.begins_with("Armature/"):
 					anim.track_set_path(i, path.replace("Armature/", ""))
-
-func _drop_lock_on() -> void:
-	lock_on_target = null
-	rotation_mode = RotationMode.MOVEMENT
 
 func _input(event: InputEvent) -> void:
 	state_machine.handle_input(event)
@@ -180,37 +177,47 @@ func set_lock_on_target(enemy: Node3D) -> void:
 	print("set_lock_on_target called: ", enemy)
 	lock_on_target = enemy
 	_lock_on_idle_timer = 0.0
+	last_rotation_mode = rotation_mode
 	rotation_mode = RotationMode.LOCKED
 
 func _update_lock_on(delta: float) -> void:
 	if lock_on_target == null:
 		return
-	print("updating lock on, target: ", lock_on_target.global_position)
 
-	# Drop if enemy died / left scene
 	if not is_instance_valid(lock_on_target):
 		_drop_lock_on()
 		return
 
-	# Idle timer — drop lock if player hasn't attacked recently
 	_lock_on_idle_timer += delta
 	if _lock_on_idle_timer >= lock_on_timeout:
 		_drop_lock_on()
 		return
 
-	# Rotate camera YAW toward the target
 	var to_target := lock_on_target.global_position - _camera_pivot_yaw.global_position
-	to_target.y = 0.0
-	if to_target.length() < 0.01:
+
+	# --- Yaw ---
+	var to_target_flat := Vector3(to_target.x, 0.0, to_target.z)
+	if to_target_flat.length() < 0.01:
 		return
+	var target_yaw := atan2(-to_target_flat.x, -to_target_flat.z)
+	_camera_pivot_yaw.global_rotation.y = lerp_angle(
+		_camera_pivot_yaw.global_rotation.y, target_yaw, lock_on_cam_speed * delta)
 
-	var target_yaw := atan2(-to_target.x, -to_target.z)
-	var current_yaw := _camera_pivot_yaw.global_rotation.y
-	_camera_pivot_yaw.global_rotation.y = lerp_angle(current_yaw, target_yaw, lock_on_cam_speed * delta)
+	# --- Pitch ---
+	var dist_flat := to_target_flat.length()
+	var target_pitch := atan2(to_target.y, dist_flat)
+	_camera_pivot_pitch.rotation.x = lerp_angle(
+		_camera_pivot_pitch.rotation.x,
+		clamp(target_pitch, -0.6, 0.4),  # same clamp limits as your manual look
+		lock_on_cam_speed * delta)
 
-	# Also face the model toward the enemy
-	var target_basis := Basis.looking_at(to_target.normalized(), Vector3.UP)
+	# --- Model facing ---
+	var target_basis := Basis.looking_at(to_target_flat.normalized(), Vector3.UP)
 	player_model.global_basis = player_model.global_basis.slerp(target_basis, ROTATION_SPEED * delta)
+
+func _drop_lock_on() -> void:
+	lock_on_target = null
+	rotation_mode = last_rotation_mode
 
 func get_camera_forward() -> Vector3:
 	var forward = -_camera_pivot_yaw.global_transform.basis.z

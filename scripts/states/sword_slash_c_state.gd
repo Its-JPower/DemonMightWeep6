@@ -7,6 +7,8 @@ var has_hit := false
 var duration := 0.6
 
 func enter() -> void:
+	player.velocity.x = 0.0
+	player.velocity.z = 0.0
 	player._lock_on_idle_timer = 0.0
 	player.anim_player.play("Sword_Regular_C")
 	var anim = player.anim_player.get_animation("Sword_Regular_C")
@@ -42,6 +44,7 @@ func _on_hit(enemy: Enemy) -> void:
 	)
 
 func _end_state() -> void:
+	player.anim_player.play("Sword_Regular_C_Rec")
 	if player.is_on_floor():
 		state_machine.transition_to(state_machine.get_node("IdleState"))
 	else:

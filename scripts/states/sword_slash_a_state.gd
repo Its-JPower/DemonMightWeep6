@@ -8,6 +8,8 @@ var duration := 0.6
 var attack_buffered := false
 
 func enter() -> void:
+	player.velocity.x = 0.0
+	player.velocity.z = 0.0
 	player._lock_on_idle_timer = 0.0  
 	player.anim_player.play("Sword_Regular_A")
 	var anim = player.anim_player.get_animation("Sword_Regular_A")
@@ -51,6 +53,7 @@ func _on_hit(enemy: Enemy) -> void:
 	enemy.take_damage(PlayerStats.sword_slash_a_damage, Vector3.ZERO, 0.0)
 
 func _end_state() -> void:
+	player.anim_player.play("Sword_Regular_A_Rec")
 	if player.is_on_floor():
 		state_machine.transition_to(state_machine.get_node("IdleState"))
 	else:
