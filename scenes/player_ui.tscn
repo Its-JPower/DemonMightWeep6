@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://cwd0i0y8vl5cj"]
+
+[ext_resource type="Script" uid="uid://cxxf67e1814ve" path="res://scripts/player_ui.gd" id="1_jkj6h"]
+
+[node name="PlayerUI" type="Control" unique_id=869021254]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_jkj6h")
+
+[node name="StateUI" type="Label" parent="." unique_id=1514451887]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "gdfgdfg"

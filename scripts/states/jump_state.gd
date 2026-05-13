@@ -12,6 +12,7 @@ var peak_timer := 0.0
 var jump_consumed := false  # blocks input until button is released and repressed
 
 func enter() -> void:
+	player.anim_player.play("Stash 2/Jump_Start")
 	player.velocity.y = player.JUMP_VELOCITY
 	jumps_remaining = 1
 	peak_reached = false
@@ -46,8 +47,11 @@ func handle_input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed("jump") and not jump_consumed:
 		jump_consumed = true  # always consume, even if the attempt is invalid
 		if jumps_remaining > 0 and peak_reached:
+			player.anim_player.seek(0.1)
 			player.velocity.y = player.JUMP_VELOCITY
 			jumps_remaining -= 1
 			peak_reached = false
 			peak_timer = 0.0
-	
+	if not player.is_on_floor() and Input.is_action_just_pressed("attack") and player.is_specialing_it:
+		state_machine.transition_to(state_machine.get_node("DownSlamState"))
+		return
