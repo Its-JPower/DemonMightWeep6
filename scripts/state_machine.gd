@@ -5,6 +5,7 @@ var combo_index := 0
 var combo_timer := 0.0
 var attack_buffered := false
 const COMBO_TIMEOUT := 0.6
+const MASH_THRESHOLD := 0.2
 
 @export var initial_state: NodePath
 var current_state: State

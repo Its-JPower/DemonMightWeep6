@@ -5,6 +5,7 @@ extends State
 var timer := 0.0
 var has_hit := false
 var duration := 0.6
+var attack_buffered := false
 
 func enter() -> void:
 	player.velocity.x = 0.0
@@ -20,17 +21,24 @@ func enter() -> void:
 	if not sword.hit_landed.is_connected(_on_hit):
 		sword.hit_landed.connect(_on_hit)
 	sword.enable_hitbox()
+	attack_buffered = false
 
 func physics_process(delta: float) -> void:
 	timer += delta
 
+	if timer >= duration * 0.5 and Input.is_action_just_pressed("attack"):
+		attack_buffered = true
 	if timer >= duration * 0.5:
 		sword.disable_hitbox()
 
 	player.move_and_slide()
 
 	if timer >= duration:
-		_end_state()
+		if attack_buffered:
+			state_machine.combo_index = 0
+			state_machine.transition_to(state_machine.get_node("MillionStabsState"))
+		else:
+			_end_state()
 
 func _on_hit(enemy: Enemy) -> void:
 	if has_hit:

@@ -18,6 +18,7 @@
 [ext_resource type="Script" uid="uid://dvmcxlt1svjua" path="res://scripts/states/sword_slash_b_state.gd" id="16_fulsm"]
 [ext_resource type="Script" uid="uid://c723ibwwkmuba" path="res://scripts/states/sword_slash_c_state.gd" id="17_4r5pv"]
 [ext_resource type="Script" uid="uid://craks73e1kgxx" path="res://scripts/states/down_slam_state.gd" id="18_igrcy"]
+[ext_resource type="Script" uid="uid://b4arnmky3mhx3" path="res://scripts/states/million_stabs_state.gd" id="19_4r5pv"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_jej6c"]
 
@@ -37,7 +38,7 @@ script = ExtResource("1_v0iea")
 [node name="Mesh" parent="." unique_id=808791566 instance=ExtResource("2_f1ek2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.7973151, 0)
 
-[node name="Skeleton3D" parent="Mesh" index="0" unique_id=38294976]
+[node name="Skeleton3D" parent="Mesh" index="0" unique_id=1051251313]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
 bones/1/position = Vector3(0, 0, -0.06622489)
 bones/2/position = Vector3(0.0037438702, 0.012146398, 0.872085)
@@ -116,7 +117,7 @@ mesh = SubResource("BoxMesh_jej6c")
 transform = Transform3D(1, -1.7266188e-11, 1.080025e-11, 5.5777605e-12, 1.0000007, -3.2782555e-07, 1.762146e-12, 3.874302e-07, 1.0000001, -1.1920929e-07, 0.000839591, 0.0016784519)
 shape = SubResource("BoxShape3D_jej6c")
 
-[node name="AnimationPlayer" parent="Mesh" index="1" unique_id=1462808816]
+[node name="AnimationPlayer" parent="Mesh" index="1" unique_id=2084721003]
 "libraries/Stash 2" = ExtResource("3_tx1dd")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1823396936]
@@ -183,5 +184,8 @@ script = ExtResource("17_4r5pv")
 
 [node name="DownSlamState" type="Node" parent="StateMachine" unique_id=1912694094]
 script = ExtResource("18_igrcy")
+
+[node name="MillionStabsState" type="Node" parent="StateMachine" unique_id=1841811619]
+script = ExtResource("19_4r5pv")
 
 [editable path="Mesh"]

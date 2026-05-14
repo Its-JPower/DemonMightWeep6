@@ -57,6 +57,7 @@ func _on_hit(enemy: Enemy) -> void:
 
 func _end_state() -> void:
 	player.anim_player.play("Sword_Regular_B_Rec")
+	state_machine.combo_timer = 0.0  # start counting from when B ends
 	if player.is_on_floor():
 		state_machine.transition_to(state_machine.get_node("IdleState"))
 	else:

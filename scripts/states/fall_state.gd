@@ -2,7 +2,8 @@ class_name FallState
 extends State
 
 func enter() -> void:
-	player.anim_player.play("Stash 2/Jump_Idle")
+	#player.anim_player.play("Stash 2/Jump_Idle")
+	pass
 
 func physics_process(delta: float) -> void:
 	player.apply_gravity(delta)
