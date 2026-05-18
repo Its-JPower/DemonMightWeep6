@@ -5,22 +5,25 @@ extends State
 
 const SLAM_SPEED := 25.0
 const SLAM_GRAVITY_MULTIPLIER := 3.0
-const SLAM_DURATION_MAX := 2.0  # failsafe
-const HIT_RADIUS := 1.5  # AoE on landing
+const SLAM_DURATION_MAX := 2.0
+const HIT_RADIUS := 1.5
+const STARTUP_FREEZE := 0.12    # brief airborne pause before dropping — classic slam feel
 
 var timer := 0.0
+var startup_timer := 0.0
 var has_landed := false
 var hit_enemies := []
+var _in_startup := true
 
 func enter() -> void:
 	timer = 0.0
+	startup_timer = 0.0
 	has_landed = false
+	_in_startup = true
 	hit_enemies.clear()
-	player.anim_player.play("Sword_DownSlam")
-	# Kill horizontal momentum, blast downward
-	player.velocity.x = 0.0
-	player.velocity.z = 0.0
-	player.velocity.y = -SLAM_SPEED
+	player.anim_player.play("Sword_DownSlam", -1, 1.0)
+	# Freeze briefly mid-air for dramatic effect
+	player.velocity = Vector3.ZERO
 	sword.enable_hitbox()
 	if not sword.hit_landed.is_connected(_on_hit):
 		sword.hit_landed.connect(_on_hit)
@@ -28,11 +31,18 @@ func enter() -> void:
 func physics_process(delta: float) -> void:
 	timer += delta
 
-	# Extra gravity so it feels weighty
+	if _in_startup:
+		startup_timer += delta
+		player.velocity = Vector3.ZERO   # hang in the air
+		player.move_and_slide()
+		if startup_timer >= STARTUP_FREEZE:
+			_in_startup = false
+			player.velocity.y = -SLAM_SPEED
+		return
+
 	player.velocity.y -= player.GRAVITY * SLAM_GRAVITY_MULTIPLIER * delta
 	player.move_and_slide()
 
-	# Check for mid-air hits on the way down
 	for i in player.get_slide_collision_count():
 		var col = player.get_slide_collision(i)
 		var collider = col.get_collider()
@@ -41,8 +51,7 @@ func physics_process(delta: float) -> void:
 			collider.take_damage(
 				PlayerStats.down_slam_damage,
 				Vector3.ZERO,
-				PlayerStats.down_slam_kb_vertical
-			)
+				PlayerStats.down_slam_kb_vertical)
 
 	if player.is_on_floor() and not has_landed:
 		has_landed = true
@@ -54,15 +63,13 @@ func physics_process(delta: float) -> void:
 		_end_state()
 
 func _on_land() -> void:
-	#player.anim_player.play("Sword_DownSlam_Impact")
-	# AoE — hit everything in radius on landing
 	var space := player.get_world_3d().direct_space_state
 	var params := PhysicsShapeQueryParameters3D.new()
 	var shape := SphereShape3D.new()
 	shape.radius = HIT_RADIUS
 	params.shape = shape
 	params.transform = player.global_transform
-	params.collision_mask = 1  # match your enemy layer
+	params.collision_mask = 1
 	var results := space.intersect_shape(params)
 	for result in results:
 		var collider = result.collider
@@ -73,13 +80,10 @@ func _on_land() -> void:
 			collider.take_damage(
 				PlayerStats.down_slam_damage,
 				kb * PlayerStats.down_slam_kb_strength,
-				PlayerStats.down_slam_kb_vertical
-			)
-	# Wait for impact anim then exit
+				PlayerStats.down_slam_kb_vertical)
 	player.anim_player.animation_finished.connect(_on_impact_anim_finished, CONNECT_ONE_SHOT)
 
 func _on_hit(enemy: Enemy) -> void:
-	# Mid-air sword contact (handled in physics_process too, this catches hitbox overlaps)
 	if enemy not in hit_enemies:
 		hit_enemies.append(enemy)
 		enemy.take_damage(PlayerStats.down_slam_damage, Vector3.ZERO, PlayerStats.down_slam_kb_vertical)

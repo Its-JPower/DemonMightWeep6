@@ -6,35 +6,35 @@ extends State
 var timer := 0.0
 const DURATION := 0.4
 const HORIZONTAL_SPEED := 2.0
+const LUNGE_FALLOFF := 2.5      # how fast the lunge bleeds off (higher = snappier stop)
 var lunge_direction := Vector3.ZERO
 var has_hit := false
 
 func enter() -> void:
 	player._lock_on_idle_timer = 0.0
 	timer = 0.0
-	has_hit = false  # reset so re-entry works
+	has_hit = false
 	lunge_direction = -player.player_model.global_transform.basis.z
-
 	player.velocity.x = lunge_direction.x * HORIZONTAL_SPEED
 	player.velocity.z = lunge_direction.z * HORIZONTAL_SPEED
 	player.velocity.y = 0.0
-
-	# Guard against double-connect
 	if not sword.hit_landed.is_connected(_on_hit):
 		sword.hit_landed.connect(_on_hit)
-
 	sword.enable_hitbox()
-	# trigger your animation here
 
 func physics_process(delta: float) -> void:
 	timer += delta
 	player.apply_gravity(delta)
 
-	var t := timer / DURATION
-	player.velocity.x = lunge_direction.x * HORIZONTAL_SPEED * (1.0 - t)
-	player.velocity.z = lunge_direction.z * HORIZONTAL_SPEED * (1.0 - t)
+	# Smooth lunge decay using move_toward instead of linear interpolation
+	# — feels more physical and won't overshoot
+	var current_speed := Vector2(player.velocity.x, player.velocity.z).length()
+	var target_speed := maxf(0.0, current_speed - LUNGE_FALLOFF * delta)
+	if current_speed > 0.001:
+		var ratio := target_speed / current_speed
+		player.velocity.x *= ratio
+		player.velocity.z *= ratio
 
-	# Close the hit window halfway through
 	if timer >= DURATION * 0.5:
 		sword.disable_hitbox()
 
@@ -48,12 +48,10 @@ func _on_hit(enemy: Enemy) -> void:
 		return
 	has_hit = true
 	player.set_lock_on_target(enemy)
-	var kb := lunge_direction * PlayerStats.upper_slash_kb_strength
 	enemy.take_damage(
 		PlayerStats.upper_slash_damage,
-		kb,
-		PlayerStats.upper_slash_kb_vertical
-	)
+		lunge_direction * PlayerStats.upper_slash_kb_strength,
+		PlayerStats.upper_slash_kb_vertical)
 
 func exit() -> void:
 	sword.disable_hitbox()

@@ -12,11 +12,22 @@ extends Enemy
 @onready var attack_timer: Timer = $AttackTimer
 @onready var anim_player: AnimationPlayer = $AnimationPlayer  # optional
 
+@onready var mesh: MeshInstance3D = $MeshInstance3D  # adjust path to your mesh node
+
+var red_material: StandardMaterial3D = null
+var original_material: Material = null
+var stun_timer: Timer = null
+
 var player: CharacterBody3D = null
 var is_attacking := false
 
 func _ready() -> void:
 	super()                         # sets health = max_health
+	red_material = StandardMaterial3D.new()
+	red_material.albedo_color = Color.RED
+	red_material.emission_enabled = true
+	red_material.emission = Color.RED
+	red_material.emission_energy_multiplier = 1.5
 
 	attack_timer.wait_time = attack_cooldown
 	attack_timer.one_shot = true
@@ -29,9 +40,17 @@ func _ready() -> void:
 	nav_agent.target_desired_distance = attack_range * 0.9
 	nav_agent.navigation_finished.connect(func(): print("nav finished"))
 	nav_agent.path_changed.connect(func(): print("path updated, points: ", nav_agent.get_current_navigation_path().size()))
+	if mesh:
+		original_material = mesh.get_surface_override_material(0)
+	mesh.set_surface_override_material(0, red_material)
+	await get_tree().process_frame
+	mesh.set_surface_override_material(0, original_material)
+	stun_timer = Timer.new()
+	stun_timer.one_shot = true
+	stun_timer.wait_time = 0.5  # stun duration in seconds
+	add_child(stun_timer)
 
 func _physics_process(delta: float) -> void:
-	# knockback decay (copied from base, don't call super)
 	if not is_on_floor():
 		knockback_velocity.y -= 9.8 * delta
 		knockback_velocity.x = move_toward(knockback_velocity.x, 0.0, 40.0 * delta)
@@ -39,7 +58,7 @@ func _physics_process(delta: float) -> void:
 	else:
 		knockback_velocity = knockback_velocity.move_toward(Vector3.ZERO, 40.0 * delta)
 
-	if player == null:
+	if player == null or not stun_timer.is_stopped():  # <- added stun check
 		velocity = knockback_velocity
 		move_and_slide()
 		return
@@ -77,7 +96,7 @@ func _move_toward_player() -> void:
 	velocity.z = direction.z * move_speed
 
 func _try_attack() -> void:
-	if is_attacking or not attack_timer.is_stopped():
+	if is_attacking or not attack_timer.is_stopped() or not stun_timer.is_stopped():
 		return
 
 	is_attacking = true
@@ -117,8 +136,15 @@ func _on_attack_timer_timeout() -> void:
 	pass   # timer just tracks cooldown; logic is in _try_attack
 
 func _on_damaged(amount: float) -> void:
-	# flash red, play hurt sound, etc.
-	pass
+	_flash_red()
+	stun_timer.start()
+
+func _flash_red() -> void:
+	if not mesh:
+		return
+	mesh.set_surface_override_material(0, red_material)
+	await get_tree().create_timer(0.15).timeout
+	mesh.set_surface_override_material(0, original_material)
 
 func _on_died() -> void:
 	# play death anim before queue_free, drop loot, etc.
