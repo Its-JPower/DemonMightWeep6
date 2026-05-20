@@ -5,6 +5,7 @@
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_xnaus"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_vaj5w"]
+height = 1.9438477
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_tq73k"]
 height = 0.34417725

@@ -143,4 +143,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.8573353, 3.0000005, -8.6166
 [node name="MeleeEnemy" parent="." unique_id=541755684 instance=ExtResource("2_88bmb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6064916, 2.7752647)
 
+[node name="CollisionShape3D" parent="MeleeEnemy" index="1" unique_id=2047592973]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.028076172, 0)
+
 [editable path="MeleeEnemy"]

@@ -34,8 +34,7 @@ func physics_process(delta: float) -> void:
 		player.velocity.x = move_toward(player.velocity.x, forward.x * 1.5, 20.0 * delta)
 		player.velocity.z = move_toward(player.velocity.z, forward.z * 1.5, 20.0 * delta)
 	else:
-		player.velocity.x = move_toward(player.velocity.x, 0.0, 15.0 * delta)
-		player.velocity.z = move_toward(player.velocity.z, 0.0, 15.0 * delta)
+		player.apply_movement(delta)
 
 	player.apply_gravity(delta)
 
@@ -69,6 +68,13 @@ func exit() -> void:
 
 func _end_state() -> void:
 	player.anim_player.play("Sword_Regular_C_Rec", -1, 1.0)
+	var dir = player.get_movement_input()
+	if dir.length() > 0.1:
+		if player.is_sprinting:
+			state_machine.transition_to(state_machine.get_node("RunState"))
+		else:
+			state_machine.transition_to(state_machine.get_node("WalkState"))
+		return
 	if player.is_on_floor():
 		state_machine.transition_to(state_machine.get_node("IdleState"))
 	else:

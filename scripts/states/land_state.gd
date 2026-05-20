@@ -24,17 +24,19 @@ func _on_anim_finished(_anim_name: String) -> void:
 func physics_process(delta: float) -> void:
 	player.apply_gravity(delta)
 	player.move_and_slide()
-	# No apply_movement — landing locks you briefly, which feels weighty
+
+	# If the player immediately pushes a direction, skip the land anim entirely
+	var dir = player.get_movement_input()
+	if dir.length() > 0.1:
+		if player.is_sprinting:
+			state_machine.transition_to(state_machine.get_node("RunState"))
+		else:
+			state_machine.transition_to(state_machine.get_node("WalkState"))
+		return
 
 	if Input.is_action_just_pressed("jump"):
 		state_machine.transition_to(state_machine.get_node("JumpState"))
 		return
 
 	if _done:
-		var dir = player.get_movement_input()
-		if dir.length() > 0.1:
-			state_machine.transition_to(
-				state_machine.get_node("RunState") if player.is_sprinting
-				else state_machine.get_node("WalkState"))
-		else:
-			state_machine.transition_to(state_machine.get_node("IdleState"))
+		state_machine.transition_to(state_machine.get_node("IdleState"))

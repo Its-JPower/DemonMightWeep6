@@ -29,21 +29,18 @@ func enter() -> void:
 func physics_process(delta: float) -> void:
 	timer += delta
 
-	# Small step forward on the swing — makes it feel committed
 	if timer < duration * 0.3:
 		var forward = -player.player_model.global_transform.basis.z
 		player.velocity.x = move_toward(player.velocity.x, forward.x * 1.5, 20.0 * delta)
 		player.velocity.z = move_toward(player.velocity.z, forward.z * 1.5, 20.0 * delta)
 	else:
-		player.velocity.x = move_toward(player.velocity.x, 0.0, 15.0 * delta)
-		player.velocity.z = move_toward(player.velocity.z, 0.0, 15.0 * delta)
+		player.apply_movement(delta)
 
 	player.apply_gravity(delta)
 
 	if timer >= duration * 0.5:
 		sword.disable_hitbox()
 
-	# Open buffer window at BUFFER_OPEN fraction, not hard 0.5
 	if timer >= duration * BUFFER_OPEN and Input.is_action_just_pressed("attack"):
 		attack_buffered = true
 
@@ -69,7 +66,14 @@ func exit() -> void:
 		sword.hit_landed.disconnect(_on_hit)
 
 func _end_state() -> void:
-	player.anim_player.play("Sword_Regular_A_Rec", 1.0)
+	player.anim_player.play("Sword_Regular_A_Rec", -1, 1.0)
+	var dir = player.get_movement_input()
+	if dir.length() > 0.1:
+		if player.is_sprinting:
+			state_machine.transition_to(state_machine.get_node("RunState"))
+		else:
+			state_machine.transition_to(state_machine.get_node("WalkState"))
+		return
 	if player.is_on_floor():
 		state_machine.transition_to(state_machine.get_node("IdleState"))
 	else:
