@@ -15,16 +15,18 @@ func physics_process(delta: float) -> void:
 
 	var dir = player.get_movement_input()
 
-	if player.is_sprinting:
-		player.anim_player.play("Stash 2/Sprint", 1.0)
-	else:
-		player.anim_player.play("Stash 2/Walk", 1.0)
+	if not player.is_sprinting:
+		state_machine.transition_to(state_machine.get_node("WalkState"))
+		return
+
+	if dir.length() < 0.1:
+		state_machine.transition_to(state_machine.get_node("IdleState"))
+		return
 
 	if Input.is_action_just_pressed("jump"):
 		state_machine.transition_to(state_machine.get_node("JumpState"))
-	elif dir.length() < 0.1:
-		state_machine.transition_to(state_machine.get_node("IdleState"))
-	elif not player.is_sprinting:
-		state_machine.transition_to(state_machine.get_node("WalkState"))
-	elif Input.is_action_pressed("attack") and player.velocity.length() > 0.1:
+		return
+
+	# Running attack always triggers AbdomenPiercer — feels like a charge
+	if Input.is_action_just_pressed("attack"):
 		state_machine.transition_to(state_machine.get_node("AbdomenPiercerState"))

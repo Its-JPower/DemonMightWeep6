@@ -42,7 +42,7 @@ var is_aiming = false
 var is_specialing_it = false
 var _joy_look := Vector2.ZERO
 var last_fall_speed
-var last_rotation_mode
+var last_rotation_mode := RotationMode.MOVEMENT
 
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
@@ -75,9 +75,13 @@ func _input(event: InputEvent) -> void:
 		rotation_mode = RotationMode.CAMERA if is_aiming else RotationMode.MOVEMENT
 	if Input.is_action_just_pressed("run"):
 		is_sprinting = !is_sprinting
-	if Input.is_action_pressed("special"):
+	if Input.is_action_just_pressed("special"):
+		if rotation_mode != RotationMode.LOCKED:
+			last_rotation_mode = rotation_mode
+		rotation_mode = RotationMode.CAMERA
 		is_specialing_it = true
 	if Input.is_action_just_released("special"):
+		rotation_mode = last_rotation_mode if lock_on_target == null else RotationMode.LOCKED
 		is_specialing_it = false
 	if Input.is_action_just_pressed("lock_on"):
 		if lock_on_target != null:
@@ -174,10 +178,10 @@ func rotate_model_toward_movement(delta: float) -> void:
 	player_model.global_basis = player_model.global_basis.slerp(target_basis, ROTATION_SPEED * delta)
 
 func set_lock_on_target(enemy: Node3D) -> void:
-	print("set_lock_on_target called: ", enemy)
+	if lock_on_target == null:
+		last_rotation_mode = rotation_mode
 	lock_on_target = enemy
 	_lock_on_idle_timer = 0.0
-	last_rotation_mode = rotation_mode
 	rotation_mode = RotationMode.LOCKED
 
 func _update_lock_on(delta: float) -> void:

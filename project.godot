@@ -23,6 +23,10 @@ PlayerStats="*uid://301k1e70jilf"
 
 import/blender/enabled=false
 
+[global_group]
+
+player=""
+
 [input]
 
 move_forward={
