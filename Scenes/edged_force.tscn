@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://oqd4n42iho5q"]
+
+[ext_resource type="PackedScene" uid="uid://d18kxv66x46a1" path="res://Donte In Progress/edged-force.glb" id="1_131nd"]
+
+[node name="edged-force" unique_id=418396130 instance=ExtResource("1_131nd")]

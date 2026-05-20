@@ -1,0 +1,58 @@
+[gd_scene format=3 uid="uid://dtlw60fbyf22v"]
+
+[ext_resource type="PackedScene" uid="uid://dlkjfhfm1fcyr" path="res://Donte In Progress/Donte_TitleScreen.glb" id="2_8l4an"]
+[ext_resource type="PackedScene" uid="uid://dkr7481vjq6yi" path="res://Donte In Progress/city.glb" id="3_8l4an"]
+[ext_resource type="PackedScene" uid="uid://d18kxv66x46a1" path="res://Donte In Progress/edged-force.glb" id="3_n15yj"]
+[ext_resource type="Texture2D" uid="uid://deex47qftksbx" path="res://Donte In Progress/DemonMightWeep6.png" id="4_n15yj"]
+
+[sub_resource type="Environment" id="Environment_8l4an"]
+background_mode = 1
+background_color = Color(0.8751179, 0.51062083, 0.29933882, 1)
+background_energy_multiplier = 1.99
+ambient_light_source = 3
+ambient_light_energy = 0.05
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.278
+volumetric_fog_albedo = Color(0.66656864, 0.6665687, 0.66656864, 1)
+volumetric_fog_emission = Color(0.6199587, 0.26512071, 0.31270343, 1)
+volumetric_fog_emission_energy = 0.2
+
+[node name="Node3D" type="Node3D" unique_id=1640841455]
+
+[node name="Donte_TitleScreen" parent="." unique_id=948228786 instance=ExtResource("2_8l4an")]
+transform = Transform3D(-0.08, 0, -1.20796635e-08, 0, 0.08, 0, 1.20796635e-08, 0, -0.08, -2.6297917, 0.82954437, 2.4415417)
+
+[node name="edged-force" parent="." unique_id=418396130 instance=ExtResource("3_n15yj")]
+transform = Transform3D(-0.00050005305, 0.0008658258, -1.7108829e-05, 0.00086597214, 0.00049979956, -1.7108558e-05, -6.262044e-06, -2.3370956e-05, -0.0009997073, -2.6365776, 0.9144076, 2.4571505)
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1018361756]
+transform = Transform3D(1, 0, 0, 0, 0.9659258, -0.2588192, 0, 0.2588192, 0.9659258, -2.6344054, 0.86084414, 2.7295704)
+fov = 45.1
+
+[node name="FogVolume" type="FogVolume" parent="." unique_id=602121597]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.82697535, -7.601558, -11.684001)
+size = Vector3(36.918488, 36.656364, 55.140846)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1977678001]
+environment = SubResource("Environment_8l4an")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=747857362]
+transform = Transform3D(-0.9659258, -0.06698733, 0.2500001, 0, 0.9659259, 0.25881907, -0.25881913, 0.25000003, -0.93301266, -0.9580668, 0.8217762, -2.5892549)
+light_color = Color(0.5217194, 0.3767221, 0.4516515, 1)
+light_energy = 3.217
+light_volumetric_fog_energy = 1.904
+light_angular_distance = 12.48
+shadow_enabled = true
+
+[node name="DirectionalLight3D2" type="DirectionalLight3D" parent="." unique_id=1580799190]
+transform = Transform3D(1, -2.2204463e-16, 1.3909066e-08, -6.954532e-09, 0.86602545, 0.49999997, -1.20456045e-08, -0.49999997, 0.86602545, -2.9567647, 2.815332, 4.7172174)
+light_energy = 0.367
+light_volumetric_fog_energy = 0.0
+shadow_enabled = true
+
+[node name="Sketchfab_Scene" parent="." unique_id=1853291306 instance=ExtResource("3_8l4an")]
+transform = Transform3D(-1.0053619e-07, 0, -2.3, 0, 2.3, 0, 2.3, 0, -1.0053619e-07, 0.7710407, 0, 0.24238014)
+
+[node name="Sprite3D" type="Sprite3D" parent="." unique_id=1912709225]
+transform = Transform3D(0.005, 0, 0, 0, 0.005, 0, 0, 0, 0.005, -2.8331203, 0.957024, 1.89832)
+texture = ExtResource("4_n15yj")
