@@ -38,7 +38,7 @@ script = ExtResource("1_v0iea")
 [node name="Mesh" parent="." unique_id=808791566 instance=ExtResource("2_f1ek2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.7973151, 0)
 
-[node name="Skeleton3D" parent="Mesh" index="0" unique_id=1623309804]
+[node name="Skeleton3D" parent="Mesh" index="0" unique_id=1317095509]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
 bones/2/position = Vector3(7.771561e-16, 0.05010003, 0.9167)
 bones/2/rotation = Quaternion(0.7904686, 9.127005e-09, 1.1778899e-08, 0.61250275)
@@ -116,7 +116,7 @@ mesh = SubResource("BoxMesh_jej6c")
 transform = Transform3D(1, -1.7266188e-11, 1.080025e-11, 5.5777605e-12, 1.0000007, -3.2782555e-07, 1.762146e-12, 3.874302e-07, 1.0000001, -1.1920929e-07, 0.000839591, 0.0016784519)
 shape = SubResource("BoxShape3D_jej6c")
 
-[node name="AnimationPlayer" parent="Mesh" index="1" unique_id=261719491]
+[node name="AnimationPlayer" parent="Mesh" index="1" unique_id=893607406]
 "libraries/Stash 2" = ExtResource("3_tx1dd")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1823396936]
