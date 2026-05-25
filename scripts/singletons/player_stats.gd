@@ -19,3 +19,5 @@ var down_slam_kb_vertical := 5.0
 var max_health := 100.0
 var health := 100.0
 var ap_level := 3
+
+var crit_chance := 0.1

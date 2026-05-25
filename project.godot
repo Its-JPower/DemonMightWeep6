@@ -18,6 +18,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 PlayerStats="*uid://301k1e70jilf"
+DamageNumbers="*uid://ha0f7hptgnhr"
 
 [filesystem]
 

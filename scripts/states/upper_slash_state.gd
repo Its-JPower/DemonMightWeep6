@@ -48,10 +48,13 @@ func _on_hit(enemy: Enemy) -> void:
 		return
 	has_hit = true
 	player.set_lock_on_target(enemy)
+	var damage := PlayerStats.upper_slash_damage
+	var is_crit = randf() < PlayerStats.crit_chance
 	enemy.take_damage(
-		PlayerStats.upper_slash_damage,
+		damage,
 		lunge_direction * PlayerStats.upper_slash_kb_strength,
 		PlayerStats.upper_slash_kb_vertical)
+	DamageNumbers.spawn(damage, enemy.global_position, is_crit)
 
 func exit() -> void:
 	sword.disable_hitbox()
