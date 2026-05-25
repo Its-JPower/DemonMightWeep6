@@ -42,7 +42,7 @@ var is_aiming = false
 var is_specialing_it = false
 var _joy_look := Vector2.ZERO
 var last_fall_speed
-var last_rotation_mode := RotationMode.MOVEMENT
+var last_rotation_mode  := RotationMode.MOVEMENT
 var _realigning_camera := false
 var _realign_timer := 0.0
 const REALIGN_DURATION := 0.3
@@ -102,6 +102,19 @@ func _physics_process(delta: float) -> void:
 		last_fall_speed = -velocity.y
 	state_machine.physics_process(delta)
 	_update_camera_pivot(delta)
+
+	if _realigning_camera:
+		_realign_timer += delta
+		var forward := -player_model.global_transform.basis.z
+		var target_yaw := atan2(-forward.x, -forward.z)
+		_camera_pivot_yaw.global_rotation.y = lerp_angle(
+			_camera_pivot_yaw.global_rotation.y, target_yaw,
+			_realign_timer / REALIGN_DURATION)
+		if _realign_timer >= REALIGN_DURATION:
+			_realigning_camera = false
+		_update_lock_on(delta)
+		return
+
 	match rotation_mode:
 		RotationMode.MOVEMENT: rotate_model_toward_movement(delta)
 		RotationMode.CAMERA:   rotate_model_toward_camera(delta)
@@ -182,7 +195,9 @@ func rotate_model_toward_movement(delta: float) -> void:
 
 func set_lock_on_target(enemy: Node3D) -> void:
 	if lock_on_target == null:
-		last_rotation_mode = rotation_mode
+		if rotation_mode != RotationMode.LOCKED and not is_specialing_it:
+			last_rotation_mode = rotation_mode
+			print("saved last_rotation_mode as: ", last_rotation_mode)
 	lock_on_target = enemy
 	_lock_on_idle_timer = 0.0
 	rotation_mode = RotationMode.LOCKED
@@ -223,11 +238,17 @@ func _update_lock_on(delta: float) -> void:
 	player_model.global_basis = player_model.global_basis.slerp(target_basis, ROTATION_SPEED * delta)
 
 func _drop_lock_on() -> void:
+	print("dropping lock on, last_rotation_mode: ", last_rotation_mode)
+	print("current rotation_mode: ", rotation_mode)
 	lock_on_target = null
 	rotation_mode = last_rotation_mode
-	if rotation_mode == RotationMode.CAMERA:
-		_realigning_camera = true
-		_realign_timer = 0.0
+	print("rotation_mode after drop: ", rotation_mode)
+	_realigning_camera = true
+	_realign_timer = 0.0
+	lock_on_target = null
+	rotation_mode = last_rotation_mode
+	_realigning_camera = true
+	_realign_timer = 0.0
 
 func get_camera_forward() -> Vector3:
 	var forward = -_camera_pivot_yaw.global_transform.basis.z
