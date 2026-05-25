@@ -28,5 +28,5 @@ func physics_process(delta: float) -> void:
 		return
 
 	# Running attack always triggers AbdomenPiercer — feels like a charge
-	if Input.is_action_just_pressed("attack"):
+	if Input.is_action_just_pressed("attack") and player.is_specialing_it:
 		state_machine.transition_to(state_machine.get_node("AbdomenPiercerState"))
