@@ -1,8 +1,9 @@
 [gd_scene format=3 uid="uid://dtlw60fbyf22v"]
 
-[ext_resource type="PackedScene" uid="uid://dlkjfhfm1fcyr" path="res://Donte In Progress/Donte_TitleScreen.glb" id="2_8l4an"]
+[ext_resource type="Script" uid="uid://c5xgkokcj63yu" path="res://Scenes/title_screen.gd" id="1_emot1"]
 [ext_resource type="PackedScene" uid="uid://dkr7481vjq6yi" path="res://Donte In Progress/city.glb" id="3_8l4an"]
 [ext_resource type="PackedScene" uid="uid://d18kxv66x46a1" path="res://Donte In Progress/edged-force.glb" id="3_n15yj"]
+[ext_resource type="PackedScene" uid="uid://belfbytosbe20" path="res://Scenes/donte.tscn" id="4_emot1"]
 [ext_resource type="Texture2D" uid="uid://c8f1mkm2a2n77" path="res://Donte In Progress/DemonMightWeep6-removebg-preview.png" id="4_n15yj"]
 
 [sub_resource type="Environment" id="Environment_8l4an"]
@@ -18,9 +19,7 @@ volumetric_fog_emission = Color(0.6199587, 0.26512071, 0.31270343, 1)
 volumetric_fog_emission_energy = 0.2
 
 [node name="Node3D" type="Node3D" unique_id=1640841455]
-
-[node name="Donte_TitleScreen" parent="." unique_id=948228786 instance=ExtResource("2_8l4an")]
-transform = Transform3D(-0.08, 0, -1.20796635e-08, 0, 0.08, 0, 1.20796635e-08, 0, -0.08, -2.6297917, 0.82954437, 2.4415417)
+script = ExtResource("1_emot1")
 
 [node name="edged-force" parent="." unique_id=418396130 instance=ExtResource("3_n15yj")]
 transform = Transform3D(-0.00050005305, 0.0008658258, -1.7108829e-05, 0.00086597214, 0.00049979956, -1.7108558e-05, -6.262044e-06, -2.3370956e-05, -0.0009997073, -2.6365776, 0.9144076, 2.4571505)
@@ -56,3 +55,6 @@ transform = Transform3D(-1.0053619e-07, 0, -2.3, 0, 2.3, 0, 2.3, 0, -1.0053619e-
 [node name="Sprite3D" type="Sprite3D" parent="." unique_id=63356841]
 transform = Transform3D(0.08, 0, 0, 0, 0.07727406, -0.020705523, 0, 0.020705523, 0.07727406, -2.6301556, 1.0590872, 2.389162)
 texture = ExtResource("4_n15yj")
+
+[node name="Donte_With_Animations" parent="." unique_id=1347159811 instance=ExtResource("4_emot1")]
+transform = Transform3D(0.08, 0, 0, 0, 0.08, 0, 0, 0, 0.08, -2.6379087, 0.8275474, 2.4434862)
