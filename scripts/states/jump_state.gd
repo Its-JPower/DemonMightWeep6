@@ -49,5 +49,10 @@ func handle_input(event: InputEvent) -> void:
 			peak_reached = false
 			peak_timer = 0.0
 
-	if Input.is_action_just_pressed("attack") and player.is_specialing_it:
-		state_machine.transition_to(state_machine.get_node("DownSlamState"))
+	if Input.is_action_just_pressed("attack"):
+		if player.is_specialing_it:
+			state_machine.transition_to(state_machine.get_node("DownSlamState"))
+		else:
+			state_machine.transition_to(state_machine.get_node("AirSlashAState"))
+	if Input.is_action_just_pressed("jump") and player.is_specialing_it:
+		state_machine.transition_to(state_machine.get_node("RisingSlashState"))
