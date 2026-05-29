@@ -1,0 +1,6 @@
+[gd_resource type="Theme" format=3 uid="uid://67i73kjitock"]
+
+[ext_resource type="FontFile" uid="uid://0nta85132ijb" path="res://assets/Ethnocentric.otf" id="1_5x3i2"]
+
+[resource]
+default_font = ExtResource("1_5x3i2")

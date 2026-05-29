@@ -1,4 +1,4 @@
-extends Node3D
+extends CanvasLayer
 
 @onready var anim_player = $Donte_With_Animations.find_child("AnimationPlayer")
 

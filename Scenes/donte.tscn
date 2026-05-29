@@ -5,7 +5,7 @@
 
 [node name="Donte_With_Animations" unique_id=1347159811 instance=ExtResource("1_upu3b")]
 
-[node name="Skeleton3D" parent="." index="0" unique_id=1649959726]
+[node name="Skeleton3D" parent="." index="0" unique_id=169369081]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
 bones/2/position = Vector3(5.551115e-16, 0.05010003, 0.9167)
 bones/2/rotation = Quaternion(0.7904686, 9.127004e-09, 1.1778896e-08, 0.61250275)
@@ -64,6 +64,7 @@ bones/62/rotation = Quaternion(0.036589622, -0.00013122692, -4.7918757e-06, 0.99
 bones/63/rotation = Quaternion(-0.5290731, -0.00032809633, 0.00034345736, 0.8485761)
 bones/64/rotation = Quaternion(-0.00013714515, 0.96430665, -0.2647875, -0.00049954205)
 
-[node name="AnimationPlayer" parent="." index="1" unique_id=184136556]
+[node name="AnimationPlayer" parent="." index="1" unique_id=1313584705]
 reset_on_save = false
 "libraries/Stash 2" = ExtResource("2_hg06n")
+autoplay = &"Stash 2/Idle"
