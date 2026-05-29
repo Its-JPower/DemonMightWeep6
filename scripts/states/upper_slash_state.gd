@@ -14,6 +14,7 @@ func enter() -> void:
 	player._lock_on_idle_timer = 0.0
 	timer = 0.0
 	has_hit = false
+	player.anim_player.play("Sword_Regular_A", -1, 1.0)
 	lunge_direction = -player.player_model.global_transform.basis.z
 	player.velocity.x = lunge_direction.x * HORIZONTAL_SPEED
 	player.velocity.z = lunge_direction.z * HORIZONTAL_SPEED

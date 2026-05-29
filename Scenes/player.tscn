@@ -19,11 +19,15 @@
 [ext_resource type="Script" uid="uid://c723ibwwkmuba" path="res://scripts/states/sword_slash_c_state.gd" id="17_4r5pv"]
 [ext_resource type="Script" uid="uid://craks73e1kgxx" path="res://scripts/states/down_slam_state.gd" id="18_igrcy"]
 [ext_resource type="Script" uid="uid://b4arnmky3mhx3" path="res://scripts/states/million_stabs_state.gd" id="19_4r5pv"]
+[ext_resource type="Script" uid="uid://46evunog7rgk" path="res://scripts/states/air_slash_a_state.gd" id="20_60mlk"]
+[ext_resource type="Script" uid="uid://bbabv7ysedrtd" path="res://scripts/states/air_slash_b_state.gd" id="21_i4ail"]
+[ext_resource type="Script" uid="uid://c8vobqamjfrop" path="res://scripts/states/air_slash_c_state.gd" id="22_a38lo"]
+[ext_resource type="Script" uid="uid://dxyyjldlarlbo" path="res://scripts/states/rising_slash_state.gd" id="23_4ni07"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_jej6c"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_jej6c"]
-size = Vector3(1, 0.10598755, 0.1539917)
+size = Vector3(1.5556641, 0.10598755, 0.1539917)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_cvnsp"]
 radius = 0.22509766
@@ -38,7 +42,7 @@ script = ExtResource("1_v0iea")
 [node name="Mesh" parent="." unique_id=808791566 instance=ExtResource("2_f1ek2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.7973151, 0)
 
-[node name="Skeleton3D" parent="Mesh" index="0" unique_id=1317095509]
+[node name="Skeleton3D" parent="Mesh" index="0" unique_id=169369081]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
 bones/2/position = Vector3(7.771561e-16, 0.05010003, 0.9167)
 bones/2/rotation = Quaternion(0.7904686, 9.127005e-09, 1.1778899e-08, 0.61250275)
@@ -113,10 +117,10 @@ mesh = SubResource("BoxMesh_jej6c")
 [node name="SwordHitbox" type="Area3D" parent="Mesh/Skeleton3D/BoneAttachment3D/Sword" unique_id=1170711814]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Mesh/Skeleton3D/BoneAttachment3D/Sword/SwordHitbox" unique_id=565753496]
-transform = Transform3D(1, -1.7266188e-11, 1.080025e-11, 5.5777605e-12, 1.0000007, -3.2782555e-07, 1.762146e-12, 3.874302e-07, 1.0000001, -1.1920929e-07, 0.000839591, 0.0016784519)
+transform = Transform3D(0.99999654, -1.3962165e-11, 1.3670842e-11, 6.0964567e-12, 1.0000007, -3.5762787e-07, -1.3073986e-12, 3.874302e-07, 0.9999992, 0.2778318, 0.00083971024, 0.0016784221)
 shape = SubResource("BoxShape3D_jej6c")
 
-[node name="AnimationPlayer" parent="Mesh" index="1" unique_id=893607406]
+[node name="AnimationPlayer" parent="Mesh" index="1" unique_id=1313584705]
 "libraries/Stash 2" = ExtResource("3_tx1dd")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1823396936]
@@ -186,5 +190,17 @@ script = ExtResource("18_igrcy")
 
 [node name="MillionStabsState" type="Node" parent="StateMachine" unique_id=1841811619]
 script = ExtResource("19_4r5pv")
+
+[node name="AirSlashAState" type="Node" parent="StateMachine" unique_id=598810758]
+script = ExtResource("20_60mlk")
+
+[node name="AirSlashBState" type="Node" parent="StateMachine" unique_id=2039346267]
+script = ExtResource("21_i4ail")
+
+[node name="AirSlashCState" type="Node" parent="StateMachine" unique_id=1808055862]
+script = ExtResource("22_a38lo")
+
+[node name="RisingSlashState" type="Node" parent="StateMachine" unique_id=1534637852]
+script = ExtResource("23_4ni07")
 
 [editable path="Mesh"]
