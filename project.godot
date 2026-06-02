@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="DemonMightWeep6"
-run/main_scene="uid://cla33c2qqx78a"
+run/main_scene="uid://u5n875til8cc"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -19,6 +19,10 @@ config/icon="res://icon.svg"
 
 PlayerStats="*uid://301k1e70jilf"
 DamageNumbers="*uid://ha0f7hptgnhr"
+
+[display]
+
+window/stretch/mode="viewport"
 
 [filesystem]
 

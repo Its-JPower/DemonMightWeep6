@@ -1,0 +1,42 @@
+[gd_scene format=3 uid="uid://u5n875til8cc"]
+
+[ext_resource type="Script" uid="uid://bcm7xegru34m7" path="res://scripts/loading_screen.gd" id="1_5phy8"]
+[ext_resource type="Texture2D" uid="uid://c8f1mkm2a2n77" path="res://assets/DemonMightWeep6-removebg-preview.png" id="1_ep5rh"]
+[ext_resource type="Texture2D" uid="uid://d02fv6fbbg14m" path="res://assets/not_full_bar.png" id="1_ku3bi"]
+[ext_resource type="Texture2D" uid="uid://bm7urgwoj2k83" path="res://assets/full_bar.png" id="2_5phy8"]
+
+[node name="Control" type="Control" unique_id=1413474210]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_5phy8")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=218707155]
+
+[node name="CenterContainter" type="CenterContainer" parent="CanvasLayer" unique_id=1344648545]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/CenterContainter" unique_id=2098829984]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/CenterContainter/VBoxContainer" unique_id=1360093317]
+layout_mode = 2
+texture = ExtResource("1_ep5rh")
+stretch_mode = 3
+
+[node name="Label" type="Label" parent="CanvasLayer/CenterContainter/VBoxContainer" unique_id=260218562]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Loading..."
+metadata/_edit_use_anchors_ = true
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="CanvasLayer/CenterContainter/VBoxContainer" unique_id=223795167]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+size_flags_stretch_ratio = 0.0
+texture_under = ExtResource("1_ku3bi")
+texture_progress = ExtResource("2_5phy8")
