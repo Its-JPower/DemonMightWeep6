@@ -90,3 +90,5 @@ texture = ExtResource("5_tklts")
 transform = Transform3D(0.08, 0, 0, 0, 0.08, 0, 0, 0, 0.08, -2.6379087, 0.8275474, 2.4434862)
 
 [connection signal="pressed" from="Camera3D/CenterContainer/VBoxContainer/PlayButton" to="." method="_on_play_pressed"]
+
+[editable path="Donte_With_Animations"]
