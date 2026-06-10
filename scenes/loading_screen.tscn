@@ -1,9 +1,126 @@
 [gd_scene format=3 uid="uid://u5n875til8cc"]
 
-[ext_resource type="Script" uid="uid://bcm7xegru34m7" path="res://scripts/loading_screen.gd" id="1_5phy8"]
+[ext_resource type="Script" uid="uid://bcm7xegru34m7" path="res://Scripts/loading_screen.gd" id="1_5phy8"]
 [ext_resource type="Texture2D" uid="uid://c8f1mkm2a2n77" path="res://assets/DemonMightWeep6-removebg-preview.png" id="1_ep5rh"]
 [ext_resource type="Texture2D" uid="uid://d02fv6fbbg14m" path="res://assets/not_full_bar.png" id="1_ku3bi"]
 [ext_resource type="Texture2D" uid="uid://bm7urgwoj2k83" path="res://assets/full_bar.png" id="2_5phy8"]
+[ext_resource type="Texture2D" uid="uid://c6bjg7sp3s0v0" path="res://assets/loading.png" id="5_1godw"]
+
+[sub_resource type="Animation" id="Animation_fayou"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:text")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["Loading..."]
+}
+
+[sub_resource type="Animation" id="Animation_1godw"]
+resource_name = "loadinng"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:text")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.33, 0.67, 1, 1.33, 1.67),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": ["Loading", "Loading.", "Loading..", "Loading...", "Loading..", "Loading."]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_yisgd"]
+_data = {
+&"RESET": SubResource("Animation_fayou"),
+&"loadinng": SubResource("Animation_1godw")
+}
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yisgd"]
+atlas = ExtResource("5_1godw")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gegoj"]
+atlas = ExtResource("5_1godw")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m2hk5"]
+atlas = ExtResource("5_1godw")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1opfs"]
+atlas = ExtResource("5_1godw")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xbrhi"]
+atlas = ExtResource("5_1godw")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iom8t"]
+atlas = ExtResource("5_1godw")
+region = Rect2(64, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nw6gx"]
+atlas = ExtResource("5_1godw")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x8yqx"]
+atlas = ExtResource("5_1godw")
+region = Rect2(32, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qbyj8"]
+atlas = ExtResource("5_1godw")
+region = Rect2(64, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5emdp"]
+atlas = ExtResource("5_1godw")
+region = Rect2(0, 96, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_umxys"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yisgd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gegoj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m2hk5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1opfs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xbrhi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iom8t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nw6gx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x8yqx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qbyj8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5emdp")
+}],
+"loop": true,
+"name": &"default",
+"speed": 15.0
+}]
 
 [node name="Control" type="Control" unique_id=1413474210]
 layout_mode = 3
@@ -33,6 +150,10 @@ size_flags_horizontal = 4
 text = "Loading..."
 metadata/_edit_use_anchors_ = true
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/CenterContainter/VBoxContainer/Label" unique_id=502505638]
+libraries/ = SubResource("AnimationLibrary_yisgd")
+autoplay = &"loadinng"
+
 [node name="TextureProgressBar" type="TextureProgressBar" parent="CanvasLayer/CenterContainter/VBoxContainer" unique_id=223795167]
 layout_mode = 2
 size_flags_horizontal = 4
@@ -40,3 +161,9 @@ size_flags_vertical = 4
 size_flags_stretch_ratio = 0.0
 texture_under = ExtResource("1_ku3bi")
 texture_progress = ExtResource("2_5phy8")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CanvasLayer/CenterContainter/VBoxContainer" unique_id=1500265833]
+position = Vector2(844, 513)
+scale = Vector2(1.8125, 1.8125)
+sprite_frames = SubResource("SpriteFrames_umxys")
+frame_progress = 0.16885877

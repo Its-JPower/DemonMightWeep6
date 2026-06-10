@@ -22,7 +22,8 @@ DamageNumbers="*uid://ha0f7hptgnhr"
 
 [display]
 
-window/stretch/mode="viewport"
+window/size/mode=4
+window/stretch/mode="canvas_items"
 
 [filesystem]
 
