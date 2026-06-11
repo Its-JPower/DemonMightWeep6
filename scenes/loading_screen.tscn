@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://u5n875til8cc"]
 
-[ext_resource type="Script" uid="uid://bcm7xegru34m7" path="res://Scripts/loading_screen.gd" id="1_5phy8"]
-[ext_resource type="Texture2D" uid="uid://c8f1mkm2a2n77" path="res://assets/DemonMightWeep6-removebg-preview.png" id="1_ep5rh"]
+[ext_resource type="Script" uid="uid://bcm7xegru34m7" path="res://scripts/loading_screen.gd" id="1_5phy8"]
 [ext_resource type="Texture2D" uid="uid://d02fv6fbbg14m" path="res://assets/not_full_bar.png" id="1_ku3bi"]
 [ext_resource type="Texture2D" uid="uid://bm7urgwoj2k83" path="res://assets/full_bar.png" id="2_5phy8"]
+[ext_resource type="Texture2D" uid="uid://d2croxutjjyln" path="res://assets/DMW6.png" id="2_qbyj8"]
 [ext_resource type="Texture2D" uid="uid://pkq0gsejvdda" path="res://assets/loading frames/loading_frame_1.png" id="3_qbyj8"]
 [ext_resource type="Texture2D" uid="uid://ba7wswr4qylip" path="res://assets/loading frames/loading_frame_2.png" id="4_5emdp"]
 [ext_resource type="Texture2D" uid="uid://del4ggb5xfrsd" path="res://assets/loading frames/loading_frame_3.png" id="5_umxys"]
@@ -95,7 +95,7 @@ layout_mode = 2
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/CenterContainter/VBoxContainer" unique_id=1360093317]
 layout_mode = 2
-texture = ExtResource("1_ep5rh")
+texture = ExtResource("2_qbyj8")
 stretch_mode = 3
 
 [node name="Loading" type="TextureRect" parent="CanvasLayer/CenterContainter/VBoxContainer" unique_id=1212632024]

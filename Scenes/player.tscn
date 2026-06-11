@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://bdr00mnylssoe" path="res://Donte In Progress/Donte_With_Animations.glb" id="2_f1ek2"]
 [ext_resource type="Script" uid="uid://i3o4bdjqn47" path="res://scripts/sword.gd" id="3_f1ej7"]
 [ext_resource type="Script" uid="uid://4k51j4v87low" path="res://scripts/states/idle_state.gd" id="3_tuyoq"]
-[ext_resource type="AnimationLibrary" uid="uid://b0r7k8cwdoyh6" path="res://assets/Stash 2.res" id="3_tx1dd"]
+[ext_resource type="AnimationLibrary" uid="uid://b0r7k8cwdoyh6" path="res://assets/animation resources/Stash 2.res" id="3_tx1dd"]
 [ext_resource type="PackedScene" uid="uid://cwd0i0y8vl5cj" path="res://scenes/player_ui.tscn" id="4_jej6c"]
 [ext_resource type="Script" uid="uid://ddvyxmtmnykt6" path="res://scripts/states/walk_state.gd" id="4_tuyoq"]
 [ext_resource type="Script" uid="uid://crthkaqtidon3" path="res://scripts/states/run_state.gd" id="5_fjrip"]
@@ -20,10 +20,10 @@
 [ext_resource type="Script" uid="uid://c723ibwwkmuba" path="res://scripts/states/sword_slash_c_state.gd" id="17_4r5pv"]
 [ext_resource type="Script" uid="uid://craks73e1kgxx" path="res://scripts/states/down_slam_state.gd" id="18_igrcy"]
 [ext_resource type="Script" uid="uid://b4arnmky3mhx3" path="res://scripts/states/million_stabs_state.gd" id="19_4r5pv"]
-[ext_resource type="Script" path="res://scripts/states/air_slash_a_state.gd" id="20_60mlk"]
-[ext_resource type="Script" path="res://scripts/states/air_slash_b_state.gd" id="21_i4ail"]
-[ext_resource type="Script" path="res://scripts/states/air_slash_c_state.gd" id="22_a38lo"]
-[ext_resource type="Script" path="res://scripts/states/rising_slash_state.gd" id="23_4ni07"]
+[ext_resource type="Script" uid="uid://46evunog7rgk" path="res://scripts/states/air_slash_a_state.gd" id="20_60mlk"]
+[ext_resource type="Script" uid="uid://bbabv7ysedrtd" path="res://scripts/states/air_slash_b_state.gd" id="21_i4ail"]
+[ext_resource type="Script" uid="uid://c8vobqamjfrop" path="res://scripts/states/air_slash_c_state.gd" id="22_a38lo"]
+[ext_resource type="Script" uid="uid://dxyyjldlarlbo" path="res://scripts/states/rising_slash_state.gd" id="23_4ni07"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_jej6c"]
 

@@ -1,11 +1,39 @@
 [gd_scene format=3 uid="uid://belfbytosbe20"]
 
 [ext_resource type="PackedScene" uid="uid://bdr00mnylssoe" path="res://Donte In Progress/Donte_With_Animations.glb" id="1_upu3b"]
-[ext_resource type="AnimationLibrary" uid="uid://b0r7k8cwdoyh6" path="res://assets/Stash 2.res" id="2_hg06n"]
+[ext_resource type="Animation" uid="uid://b250adb8qdfrf" path="res://assets/animation resources/A_TPose.res" id="2_riamh"]
+[ext_resource type="Animation" uid="uid://b0rgm78f31oer" path="res://assets/animation resources/Dance.res" id="3_14hb1"]
+[ext_resource type="Animation" uid="uid://duhyeiwrcrj36" path="res://assets/animation resources/Idle.res" id="4_mj6k5"]
+[ext_resource type="Animation" uid="uid://nn23poardedj" path="res://assets/animation resources/Interact.res" id="5_1sar5"]
+[ext_resource type="Animation" uid="uid://bgx8lwl4vggnq" path="res://assets/animation resources/Jump.res" id="6_2t4xd"]
+[ext_resource type="Animation" uid="uid://b7kueehorw8y5" path="res://assets/animation resources/Jump_Land.res" id="7_3bx67"]
+[ext_resource type="Animation" uid="uid://ywg36dqdtcox" path="res://assets/animation resources/Jump_Start.res" id="8_eymfn"]
+[ext_resource type="Animation" uid="uid://cf6kl4houw6wy" path="res://assets/animation resources/Sprint.res" id="9_b7feu"]
+[ext_resource type="Animation" uid="uid://bou2k25vhtqyu" path="res://assets/animation resources/Sword_Attack.res" id="10_o35qm"]
+[ext_resource type="Animation" uid="uid://cu0nq2lah4muw" path="res://assets/animation resources/Sword_Attack_RM.res" id="11_67i66"]
+[ext_resource type="Animation" uid="uid://ccn714ttlovfc" path="res://assets/animation resources/Sword_Idle.res" id="12_lu5pm"]
+[ext_resource type="Animation" uid="uid://d0xth7lodcu5m" path="res://assets/animation resources/Walk.res" id="13_glhgp"]
+[ext_resource type="AnimationLibrary" uid="uid://83bbt2s1ecsi" path="res://assets/animation resources/player_animations.res" id="14_riamh"]
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_eqodx"]
+_data = {
+&"A_TPose": ExtResource("2_riamh"),
+&"Dance": ExtResource("3_14hb1"),
+&"Idle": ExtResource("4_mj6k5"),
+&"Interact": ExtResource("5_1sar5"),
+&"Jump": ExtResource("6_2t4xd"),
+&"Jump_Land": ExtResource("7_3bx67"),
+&"Jump_Start": ExtResource("8_eymfn"),
+&"Sprint": ExtResource("9_b7feu"),
+&"Sword_Attack": ExtResource("10_o35qm"),
+&"Sword_Attack_RM": ExtResource("11_67i66"),
+&"Sword_Idle": ExtResource("12_lu5pm"),
+&"Walk": ExtResource("13_glhgp")
+}
 
 [node name="Donte_With_Animations" unique_id=1347159811 instance=ExtResource("1_upu3b")]
 
-[node name="Skeleton3D" parent="." index="0" unique_id=169369081]
+[node name="Skeleton3D" parent="." index="0" unique_id=879867247]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
 bones/2/position = Vector3(5.551115e-16, 0.05010003, 0.9167)
 bones/2/rotation = Quaternion(0.7904686, 9.127004e-09, 1.1778896e-08, 0.61250275)
@@ -64,7 +92,8 @@ bones/62/rotation = Quaternion(0.036589622, -0.00013122692, -4.7918757e-06, 0.99
 bones/63/rotation = Quaternion(-0.5290731, -0.00032809633, 0.00034345736, 0.8485761)
 bones/64/rotation = Quaternion(-0.00013714515, 0.96430665, -0.2647875, -0.00049954205)
 
-[node name="AnimationPlayer" parent="." index="1" unique_id=1313584705]
+[node name="AnimationPlayer" parent="." index="1" unique_id=784456624]
 reset_on_save = false
-"libraries/Stash 2" = ExtResource("2_hg06n")
+libraries/ = SubResource("AnimationLibrary_eqodx")
+libraries/player_animations = ExtResource("14_riamh")
 autoplay = &"Stash 2/Idle"
