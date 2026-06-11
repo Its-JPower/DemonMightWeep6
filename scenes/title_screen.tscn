@@ -9,14 +9,14 @@
 
 [sub_resource type="Environment" id="Environment_8l4an"]
 background_mode = 1
-background_color = Color(0.8751179, 0.51062083, 0.29933882, 1)
+background_color = Color(0.53902483, 0.6010586, 0.85685545, 1)
 background_energy_multiplier = 1.99
 ambient_light_source = 3
 ambient_light_energy = 0.05
 volumetric_fog_enabled = true
 volumetric_fog_density = 0.278
-volumetric_fog_albedo = Color(0.66656864, 0.6665687, 0.66656864, 1)
-volumetric_fog_emission = Color(0.6199587, 0.26512071, 0.31270343, 1)
+volumetric_fog_albedo = Color(0.5404561, 0.6722285, 0.8844716, 1)
+volumetric_fog_emission = Color(0.35145283, 0.62191993, 0.95743185, 1)
 volumetric_fog_emission_energy = 0.2
 
 [node name="Title" type="CanvasLayer" unique_id=823185846]
