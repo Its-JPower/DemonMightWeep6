@@ -1,6 +1,6 @@
 extends CanvasLayer
 
-@onready var anim_player = $Donte_With_Animations.find_child("AnimationPlayer")
+@onready var anim_player = $donte.find_child("AnimationPlayer")
 
 func _ready() -> void:
 	if anim_player:
