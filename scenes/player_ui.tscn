@@ -1,6 +1,8 @@
 [gd_scene format=3 uid="uid://cwd0i0y8vl5cj"]
 
 [ext_resource type="Script" uid="uid://cxxf67e1814ve" path="res://scripts/player_ui.gd" id="1_jkj6h"]
+[ext_resource type="Script" uid="uid://knghbp06a8ss" path="res://scripts/combat_hud.gd" id="2_sk4pr"]
+[ext_resource type="Texture2D" uid="uid://d4im1s35d53sy" path="res://assets/input_prompts/Keyboard_Mouse/Alt/T_Mouse_Left_Key_Alt.png" id="3_48xfa"]
 
 [node name="PlayerUI" type="Control" unique_id=869021254]
 layout_mode = 3
@@ -16,3 +18,174 @@ layout_mode = 0
 offset_right = 40.0
 offset_bottom = 23.0
 text = "gdfgdfg"
+
+[node name="CombatHUD" type="Control" parent="." unique_id=277647737]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_sk4pr")
+
+[node name="SlashA" type="HBoxContainer" parent="CombatHUD" unique_id=1427436528]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -128.0
+offset_bottom = 128.0
+grow_horizontal = 0
+
+[node name="TextureRect" type="TextureRect" parent="CombatHUD/SlashA" unique_id=756910034]
+layout_mode = 2
+size_flags_horizontal = 0
+texture = ExtResource("3_48xfa")
+
+[node name="SlashB" type="HBoxContainer" parent="CombatHUD" unique_id=1842503965]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -128.0
+offset_bottom = 128.0
+grow_horizontal = 0
+
+[node name="TextureRect" type="TextureRect" parent="CombatHUD/SlashB" unique_id=561974425]
+layout_mode = 2
+texture = ExtResource("3_48xfa")
+
+[node name="SlashC" type="HBoxContainer" parent="CombatHUD" unique_id=1735085204]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -128.0
+offset_bottom = 128.0
+grow_horizontal = 0
+
+[node name="TextureRect" type="TextureRect" parent="CombatHUD/SlashC" unique_id=958041112]
+layout_mode = 2
+texture = ExtResource("3_48xfa")
+
+[node name="UpperSlash" type="HBoxContainer" parent="CombatHUD" unique_id=631195725]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -128.0
+offset_bottom = 128.0
+grow_horizontal = 0
+
+[node name="TextureRect" type="TextureRect" parent="CombatHUD/UpperSlash" unique_id=561289127]
+layout_mode = 2
+texture = ExtResource("3_48xfa")
+
+[node name="RisingSlash" type="HBoxContainer" parent="CombatHUD" unique_id=482272476]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -128.0
+offset_bottom = 128.0
+grow_horizontal = 0
+
+[node name="TextureRect" type="TextureRect" parent="CombatHUD/RisingSlash" unique_id=705347930]
+layout_mode = 2
+texture = ExtResource("3_48xfa")
+
+[node name="AirSlashA" type="HBoxContainer" parent="CombatHUD" unique_id=2079724697]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 40.0
+grow_horizontal = 0
+
+[node name="TextureRect" type="TextureRect" parent="CombatHUD/AirSlashA" unique_id=1379448941]
+layout_mode = 2
+
+[node name="AirSlashB" type="HBoxContainer" parent="CombatHUD" unique_id=1323262902]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 40.0
+grow_horizontal = 0
+
+[node name="TextureRect" type="TextureRect" parent="CombatHUD/AirSlashB" unique_id=598278500]
+layout_mode = 2
+
+[node name="AirSlashC" type="HBoxContainer" parent="CombatHUD" unique_id=210270271]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 40.0
+grow_horizontal = 0
+
+[node name="TextureRect" type="TextureRect" parent="CombatHUD/AirSlashC" unique_id=1330494251]
+layout_mode = 2
+
+[node name="DownSlam" type="HBoxContainer" parent="CombatHUD" unique_id=540919294]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 40.0
+grow_horizontal = 0
+
+[node name="TextureRect" type="TextureRect" parent="CombatHUD/DownSlam" unique_id=1774889878]
+layout_mode = 2
+
+[node name="AbdomenPiercer" type="HBoxContainer" parent="CombatHUD" unique_id=839994225]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 40.0
+grow_horizontal = 0
+
+[node name="TextureRect" type="TextureRect" parent="CombatHUD/AbdomenPiercer" unique_id=921395889]
+layout_mode = 2
+
+[node name="MillionStabs" type="HBoxContainer" parent="CombatHUD" unique_id=2081166444]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 40.0
+grow_horizontal = 0
+
+[node name="TextureRect" type="TextureRect" parent="CombatHUD/MillionStabs" unique_id=1576900478]
+layout_mode = 2
+
+[node name="Lock-On" type="HBoxContainer" parent="CombatHUD" unique_id=237450430]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 40.0
+grow_horizontal = 0
+
+[node name="TextureRect" type="TextureRect" parent="CombatHUD/Lock-On" unique_id=197184418]
+layout_mode = 2
+
+[node name="CamLock" type="HBoxContainer" parent="CombatHUD" unique_id=1288767989]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 40.0
+grow_horizontal = 0
+
+[node name="TextureRect" type="TextureRect" parent="CombatHUD/CamLock" unique_id=6019417]
+layout_mode = 2
