@@ -15,6 +15,8 @@ var has_landed := false
 var hit_enemies := []
 var _in_startup := true
 
+var state_name := "DownSlamState"
+
 func enter() -> void:
 	timer = 0.0
 	startup_timer = 0.0

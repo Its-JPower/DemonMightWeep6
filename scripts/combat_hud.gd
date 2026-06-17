@@ -1,29 +1,30 @@
 # CombatHUD.gd
 extends Control
 
-@onready var state_machine: StateMachine = $"../../../../../StateMachine"
-@onready var player = $"../../../../.."
+@onready var state_machine: StateMachine = $"../../../../../../StateMachine"
+@onready var player: Player = $"../../../../../.."
 
 # Move entry nodes
-@onready var slash_a: TextureRect = $SlashA/TextureRect
-@onready var slash_b: TextureRect = $SlashB/TextureRect
-@onready var slash_c: TextureRect = $SlashC/TextureRect
-@onready var upper_slash: TextureRect = $UpperSlash/TextureRect
-@onready var rising_slash: TextureRect = $RisingSlash/TextureRect
-@onready var air_slash_a: TextureRect = $AirSlashA/TextureRect
-@onready var air_slash_b: TextureRect = $AirSlashB/TextureRect
-@onready var air_slash_c: TextureRect = $AirSlashC/TextureRect
-@onready var down_slam: TextureRect = $DownSlam/TextureRect
-@onready var abdomen_piercer: TextureRect = $AbdomenPiercer/TextureRect
-@onready var million_stabs: TextureRect = $MillionStabs/TextureRect
-@onready var lock_on: TextureRect = $"Lock-On"/TextureRect
-@onready var cam_lock: TextureRect = $CamLock/TextureRect
+@onready var special = $Special
+@onready var slash_a = $SlashA
+@onready var slash_b = $SlashB
+@onready var slash_c = $SlashC
+@onready var upper_slash = $UpperSlash
+@onready var rising_slash = $RisingSlash
+@onready var air_slash_a = $AirSlashA
+@onready var air_slash_b = $AirSlashB
+@onready var air_slash_c = $AirSlashC
+@onready var down_slam = $DownSlam
+@onready var abdomen_piercer = $AbdomenPiercer
+@onready var million_stabs = $MillionStabs
+@onready var lock_on = $"Lock-On"
+@onready var cam_lock = $CamLock
 
 var all_icons: Array
 
 func _ready() -> void:
 	all_icons = [
-		slash_a, slash_b, slash_c, upper_slash, rising_slash,
+		special, slash_a, slash_b, slash_c, upper_slash, rising_slash,
 		air_slash_a, air_slash_b, air_slash_c, down_slam,
 		abdomen_piercer, million_stabs, lock_on, cam_lock
 	]
@@ -37,19 +38,21 @@ func _update_hud() -> void:
 		icon.hide()
 
 	var state = state_machine.current_state
-	var state_name = state.get_class() if state else ""
+	var state_name = state.state_name if state else ""
 	var holding_special = Input.is_action_pressed("special")
 	var on_floor = player.is_on_floor()
-
+	print(state.get_class(), " | ", state_name)
 	# Lock-on and cam lock are always available
 	lock_on.show()
 	cam_lock.show()
 
 	match state_name:
 		"IdleState", "WalkState", "RunState", "LandState":
-			slash_a.show()
-			rising_slash.show()
-			abdomen_piercer.show()
+			if holding_special:
+				rising_slash.show()
+				abdomen_piercer.show()
+			else:
+				slash_a.show()
 
 		"SwordSlashAState":
 			slash_b.show()
@@ -83,7 +86,13 @@ func _update_hud() -> void:
 
 		"FallState":
 			air_slash_a.show()
-			abdomen_piercer.show()
+			if holding_special:
+				abdomen_piercer.show()
+		"JumpState":
+			if holding_special:
+				abdomen_piercer.show()
+			else:
+				air_slash_a.show()
 
 		"AbdomenPiercerState":
 			pass  # committed

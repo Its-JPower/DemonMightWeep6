@@ -4,6 +4,8 @@ extends State
 const FALL_ANIM_DELAY := 0.15   # brief grace before fall anim plays (coyote feel)
 var _fall_timer := 0.0
 
+var state_name := "FallState"
+
 func enter() -> void:
 	_fall_timer = 0.0
 

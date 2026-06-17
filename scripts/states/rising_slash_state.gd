@@ -14,6 +14,8 @@ var duration := 0.6
 var has_peaked := false
 var has_hit := false
 
+var state_name := "RisingSlashState"
+
 func enter() -> void:
 	player._lock_on_idle_timer = 0.0
 	timer = 0.0

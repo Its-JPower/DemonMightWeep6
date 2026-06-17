@@ -10,6 +10,8 @@ const LUNGE_FALLOFF := 2.5      # how fast the lunge bleeds off (higher = snappi
 var lunge_direction := Vector3.ZERO
 var has_hit := false
 
+var state_name := "UpperSlashState"
+
 func enter() -> void:
 	player._lock_on_idle_timer = 0.0
 	timer = 0.0

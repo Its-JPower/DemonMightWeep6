@@ -10,6 +10,8 @@ var local_duration: float
 var dash_direction := Vector3.ZERO
 var hit_enemies := []
 
+var state_name := "AbdomenPiercerState"
+
 func enter() -> void:
 	player.anim_player.play("Sword_Dash_RM", -1, 1.0)
 	hit_enemies.clear()

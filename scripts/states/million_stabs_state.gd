@@ -16,6 +16,8 @@ var has_hit := false
 var sword: Sword
 var stab_direction := Vector3.ZERO
 
+var state_name := "MillionStabsState"
+
 func enter() -> void:
 	sword = player.get_node("Mesh/Skeleton3D/BoneAttachment3D/Sword")
 	current_damage = BASE_DAMAGE

@@ -1,6 +1,8 @@
 class_name JumpState
 extends State
 
+var state_name := "JumpState"
+
 var jumps_remaining := 0
 const PEAK_THRESHOLD := 1.5
 const PEAK_WINDOW := 0.4

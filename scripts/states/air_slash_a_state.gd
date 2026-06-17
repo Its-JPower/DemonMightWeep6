@@ -13,6 +13,8 @@ var duration := 0.5
 var has_hit := false
 var attack_buffered := false
 
+var state_name := "AirSlashAState"
+
 func enter() -> void:
 	player._lock_on_idle_timer = 0.0
 	timer = 0.0

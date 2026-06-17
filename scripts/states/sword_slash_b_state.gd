@@ -8,6 +8,8 @@ var has_hit := false
 var duration := 0.6
 var attack_buffered := false
 
+var state_name := "SwordSlashBState"
+
 const BUFFER_OPEN := 0.45
 
 func enter() -> void:

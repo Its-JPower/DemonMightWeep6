@@ -1,6 +1,8 @@
 class_name IdleState
 extends State
 
+var state_name := "IdleState"
+
 func enter() -> void:
 	player.anim_player.play("Stash 2/Idle", 1.0)
 	# Bleed off lateral momentum smoothly instead of snapping to zero

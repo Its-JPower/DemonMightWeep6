@@ -1,6 +1,8 @@
 class_name RunState
 extends State
 
+var state_name := "RunState"
+
 func enter() -> void:
 	player.anim_player.play("Stash 2/Sprint", 1.0)
 

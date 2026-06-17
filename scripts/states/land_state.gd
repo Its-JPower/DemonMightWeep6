@@ -4,6 +4,8 @@ extends State
 const LAND_ANIM_THRESHOLD := 3.5
 var _done: bool = false
 
+var state_name := "LandState"
+
 func enter() -> void:
 	_done = false
 	var fall_speed = player.last_fall_speed
