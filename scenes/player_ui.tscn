@@ -4,6 +4,10 @@
 [ext_resource type="Script" uid="uid://knghbp06a8ss" path="res://scripts/combat_hud.gd" id="2_sk4pr"]
 [ext_resource type="Texture2D" uid="uid://6vqrdsnrryn2" path="res://assets/input_prompts/Keyboard_Mouse/Alt/T_Mouse_Right_Key_Alt.png" id="3_8isll"]
 [ext_resource type="Texture2D" uid="uid://d4im1s35d53sy" path="res://assets/input_prompts/Keyboard_Mouse/Alt/T_Mouse_Left_Key_Alt.png" id="3_48xfa"]
+[ext_resource type="Texture2D" uid="uid://ugja33yc6mva" path="res://assets/input_prompts/Keyboard_Mouse/Alt/T_Crtl_Key_Alt.png" id="5_bkx2g"]
+[ext_resource type="Texture2D" uid="uid://b1jvbb2vvs31w" path="res://assets/input_prompts/Keyboard_Mouse/Alt/T_W_Key_Held_Alt.png" id="5_n31oh"]
+[ext_resource type="Texture2D" uid="uid://bd1oa63lm6p73" path="res://assets/input_prompts/Keyboard_Mouse/Alt/T_S_Key_Held_Alt.png" id="5_wsb5h"]
+[ext_resource type="Texture2D" uid="uid://ctkn4idpx4khi" path="res://assets/input_prompts/Keyboard_Mouse/Alt/T_Tab_Key_Alt.png" id="6_n31oh"]
 
 [node name="PlayerUI" type="Control" unique_id=869021254]
 layout_mode = 3
@@ -96,6 +100,10 @@ text = "Upper Slash"
 visible = false
 layout_mode = 2
 
+[node name="TextureRect2" type="TextureRect" parent="CombatHUD/RisingSlash" unique_id=1661088547]
+layout_mode = 2
+texture = ExtResource("5_wsb5h")
+
 [node name="TextureRect" type="TextureRect" parent="CombatHUD/RisingSlash" unique_id=705347930]
 layout_mode = 2
 texture = ExtResource("3_48xfa")
@@ -110,6 +118,7 @@ layout_mode = 2
 
 [node name="TextureRect" type="TextureRect" parent="CombatHUD/AirSlashA" unique_id=1379448941]
 layout_mode = 2
+texture = ExtResource("3_48xfa")
 
 [node name="Label" type="Label" parent="CombatHUD/AirSlashA" unique_id=931159196]
 layout_mode = 2
@@ -121,6 +130,7 @@ layout_mode = 2
 
 [node name="TextureRect" type="TextureRect" parent="CombatHUD/AirSlashB" unique_id=598278500]
 layout_mode = 2
+texture = ExtResource("3_48xfa")
 
 [node name="Label" type="Label" parent="CombatHUD/AirSlashB" unique_id=1911858832]
 layout_mode = 2
@@ -132,6 +142,7 @@ layout_mode = 2
 
 [node name="TextureRect" type="TextureRect" parent="CombatHUD/AirSlashC" unique_id=1330494251]
 layout_mode = 2
+texture = ExtResource("3_48xfa")
 
 [node name="Label" type="Label" parent="CombatHUD/AirSlashC" unique_id=742485597]
 layout_mode = 2
@@ -141,8 +152,13 @@ text = "Air Slash C"
 visible = false
 layout_mode = 2
 
+[node name="TextureRect2" type="TextureRect" parent="CombatHUD/DownSlam" unique_id=1446027336]
+layout_mode = 2
+texture = ExtResource("5_n31oh")
+
 [node name="TextureRect" type="TextureRect" parent="CombatHUD/DownSlam" unique_id=1774889878]
 layout_mode = 2
+texture = ExtResource("3_48xfa")
 
 [node name="Label" type="Label" parent="CombatHUD/DownSlam" unique_id=1120928811]
 layout_mode = 2
@@ -152,8 +168,13 @@ text = "Down Slam"
 visible = false
 layout_mode = 2
 
+[node name="TextureRect2" type="TextureRect" parent="CombatHUD/AbdomenPiercer" unique_id=1649386771]
+layout_mode = 2
+texture = ExtResource("5_n31oh")
+
 [node name="TextureRect" type="TextureRect" parent="CombatHUD/AbdomenPiercer" unique_id=921395889]
 layout_mode = 2
+texture = ExtResource("3_48xfa")
 
 [node name="Label" type="Label" parent="CombatHUD/AbdomenPiercer" unique_id=424947428]
 layout_mode = 2
@@ -174,8 +195,9 @@ text = "Million Stabs"
 visible = false
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="CombatHUD/Lock-On" unique_id=197184418]
+[node name="TextureRect" type="TextureRect" parent="CombatHUD/Lock-On" unique_id=6019417]
 layout_mode = 2
+texture = ExtResource("6_n31oh")
 
 [node name="Label" type="Label" parent="CombatHUD/Lock-On" unique_id=237419102]
 layout_mode = 2
@@ -185,8 +207,9 @@ text = "Lock-On"
 visible = false
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="CombatHUD/CamLock" unique_id=6019417]
+[node name="TextureRect" type="TextureRect" parent="CombatHUD/CamLock" unique_id=197184418]
 layout_mode = 2
+texture = ExtResource("5_bkx2g")
 
 [node name="Label" type="Label" parent="CombatHUD/CamLock" unique_id=1097296471]
 layout_mode = 2

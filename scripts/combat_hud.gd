@@ -52,6 +52,7 @@ func _update_hud() -> void:
 				rising_slash.show()
 				abdomen_piercer.show()
 			else:
+				special.show()
 				slash_a.show()
 
 		"SwordSlashAState":
@@ -79,6 +80,7 @@ func _update_hud() -> void:
 			if holding_special:
 				down_slam.show()
 			else:
+				special.show()
 				air_slash_a.show()  # loop back
 
 		"MillionStabsState":
@@ -87,11 +89,13 @@ func _update_hud() -> void:
 		"FallState":
 			air_slash_a.show()
 			if holding_special:
-				abdomen_piercer.show()
+				down_slam.show()
 		"JumpState":
+			air_slash_a.show()
 			if holding_special:
-				abdomen_piercer.show()
+				down_slam.show()
 			else:
+				special.show()
 				air_slash_a.show()
 
 		"AbdomenPiercerState":
