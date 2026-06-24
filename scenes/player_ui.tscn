@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://b1jvbb2vvs31w" path="res://assets/input_prompts/Keyboard_Mouse/Alt/T_W_Key_Held_Alt.png" id="5_n31oh"]
 [ext_resource type="Texture2D" uid="uid://bd1oa63lm6p73" path="res://assets/input_prompts/Keyboard_Mouse/Alt/T_S_Key_Held_Alt.png" id="5_wsb5h"]
 [ext_resource type="Texture2D" uid="uid://ctkn4idpx4khi" path="res://assets/input_prompts/Keyboard_Mouse/Alt/T_Tab_Key_Alt.png" id="6_n31oh"]
+[ext_resource type="Texture2D" uid="uid://bgo0ouxvupm2d" path="res://assets/input_prompts/Keyboard_Mouse/Alt/T_Mouse_Left_Key_Mash_Alt.png.png" id="7_g4s8q"]
 
 [node name="PlayerUI" type="Control" unique_id=869021254]
 layout_mode = 3
@@ -26,12 +27,14 @@ text = "gdfgdfg"
 
 [node name="CombatHUD" type="VBoxContainer" parent="." unique_id=1213170494]
 layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -128.0
-offset_bottom = 688.0
+anchors_preset = -1
+anchor_left = 1.05
+anchor_top = 0.05
+anchor_right = 1.05
+anchor_bottom = 0.078
 grow_horizontal = 0
+scale = Vector2(0.5, 0.5)
+offset_transform_position = Vector2(5.295, 0)
 script = ExtResource("2_sk4pr")
 
 [node name="Special" type="HBoxContainer" parent="CombatHUD" unique_id=781385169]
@@ -186,6 +189,7 @@ layout_mode = 2
 
 [node name="TextureRect" type="TextureRect" parent="CombatHUD/MillionStabs" unique_id=1576900478]
 layout_mode = 2
+texture = ExtResource("7_g4s8q")
 
 [node name="Label" type="Label" parent="CombatHUD/MillionStabs" unique_id=1033927031]
 layout_mode = 2
