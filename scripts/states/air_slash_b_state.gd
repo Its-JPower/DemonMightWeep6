@@ -61,10 +61,8 @@ func physics_process(delta: float) -> void:
 			state_machine.transition_to(state_machine.get_node("FallState"))
 
 func _on_hit(enemy: Enemy) -> void:
-	if has_hit:
-		return
-	has_hit = true
-	player.set_lock_on_target(enemy)
+	if player.lock_on_target == null:
+		player.set_lock_on_target(enemy)
 	enemy.take_damage(PlayerStats.sword_slash_b_damage, Vector3.ZERO, 0.0)
 	DamageNumbers.spawn(PlayerStats.sword_slash_b_damage, enemy.global_position)
 

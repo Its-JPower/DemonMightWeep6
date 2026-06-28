@@ -4,6 +4,8 @@ extends State
 var state_name := "IdleState"
 
 func enter() -> void:
+	if state_machine.previous_state == AbdomenPiercerState:
+		player.velocity = Vector3.ZERO
 	player.anim_player.play("Stash 2/Idle", 1.0)
 	# Bleed off lateral momentum smoothly instead of snapping to zero
 	player.is_sprinting = false

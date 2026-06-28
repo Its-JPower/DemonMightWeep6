@@ -18,7 +18,6 @@ var state_name := "AirSlashAState"
 func enter() -> void:
 	player._lock_on_idle_timer = 0.0
 	timer = 0.0
-	has_hit = false
 	attack_buffered = false
 	player.anim_player.play("Sword_Regular_A", -1, 1.0)
 	var anim = player.anim_player.get_animation("Sword_Regular_A")
@@ -65,10 +64,8 @@ func physics_process(delta: float) -> void:
 			state_machine.transition_to(state_machine.get_node("FallState"))
 
 func _on_hit(enemy: Enemy) -> void:
-	if has_hit:
-		return
-	has_hit = true
-	player.set_lock_on_target(enemy)
+	if player.lock_on_target == null:
+		player.set_lock_on_target(enemy)
 	enemy.take_damage(PlayerStats.sword_slash_a_damage, Vector3.ZERO, 0.0)
 	DamageNumbers.spawn(PlayerStats.sword_slash_a_damage, enemy.global_position)
 

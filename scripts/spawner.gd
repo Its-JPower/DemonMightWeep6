@@ -1,69 +1,51 @@
 class_name EnemySpawner
 extends Node3D
 
-## Emitted each time a single enemy is spawned.
 signal enemy_spawned(enemy: Node3D)
-## Emitted after every enemy in a cycle has been spawned.
 signal cycle_completed(cycle_number: int)
-## Emitted when the spawner exhausts max_cycles (if capped).
 signal spawner_finished()
 
 @export_group("Enemies")
-## Scenes to randomly pick from each spawn. Add multiple for variety.
 @export var enemy_scenes: Array[PackedScene] = []
-## Weighted chances matching enemy_scenes (leave empty = equal weight).
 @export var spawn_weights: Array[float] = []
 
 @export_group("Cycle Settings")
-## How many enemies to spawn per cycle.
 @export var spawn_count: int = 3
-## Seconds between each cycle.
 @export var cycle_interval: float = 5.0
-## Seconds between individual spawns within a cycle (0 = all at once).
 @export var spawn_stagger: float = 0.2
-## Wait for all previous-cycle enemies to die before starting next cycle.
 @export var wait_for_clearance: bool = false
-## 0 = infinite cycles.
 @export var max_cycles: int = 0
-## Scale spawn_count by this each cycle (1.0 = constant).
 @export var count_scale_per_cycle: float = 1.0
-## Scale cycle_interval by this each cycle (e.g. 0.9 speeds up over time).
 @export var interval_scale_per_cycle: float = 1.0
 
 @export_group("Spawn Position")
-## Spawn point nodes. If empty, spawner's own position is used.
 @export var spawn_points: Array[Node3D] = []
-## Randomise which spawn point is used each spawn.
 @export var randomise_spawn_point: bool = true
-## XZ radius of random position offset around chosen spawn point.
 @export var position_jitter: float = 0.0
-## Snap spawned enemy to the ground via raycast (requires physics layer set).
 @export var snap_to_ground: bool = true
-## Physics collision mask used for ground snapping raycast.
 @export_flags_3d_physics var ground_mask: int = 1
-## How high above the spawn point to start the ground raycast.
 @export var raycast_height: float = 50.0
 
 @export_group("Spawn Facing")
-## Rotate spawned enemy to face a target node (e.g. the player).
 @export var face_target: Node3D = null
-## Random Y-axis rotation added on top (degrees). Ignored if face_target is set.
 @export_range(0, 360) var random_rotation_range: float = 360.0
 
 @export_group("Limits")
-## Hard cap on live enemies from this spawner (0 = no cap).
 @export var max_live_enemies: int = 0
-## Node to reparent spawned enemies to (defaults to spawner's parent).
 @export var spawn_parent: Node = null
 
-## Runtime state ───────────────────────────────────────────
+@export_group("Debug")
+## Enable to print spawn events, cycle progress, and state changes to the Output panel.
+@export var debug: bool = false
+
 var active: bool = false
 var cycle_count: int = 0
 var live_enemies: Array[Node3D] = []
 
 var _cycle_timer: Timer
+var _stagger_timer: Timer
 var _current_interval: float
-var _current_count: int
+var _current_count: float
 var _spawn_index: int = 0
 
 
@@ -76,8 +58,6 @@ func _ready() -> void:
 	_current_count = spawn_count
 
 
-## ─── Public API ──────────────────────────────────────────
-
 func start() -> void:
 	if enemy_scenes.is_empty():
 		push_error("EnemySpawner: no enemy_scenes assigned.")
@@ -86,34 +66,41 @@ func start() -> void:
 	cycle_count = 0
 	_current_interval = cycle_interval
 	_current_count = spawn_count
+	_log("Spawner started. max_cycles=%d  spawn_count=%d  wait_for_clearance=%s" % [
+		max_cycles, spawn_count, wait_for_clearance])
 	_run_cycle()
 
 
 func stop() -> void:
 	active = false
 	_cycle_timer.stop()
+	if _stagger_timer and not _stagger_timer.is_queued_for_deletion():
+		_stagger_timer.stop()
+	_log("Spawner stopped. live_enemies=%d" % live_enemies.size())
 
 
 func pause() -> void:
 	_cycle_timer.paused = true
+	_log("Spawner paused.")
 
 
 func resume() -> void:
 	_cycle_timer.paused = false
+	_log("Spawner resumed.")
 
 
 func force_cycle() -> void:
-	## Immediately trigger a cycle regardless of the timer.
 	_cycle_timer.stop()
+	_log("force_cycle() called.")
 	_run_cycle()
 
-
-## ─── Internal ────────────────────────────────────────────
 
 func _run_cycle() -> void:
 	if !active:
 		return
+
 	if wait_for_clearance and !live_enemies.is_empty():
+		_log("Waiting for clearance — %d enemies still alive." % live_enemies.size())
 		_cycle_timer.start(0.5)
 		return
 
@@ -121,7 +108,14 @@ func _run_cycle() -> void:
 	_spawn_index = 0
 	var to_spawn: int = int(_current_count)
 	if max_live_enemies > 0:
-		to_spawn = mini(to_spawn, max_live_enemies - live_enemies.size())
+		var available := max_live_enemies - live_enemies.size()
+		if available < to_spawn:
+			_log("Cycle %d: capped spawn count %d → %d (max_live_enemies limit)" % [
+				cycle_count, to_spawn, available])
+			to_spawn = mini(to_spawn, available)
+
+	_log("=== Cycle %d start — spawning %d enemies (interval=%.2fs stagger=%.2fs) ===" % [
+		cycle_count, to_spawn, _current_interval, spawn_stagger])
 
 	if spawn_stagger > 0.0:
 		_stagger_spawn(to_spawn)
@@ -137,18 +131,19 @@ func _stagger_spawn(count: int) -> void:
 		return
 	_spawn_one()
 	_spawn_index += 1
-	var t := Timer.new()
-	t.one_shot = true
-	add_child(t)
-	t.timeout.connect(func():
-		t.queue_free()
+	_stagger_timer = Timer.new()
+	_stagger_timer.one_shot = true
+	add_child(_stagger_timer)
+	_stagger_timer.timeout.connect(func():
+		_stagger_timer.queue_free()
 		_stagger_spawn(count))
-	t.start(spawn_stagger)
+	_stagger_timer.start(spawn_stagger)
 
 
 func _spawn_one() -> void:
 	var scene := _pick_scene()
 	if scene == null:
+		push_warning("EnemySpawner: _pick_scene() returned null.")
 		return
 	var enemy := scene.instantiate() as Node3D
 	if enemy == null:
@@ -156,21 +151,29 @@ func _spawn_one() -> void:
 		return
 	var parent: Node = spawn_parent if spawn_parent else get_parent()
 	parent.add_child(enemy)
-	enemy.global_position = _pick_position()
+	var pos := _pick_position()
+	enemy.global_position = pos
 	_apply_rotation(enemy)
 	live_enemies.append(enemy)
 	enemy.tree_exiting.connect(_on_enemy_removed.bind(enemy))
 	enemy_spawned.emit(enemy)
+	_log("  Spawned '%s' at %s  (live=%d)" % [
+		enemy.name, pos, live_enemies.size()])
 
 
 func _finish_cycle() -> void:
 	cycle_completed.emit(cycle_count)
+	_log("Cycle %d complete. live_enemies=%d" % [cycle_count, live_enemies.size()])
+
 	if max_cycles > 0 and cycle_count >= max_cycles:
 		active = false
 		spawner_finished.emit()
+		_log("All %d cycles finished. Spawner done." % max_cycles)
 		return
-	_current_count = maxi(int(_current_count * count_scale_per_cycle), 1)
+
+	_current_count = maxf(_current_count * count_scale_per_cycle, 1.0)
 	_current_interval = maxf(_current_interval * interval_scale_per_cycle, 0.1)
+	_log("Next cycle in %.2fs  (next_count=%d)" % [_current_interval, int(_current_count)])
 	_cycle_timer.start(_current_interval)
 
 
@@ -212,10 +215,10 @@ func _raycast_ground(pos: Vector3) -> Vector3:
 		pos + Vector3.DOWN * raycast_height,
 		ground_mask
 	)
-	query.exclude = [self]
 	var result := space.intersect_ray(query)
 	if result:
 		return result["position"]
+	push_warning("EnemySpawner: ground raycast missed at %s — using original position." % pos)
 	return pos
 
 
@@ -237,5 +240,13 @@ func _pick_scene() -> PackedScene:
 
 func _on_enemy_removed(enemy: Node3D) -> void:
 	live_enemies.erase(enemy)
+	_log("Enemy '%s' removed. live_enemies=%d" % [enemy.name, live_enemies.size()])
+
+
 func _on_cycle_timer_timeout() -> void:
 	_run_cycle()
+
+
+func _log(msg: String) -> void:
+	if debug:
+		print("[EnemySpawner] ", msg)

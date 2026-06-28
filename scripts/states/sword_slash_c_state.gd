@@ -20,7 +20,6 @@ func enter() -> void:
 	var anim = player.anim_player.get_animation("Sword_Regular_C")
 	duration = anim.length if anim else 0.6
 	timer = 0.0
-	has_hit = false
 	attack_buffered = false
 	state_machine.combo_index = 0  # C is the end, reset for next chain
 	state_machine.combo_timer = 0.0
@@ -57,14 +56,10 @@ func physics_process(delta: float) -> void:
 			_end_state()
 
 func _on_hit(enemy: Enemy) -> void:
-	if has_hit:
-		return
-	has_hit = true
-	player.set_lock_on_target(enemy)
-	var damage := PlayerStats.sword_slash_c_damage
-	var is_crit = randf() < PlayerStats.crit_chance  # or however you determine crits
-	enemy.take_damage(damage, Vector3.ZERO, 0.0)
-	DamageNumbers.spawn(damage, enemy.global_position, is_crit)
+	if player.lock_on_target == null:
+		player.set_lock_on_target(enemy)
+	enemy.take_damage(PlayerStats.sword_slash_c_damage, Vector3.ZERO, 0.0)
+	DamageNumbers.spawn(PlayerStats.sword_slash_c_damage, enemy.global_position)
 
 func exit() -> void:
 	sword.disable_hitbox()

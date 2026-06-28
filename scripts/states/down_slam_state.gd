@@ -89,6 +89,9 @@ func _on_hit(enemy: Enemy) -> void:
 	if enemy not in hit_enemies:
 		hit_enemies.append(enemy)
 		enemy.take_damage(PlayerStats.down_slam_damage, Vector3.ZERO, PlayerStats.down_slam_kb_vertical)
+	if enemy not in hit_enemies:
+		hit_enemies.append(enemy)
+		enemy.take_damage(PlayerStats.down_slam_damage, Vector3.ZERO, PlayerStats.down_slam_kb_vertical)
 
 func _on_impact_anim_finished(_anim_name: String) -> void:
 	_end_state()

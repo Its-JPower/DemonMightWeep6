@@ -18,8 +18,8 @@ func physics_process(delta: float) -> void:
 
 	# Small delay so hopping off a ledge doesn't snap to fall pose instantly
 	if _fall_timer >= FALL_ANIM_DELAY:
-		player.anim_player.play("Stash 2/Jump_Idle", -1, 1.0)
-
+		#player.anim_player.play("Stash 2/Jump_Idle", -1, 1.0)
+		pass
 	if player.is_on_floor():
 		state_machine.transition_to(state_machine.get_node("LandState"))
 		return

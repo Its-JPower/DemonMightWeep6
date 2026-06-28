@@ -41,7 +41,6 @@ func _update_hud() -> void:
 	var state_name = state.state_name if state else ""
 	var holding_special = Input.is_action_pressed("special")
 	var on_floor = player.is_on_floor()
-	print(state.get_class(), " | ", state_name)
 	# Lock-on and cam lock are always available
 	lock_on.show()
 	cam_lock.show()
