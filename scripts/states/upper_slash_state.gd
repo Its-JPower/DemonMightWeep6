@@ -2,16 +2,21 @@ class_name UpperSlashState
 extends State
 
 @onready var sword: Sword = $"../../Mesh/Skeleton3D/BoneAttachment3D/Sword"
+
 var timer := 0.0
 const DURATION := 0.4
 const HORIZONTAL_SPEED := 2.0
-const LUNGE_FALLOFF := 2.5
+const LUNGE_FALLOFF := 2.5      # how fast the lunge bleeds off (higher = snappier stop)
 var lunge_direction := Vector3.ZERO
-var state_name := "UpperSlashState"
+var has_hit := false
+
+var state_name = "UpperSlashState"
 
 func enter() -> void:
+	state_machine.combo_index = 0
 	player._lock_on_idle_timer = 0.0
 	timer = 0.0
+	has_hit = false
 	player.anim_player.play("Sword_Regular_A", -1, 1.0)
 	lunge_direction = -player.player_model.global_transform.basis.z
 	player.velocity.x = lunge_direction.x * HORIZONTAL_SPEED
@@ -24,21 +29,29 @@ func enter() -> void:
 func physics_process(delta: float) -> void:
 	timer += delta
 	player.apply_gravity(delta)
+
+	# Smooth lunge decay using move_toward instead of linear interpolation
+	# — feels more physical and won't overshoot
 	var current_speed := Vector2(player.velocity.x, player.velocity.z).length()
 	var target_speed := maxf(0.0, current_speed - LUNGE_FALLOFF * delta)
 	if current_speed > 0.001:
 		var ratio := target_speed / current_speed
 		player.velocity.x *= ratio
 		player.velocity.z *= ratio
+
 	if timer >= DURATION * 0.5:
 		sword.disable_hitbox()
+
 	player.move_and_slide()
+
 	if timer >= DURATION:
 		_end_state()
 
 func _on_hit(enemy: Enemy) -> void:
-	if player.lock_on_target == null:
-		player.set_lock_on_target(enemy)
+	if has_hit:
+		return
+	has_hit = true
+	player.set_lock_on_target(enemy)
 	var damage := PlayerStats.upper_slash_damage
 	var is_crit = randf() < PlayerStats.crit_chance
 	enemy.take_damage(
