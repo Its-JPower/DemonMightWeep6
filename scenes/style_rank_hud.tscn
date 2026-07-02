@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://bxquvfoplu42h"]
+
+[ext_resource type="Script" uid="uid://5cthfejvy1nh" path="res://scripts/style_rank_hud.gd" id="1_t1f2g"]
+[ext_resource type="Texture2D" uid="uid://de8ule5fr1bt6" path="res://assets/style ranks/Dumplings.png" id="2_12p5k"]
+
+[node name="StyleRankHUD" type="Control" unique_id=1509040864]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_t1f2g")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=851951251]
+layout_mode = 0
+offset_right = 631.0
+offset_bottom = 210.0
+scale = Vector2(0.25, 0.25)
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer" unique_id=1620187189]
+layout_mode = 2
+texture = ExtResource("2_12p5k")
+
+[node name="ProgressBar" type="ProgressBar" parent="VBoxContainer" unique_id=1776364571]
+layout_mode = 2

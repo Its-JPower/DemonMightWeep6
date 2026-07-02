@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://cwd0i0y8vl5cj" path="res://scenes/player_ui.tscn" id="4_jej6c"]
 [ext_resource type="Script" uid="uid://ddvyxmtmnykt6" path="res://scripts/states/walk_state.gd" id="4_tuyoq"]
 [ext_resource type="Script" uid="uid://crthkaqtidon3" path="res://scripts/states/run_state.gd" id="5_fjrip"]
+[ext_resource type="PackedScene" uid="uid://bxquvfoplu42h" path="res://scenes/style_rank_hud.tscn" id="6_ke2ow"]
 [ext_resource type="PackedScene" uid="uid://c6ne0o4c30a64" path="res://scenes/pause_menu.tscn" id="6_l71n6"]
 [ext_resource type="Script" uid="uid://bf1dvnj6bd2to" path="res://scripts/states/jump_state.gd" id="6_smehm"]
 [ext_resource type="Script" uid="uid://blc71b6bedo5l" path="res://scripts/states/abdomen_piercer_state.gd" id="7_fjrip"]
@@ -148,6 +149,9 @@ unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 0.9659259, 0.25881907, 0, -0.25881907, 0.9659258, 0, 0, 0)
 
 [node name="PlayerUI" parent="CameraPivotYaw/CameraPivotPitch/SpringArm/Camera3D" unique_id=869021254 instance=ExtResource("4_jej6c")]
+visible = false
+
+[node name="StyleRankHUD" parent="CameraPivotYaw/CameraPivotPitch/SpringArm/Camera3D" unique_id=1509040864 instance=ExtResource("6_ke2ow")]
 
 [node name="CanvasLayer" parent="CameraPivotYaw/CameraPivotPitch/SpringArm/Camera3D" unique_id=1287517820 instance=ExtResource("6_l71n6")]
 
