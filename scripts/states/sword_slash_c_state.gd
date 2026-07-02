@@ -60,6 +60,7 @@ func _on_hit(enemy: Enemy) -> void:
 		player.set_lock_on_target(enemy)
 	enemy.take_damage(PlayerStats.sword_slash_c_damage, Vector3.ZERO, 0.0)
 	DamageNumbers.spawn(PlayerStats.sword_slash_c_damage, enemy.global_position)
+	StyleRankManager.register_action(state_name, 10.0)
 
 func exit() -> void:
 	sword.disable_hitbox()

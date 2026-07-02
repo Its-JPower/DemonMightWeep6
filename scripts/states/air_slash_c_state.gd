@@ -74,6 +74,7 @@ func _on_hit(enemy: Enemy) -> void:
 	# C launches the enemy upward
 	enemy.take_damage(PlayerStats.sword_slash_c_damage, Vector3.ZERO, LAUNCH_KB)
 	DamageNumbers.spawn(PlayerStats.sword_slash_c_damage, enemy.global_position)
+	StyleRankManager.register_action(state_name, 10.0)
 
 func exit() -> void:
 	sword.disable_hitbox()

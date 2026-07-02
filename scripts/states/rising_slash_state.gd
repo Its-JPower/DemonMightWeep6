@@ -71,6 +71,7 @@ func _on_hit(enemy: Enemy) -> void:
 		Vector3.ZERO,
 		PlayerStats.upper_slash_kb_vertical * 1.5)
 	DamageNumbers.spawn(PlayerStats.upper_slash_damage, enemy.global_position)
+	StyleRankManager.register_action(state_name, 10.0)
 
 func exit() -> void:
 	sword.disable_hitbox()

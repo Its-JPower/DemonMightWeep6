@@ -61,6 +61,7 @@ func _on_hit(enemy: Enemy) -> void:
 	var is_crit = randf() < PlayerStats.crit_chance
 	enemy.take_damage(damage, Vector3.ZERO, 0.0)
 	DamageNumbers.spawn(damage, enemy.global_position, is_crit)
+	StyleRankManager.register_action(state_name, 10.0)
 
 func exit() -> void:
 	sword.disable_hitbox()

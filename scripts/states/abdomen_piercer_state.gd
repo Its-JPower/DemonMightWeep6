@@ -45,6 +45,7 @@ func physics_process(delta: float) -> void:
 				PlayerStats.abdomen_piercer_damage,
 				dash_direction * (PlayerStats.abdomen_piercer_kb_strength + (6.0 * (PlayerStats.ap_level - 1))),
 				PlayerStats.abdomen_piercer_kb_vertical)
+			StyleRankManager.register_action(state_name, 10.0)
 			_end_state()
 			return
 

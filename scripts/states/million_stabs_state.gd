@@ -74,6 +74,7 @@ func _on_hit(enemy: Enemy) -> void:
 	sword.disable_hitbox()
 	enemy.take_damage(maxf(MIN_DAMAGE, current_damage), Vector3.ZERO, 0.0)
 	current_damage = maxf(MIN_DAMAGE, current_damage - FALLOFF_RATE)
+	StyleRankManager.register_action(state_name, 1.0)
 
 func exit() -> void:
 	sword.disable_hitbox()
