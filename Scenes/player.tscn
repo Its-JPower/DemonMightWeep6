@@ -1,35 +1,34 @@
 [gd_scene format=3 uid="uid://c8dmjl15wp2dr"]
 
-[ext_resource type="Script" uid="uid://cb2g1lhebocn" path="res://scripts/player.gd" id="1_v0iea"]
-[ext_resource type="Script" uid="uid://crdi13g4wqmmd" path="res://scripts/state_machine.gd" id="2_cvnsp"]
+[ext_resource type="Script" uid="uid://cb2g1lhebocn" path="res://Scripts/player.gd" id="1_v0iea"]
+[ext_resource type="Script" uid="uid://crdi13g4wqmmd" path="res://Scripts/state_machine.gd" id="2_cvnsp"]
 [ext_resource type="PackedScene" uid="uid://bdr00mnylssoe" path="res://assets/title_screen/Donte_With_Animations.glb" id="2_f1ek2"]
-[ext_resource type="Script" uid="uid://i3o4bdjqn47" path="res://scripts/sword.gd" id="3_f1ej7"]
-[ext_resource type="Script" uid="uid://4k51j4v87low" path="res://scripts/states/idle_state.gd" id="3_tuyoq"]
+[ext_resource type="Script" uid="uid://i3o4bdjqn47" path="res://Scripts/sword.gd" id="3_f1ej7"]
+[ext_resource type="Script" uid="uid://4k51j4v87low" path="res://Scripts/states/idle_state.gd" id="3_tuyoq"]
 [ext_resource type="AnimationLibrary" uid="uid://b0r7k8cwdoyh6" path="res://assets/animation_resources/Stash 2.res" id="3_tx1dd"]
-[ext_resource type="PackedScene" uid="uid://cwd0i0y8vl5cj" path="res://scenes/player_ui.tscn" id="4_jej6c"]
-[ext_resource type="Script" uid="uid://ddvyxmtmnykt6" path="res://scripts/states/walk_state.gd" id="4_tuyoq"]
-[ext_resource type="Script" uid="uid://crthkaqtidon3" path="res://scripts/states/run_state.gd" id="5_fjrip"]
-[ext_resource type="PackedScene" uid="uid://bxquvfoplu42h" path="res://scenes/style_rank_hud.tscn" id="6_ke2ow"]
-[ext_resource type="PackedScene" uid="uid://c6ne0o4c30a64" path="res://scenes/pause_menu.tscn" id="6_l71n6"]
-[ext_resource type="Script" uid="uid://bf1dvnj6bd2to" path="res://scripts/states/jump_state.gd" id="6_smehm"]
-[ext_resource type="Script" uid="uid://blc71b6bedo5l" path="res://scripts/states/abdomen_piercer_state.gd" id="7_fjrip"]
-[ext_resource type="Script" uid="uid://b0upo36onthnu" path="res://scripts/states/fall_state.gd" id="8_smehm"]
-[ext_resource type="Script" uid="uid://c6sjh3iy3ebgv" path="res://scripts/states/land_state.gd" id="11_d2wvv"]
-[ext_resource type="Script" uid="uid://bu1c4jpoiwplk" path="res://scripts/states/upper_slash_state.gd" id="12_3v2ag"]
-[ext_resource type="Script" uid="uid://8dplhjlnsmxq" path="res://scripts/states/sword_slash_a_state.gd" id="15_qfm1y"]
-[ext_resource type="Script" uid="uid://dvmcxlt1svjua" path="res://scripts/states/sword_slash_b_state.gd" id="16_fulsm"]
-[ext_resource type="Script" uid="uid://c723ibwwkmuba" path="res://scripts/states/sword_slash_c_state.gd" id="17_4r5pv"]
-[ext_resource type="Script" uid="uid://craks73e1kgxx" path="res://scripts/states/down_slam_state.gd" id="18_igrcy"]
-[ext_resource type="Script" uid="uid://b4arnmky3mhx3" path="res://scripts/states/million_stabs_state.gd" id="19_4r5pv"]
-[ext_resource type="Script" uid="uid://46evunog7rgk" path="res://scripts/states/air_slash_a_state.gd" id="20_60mlk"]
-[ext_resource type="Script" uid="uid://bbabv7ysedrtd" path="res://scripts/states/air_slash_b_state.gd" id="21_i4ail"]
-[ext_resource type="Script" uid="uid://c8vobqamjfrop" path="res://scripts/states/air_slash_c_state.gd" id="22_a38lo"]
-[ext_resource type="Script" uid="uid://dxyyjldlarlbo" path="res://scripts/states/rising_slash_state.gd" id="23_4ni07"]
+[ext_resource type="PackedScene" uid="uid://d18kxv66x46a1" path="res://assets/title_screen/edged-force.glb" id="4_0gysh"]
+[ext_resource type="PackedScene" uid="uid://cwd0i0y8vl5cj" path="res://Scenes/player_ui.tscn" id="4_jej6c"]
+[ext_resource type="Script" uid="uid://ddvyxmtmnykt6" path="res://Scripts/states/walk_state.gd" id="4_tuyoq"]
+[ext_resource type="Script" uid="uid://crthkaqtidon3" path="res://Scripts/states/run_state.gd" id="5_fjrip"]
+[ext_resource type="PackedScene" uid="uid://bxquvfoplu42h" path="res://Scenes/style_rank_hud.tscn" id="6_ke2ow"]
+[ext_resource type="PackedScene" uid="uid://c6ne0o4c30a64" path="res://Scenes/pause_menu.tscn" id="6_l71n6"]
+[ext_resource type="Script" uid="uid://bf1dvnj6bd2to" path="res://Scripts/states/jump_state.gd" id="6_smehm"]
+[ext_resource type="Script" uid="uid://blc71b6bedo5l" path="res://Scripts/states/abdomen_piercer_state.gd" id="7_fjrip"]
+[ext_resource type="Script" uid="uid://b0upo36onthnu" path="res://Scripts/states/fall_state.gd" id="8_smehm"]
+[ext_resource type="Script" uid="uid://c6sjh3iy3ebgv" path="res://Scripts/states/land_state.gd" id="11_d2wvv"]
+[ext_resource type="Script" uid="uid://bu1c4jpoiwplk" path="res://Scripts/states/upper_slash_state.gd" id="12_3v2ag"]
+[ext_resource type="Script" uid="uid://8dplhjlnsmxq" path="res://Scripts/states/sword_slash_a_state.gd" id="15_qfm1y"]
+[ext_resource type="Script" uid="uid://dvmcxlt1svjua" path="res://Scripts/states/sword_slash_b_state.gd" id="16_fulsm"]
+[ext_resource type="Script" uid="uid://c723ibwwkmuba" path="res://Scripts/states/sword_slash_c_state.gd" id="17_4r5pv"]
+[ext_resource type="Script" uid="uid://craks73e1kgxx" path="res://Scripts/states/down_slam_state.gd" id="18_igrcy"]
+[ext_resource type="Script" uid="uid://b4arnmky3mhx3" path="res://Scripts/states/million_stabs_state.gd" id="19_4r5pv"]
+[ext_resource type="Script" uid="uid://46evunog7rgk" path="res://Scripts/states/air_slash_a_state.gd" id="20_60mlk"]
+[ext_resource type="Script" uid="uid://bbabv7ysedrtd" path="res://Scripts/states/air_slash_b_state.gd" id="21_i4ail"]
+[ext_resource type="Script" uid="uid://c8vobqamjfrop" path="res://Scripts/states/air_slash_c_state.gd" id="22_a38lo"]
+[ext_resource type="Script" uid="uid://dxyyjldlarlbo" path="res://Scripts/states/rising_slash_state.gd" id="23_4ni07"]
 
-[sub_resource type="BoxMesh" id="BoxMesh_jej6c"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_jej6c"]
-size = Vector3(1.5556641, 0.10598755, 0.1539917)
+[sub_resource type="BoxShape3D" id="BoxShape3D_b1vkl"]
+size = Vector3(112.820404, 6.885498, 2.3624115)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_cvnsp"]
 radius = 0.22509766
@@ -44,7 +43,7 @@ script = ExtResource("1_v0iea")
 [node name="Mesh" parent="." unique_id=808791566 instance=ExtResource("2_f1ek2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.7973151, 0)
 
-[node name="Skeleton3D" parent="Mesh" index="0" unique_id=809295820]
+[node name="Skeleton3D" parent="Mesh" index="0" unique_id=730149645]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
 bones/2/position = Vector3(5.551115e-16, 0.05010003, 0.9167)
 bones/2/rotation = Quaternion(0.7904686, 9.127004e-09, 1.1778896e-08, 0.61250275)
@@ -108,21 +107,21 @@ transform = Transform3D(8.746448e-07, -0.9593811, 0.28211397, 0.9999998, 7.24675
 bone_name = "hand_r"
 bone_idx = 35
 
-[node name="Sword" type="Node3D" parent="Mesh/Skeleton3D/BoneAttachment3D" unique_id=1367997051]
-transform = Transform3D(-0.030521112, -0.2819835, -0.9589338, 0.2819817, 0.9179827, -0.27891645, 0.9589343, -0.2789147, 0.051496334, -0.06677729, 0.2777521, 0.516526)
+[node name="Sword" type="Node3D" parent="Mesh/Skeleton3D/BoneAttachment3D" unique_id=1213822362]
+transform = Transform3D(1, 2.1316282e-14, 0, 1.4210855e-13, 1.0000002, 0, 5.684342e-14, 2.9802322e-08, 1.0000002, 0, 0, 0)
 script = ExtResource("3_f1ej7")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Mesh/Skeleton3D/BoneAttachment3D/Sword" unique_id=1424386691]
-transform = Transform3D(1.157, -1.2789761e-14, -1.2789761e-14, 1.4797752e-13, 0.1, -9.794035e-09, 9.865169e-14, 6.529356e-09, 0.15, 0, 0, 0)
-mesh = SubResource("BoxMesh_jej6c")
+[node name="edged-force" parent="Mesh/Skeleton3D/BoneAttachment3D/Sword" unique_id=2037802543 instance=ExtResource("4_0gysh")]
+transform = Transform3D(-4.3256434e-05, 0.00045099354, -0.009989732, -0.0008197302, -0.009956366, -0.00044593777, -0.009966249, 0.00081696175, 8.003587e-05, -0.027447462, 0.31812608, 0.4422289)
 
-[node name="SwordHitbox" type="Area3D" parent="Mesh/Skeleton3D/BoneAttachment3D/Sword" unique_id=1170711814]
+[node name="SwordHitbox" type="Area3D" parent="Mesh/Skeleton3D/BoneAttachment3D/Sword/edged-force" unique_id=1500443074]
+transform = Transform3D(1, 2.9802322e-08, 1.3969839e-09, 8.940697e-08, 1, 4.656613e-10, -2.7939677e-09, 6.519258e-09, 1.0000005, 49.83902, 15.448849, -1.1240387)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Mesh/Skeleton3D/BoneAttachment3D/Sword/SwordHitbox" unique_id=565753496]
-transform = Transform3D(0.99999654, -1.3962165e-11, 1.3670842e-11, 6.0964567e-12, 1.0000007, -3.5762787e-07, -1.3073986e-12, 3.874302e-07, 0.9999992, 0.2778318, 0.00083971024, 0.0016784221)
-shape = SubResource("BoxShape3D_jej6c")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Mesh/Skeleton3D/BoneAttachment3D/Sword/edged-force/SwordHitbox" unique_id=565753496]
+transform = Transform3D(0.9854013, -0.1702176, -0.0014356414, 0.17021734, 0.9854066, -4.2568136e-05, 0.0014218476, -0.00020244469, 0.9999973, -53.217537, -7.7868843, 2.4052887)
+shape = SubResource("BoxShape3D_b1vkl")
 
-[node name="AnimationPlayer" parent="Mesh" index="1" unique_id=1371200747]
+[node name="AnimationPlayer" parent="Mesh" index="1" unique_id=1352243201]
 "libraries/Stash 2" = ExtResource("3_tx1dd")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1823396936]

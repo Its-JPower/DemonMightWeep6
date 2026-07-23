@@ -1,7 +1,9 @@
 class_name Sword
 extends Node3D
 
-@onready var hitbox: Area3D = $SwordHitbox
+
+@onready var hitbox: Area3D = $"edged-force/SwordHitbox"
+
 var active := false
 var hit_enemies: Array[Enemy] = []
 
