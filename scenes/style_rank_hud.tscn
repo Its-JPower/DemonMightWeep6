@@ -1,7 +1,13 @@
 [gd_scene format=3 uid="uid://bxquvfoplu42h"]
 
-[ext_resource type="Script" uid="uid://5cthfejvy1nh" path="res://scripts/style_rank_hud.gd" id="1_t1f2g"]
+[ext_resource type="Script" uid="uid://5cthfejvy1nh" path="res://Scripts/style_rank_hud.gd" id="1_t1f2g"]
 [ext_resource type="Texture2D" uid="uid://de8ule5fr1bt6" path="res://assets/style ranks/Dumplings.png" id="2_12p5k"]
+[ext_resource type="Texture2D" uid="uid://bxc225qnpdnsp" path="res://assets/style ranks/Cheeseburger.png" id="3_qdetc"]
+[ext_resource type="Texture2D" uid="uid://ck4decy2bxmxc" path="res://assets/style ranks/Bananas.png" id="4_urkxx"]
+[ext_resource type="Texture2D" uid="uid://byq1padrfh1g6" path="res://assets/style ranks/Avocado.png" id="5_g8gts"]
+[ext_resource type="Texture2D" uid="uid://b5uppr0uiek0u" path="res://assets/style ranks/Scrumptious!.png" id="6_vrnbp"]
+[ext_resource type="Texture2D" uid="uid://bh15dx8yjgknv" path="res://assets/style ranks/Seriously Savoury!!.png" id="7_fos1a"]
+[ext_resource type="Texture2D" uid="uid://c6xws38nvftjs" path="res://assets/style ranks/Smokin Sexy Steak.png" id="8_2jen7"]
 
 [node name="StyleRankHUD" type="Control" unique_id=1509040864]
 layout_mode = 3
@@ -11,6 +17,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_t1f2g")
+rank_textures = Array[Texture2D]([ExtResource("2_12p5k"), ExtResource("3_qdetc"), ExtResource("4_urkxx"), ExtResource("5_g8gts"), ExtResource("6_vrnbp"), ExtResource("7_fos1a"), ExtResource("8_2jen7")])
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=851951251]
 layout_mode = 0
@@ -18,9 +25,10 @@ offset_right = 631.0
 offset_bottom = 210.0
 scale = Vector2(0.25, 0.25)
 
-[node name="TextureRect" type="TextureRect" parent="VBoxContainer" unique_id=1620187189]
+[node name="RankTexture" type="TextureRect" parent="VBoxContainer" unique_id=1620187189]
 layout_mode = 2
 texture = ExtResource("2_12p5k")
 
 [node name="ProgressBar" type="ProgressBar" parent="VBoxContainer" unique_id=1776364571]
 layout_mode = 2
+max_value = 1.0

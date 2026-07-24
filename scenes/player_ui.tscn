@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cwd0i0y8vl5cj"]
 
-[ext_resource type="Script" uid="uid://cxxf67e1814ve" path="res://scripts/player_ui.gd" id="1_jkj6h"]
-[ext_resource type="Script" uid="uid://knghbp06a8ss" path="res://scripts/combat_hud.gd" id="2_sk4pr"]
+[ext_resource type="Script" uid="uid://cxxf67e1814ve" path="res://Scripts/player_ui.gd" id="1_jkj6h"]
+[ext_resource type="Script" uid="uid://knghbp06a8ss" path="res://Scripts/combat_hud.gd" id="2_sk4pr"]
 [ext_resource type="Texture2D" uid="uid://6vqrdsnrryn2" path="res://assets/input_prompts/Keyboard_Mouse/Alt/T_Mouse_Right_Key_Alt.png" id="3_8isll"]
 [ext_resource type="Texture2D" uid="uid://d4im1s35d53sy" path="res://assets/input_prompts/Keyboard_Mouse/Alt/T_Mouse_Left_Key_Alt.png" id="3_48xfa"]
 [ext_resource type="Texture2D" uid="uid://ugja33yc6mva" path="res://assets/input_prompts/Keyboard_Mouse/Alt/T_Crtl_Key_Alt.png" id="5_bkx2g"]

@@ -148,7 +148,6 @@ unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 0.9659259, 0.25881907, 0, -0.25881907, 0.9659258, 0, 0, 0)
 
 [node name="PlayerUI" parent="CameraPivotYaw/CameraPivotPitch/SpringArm/Camera3D" unique_id=869021254 instance=ExtResource("4_jej6c")]
-visible = false
 
 [node name="StyleRankHUD" parent="CameraPivotYaw/CameraPivotPitch/SpringArm/Camera3D" unique_id=1509040864 instance=ExtResource("6_ke2ow")]
 
