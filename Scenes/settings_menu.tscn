@@ -1,0 +1,127 @@
+[gd_scene format=3 uid="uid://duwqgyaubfpss"]
+
+[ext_resource type="Theme" uid="uid://67i73kjitock" path="res://assets/theme.tres" id="1_8ef0u"]
+[ext_resource type="Script" uid="uid://dlsh6upu03dh3" path="res://scripts/settings_menu.gd" id="1_icv2g"]
+
+[node name="SettingsMenu" type="Control" unique_id=1680711219]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_8ef0u")
+script = ExtResource("1_icv2g")
+
+[node name="Background" type="ColorRect" parent="." unique_id=68945436]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_8ef0u")
+color = Color(0.039215688, 0.039215688, 0.047058824, 1)
+
+[node name="MainLayout" type="HBoxContainer" parent="." unique_id=1037111859]
+layout_mode = 0
+offset_right = 179.0
+offset_bottom = 80.0
+theme = ExtResource("1_8ef0u")
+
+[node name="TabList" type="VBoxContainer" parent="MainLayout" unique_id=1609757005]
+layout_mode = 2
+theme = ExtResource("1_8ef0u")
+
+[node name="Indicator" type="ColorRect" parent="MainLayout/TabList" unique_id=655968880]
+layout_mode = 2
+theme = ExtResource("1_8ef0u")
+color = Color(0.039215688, 0.039215688, 0.047058824, 1)
+
+[node name="AudioTab" type="Button" parent="MainLayout/TabList" unique_id=1998555827]
+layout_mode = 2
+theme = ExtResource("1_8ef0u")
+text = "AUDIO"
+flat = true
+
+[node name="VideoTab" type="Button" parent="MainLayout/TabList" unique_id=250442826]
+layout_mode = 2
+theme = ExtResource("1_8ef0u")
+text = "VIDEO"
+flat = true
+
+[node name="ControlsTab" type="Button" parent="MainLayout/TabList" unique_id=1068057714]
+layout_mode = 2
+theme = ExtResource("1_8ef0u")
+text = "CONTROLS"
+flat = true
+
+[node name="Divider" type="VSeparator" parent="MainLayout" unique_id=1526668870]
+layout_mode = 2
+theme = ExtResource("1_8ef0u")
+
+[node name="Panels" type="Control" parent="MainLayout" unique_id=1658211132]
+layout_mode = 2
+theme = ExtResource("1_8ef0u")
+
+[node name="AudioPanel" type="VBoxContainer" parent="MainLayout/Panels" unique_id=981570541]
+layout_mode = 0
+offset_left = -20.0
+offset_top = 40.0
+offset_right = -12.0
+offset_bottom = 96.0
+theme = ExtResource("1_8ef0u")
+
+[node name="MasterSlider" type="HSlider" parent="MainLayout/Panels/AudioPanel" unique_id=1358619848]
+layout_mode = 2
+theme = ExtResource("1_8ef0u")
+max_value = 1.0
+step = 0.01
+
+[node name="MusicSlider" type="HSlider" parent="MainLayout/Panels/AudioPanel" unique_id=875263633]
+layout_mode = 2
+theme = ExtResource("1_8ef0u")
+max_value = 1.0
+step = 0.01
+
+[node name="SFXSlider" type="HSlider" parent="MainLayout/Panels/AudioPanel" unique_id=248419949]
+layout_mode = 2
+theme = ExtResource("1_8ef0u")
+max_value = 1.0
+step = 0.01
+
+[node name="VideoPanel" type="VBoxContainer" parent="MainLayout/Panels" unique_id=559828575]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = 31.0
+offset_right = 24.0
+theme = ExtResource("1_8ef0u")
+
+[node name="FullscreenCheck" type="CheckButton" parent="MainLayout/Panels/VideoPanel" unique_id=1498500269]
+layout_mode = 2
+theme = ExtResource("1_8ef0u")
+
+[node name="ResolutionOption" type="OptionButton" parent="MainLayout/Panels/VideoPanel" unique_id=795123280]
+layout_mode = 2
+theme = ExtResource("1_8ef0u")
+
+[node name="ControlsPanel" type="VBoxContainer" parent="MainLayout/Panels" unique_id=2031611795]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = 31.0
+offset_right = 4.0
+theme = ExtResource("1_8ef0u")
+
+[node name="SensitivitySlider" type="HSlider" parent="MainLayout/Panels/ControlsPanel" unique_id=710351400]
+layout_mode = 2
+theme = ExtResource("1_8ef0u")
+max_value = 1.0
+step = 0.01
+
+[node name="InvertYCheck" type="CheckBox" parent="MainLayout/Panels/ControlsPanel" unique_id=524115538]
+layout_mode = 2
+theme = ExtResource("1_8ef0u")

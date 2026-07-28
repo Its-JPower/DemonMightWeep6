@@ -60,6 +60,8 @@ func physics_process(delta: float) -> void:
 		_end_state()
 
 func _end_state() -> void:
+	player.velocity.x *= 0.1
+	player.velocity.z = 0.0
 	if player.is_on_floor():
 		state_machine.transition_to(state_machine.get_node("IdleState"))
 	else:

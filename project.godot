@@ -22,6 +22,7 @@ config/icon="res://icon.svg"
 PlayerStats="*uid://301k1e70jilf"
 DamageNumbers="*uid://ha0f7hptgnhr"
 StyleRankManager="*uid://b1t2ii6p024p8"
+Settings="*uid://b68l88k6k2xc7"
 
 [display]
 
