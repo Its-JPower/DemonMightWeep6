@@ -23,6 +23,10 @@ func _ready() -> void:
 		tab_buttons[i].pressed.connect(_on_tab_pressed.bind(i))
 		tab_buttons[i].focus_mode = Control.FOCUS_ALL
 	_select_tab(0, true)
+	#back_button.pressed.connect(func(): 
+		#Settings.save_settings()
+		#back_pressed.emit()
+	#)
 
 func _on_tab_pressed(index: int) -> void:
 	if index == current_tab:
@@ -51,3 +55,8 @@ func _move_indicator(index: int, instant: bool) -> void:
 
 	var tween := create_tween().set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
 	tween.tween_property(indicator, "position:y", target_y, 0.22)
+
+# add to SettingsMenu.gd
+#signal back_pressed
+
+#@onready var back_button: Button = $BackButton  # wherever you place it in layout

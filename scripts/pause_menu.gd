@@ -1,19 +1,64 @@
+# on CanvasLaye (or wherever this script lives — adjust root as needed)
 extends CanvasLayer
 
-func _ready():
-	hide()
+@onready var v_box: VBoxContainer = $VBoxContainer
+@onready var settings_menu: Control = $"../SettingsMenu"   # sibling under Camera3D
+@onready var resume_button: Button = $VBoxContainer/ResumeBtn
+@onready var settings_button: Button = $VBoxContainer/SettingsBtn
+@onready var quit_button: Button = $VBoxContainer/QuitBtn
+
+
+var settings_open: bool = false
+
+func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
+	visible = false
+	#settings_menu.visible = false
 
-func _unhandled_input(event):
-	if event.is_action_pressed("pause") and not get_tree().paused:
-		toggle_pause()
+	resume_button.pressed.connect(_on_resume_pressed)
+	settings_button.pressed.connect(_on_settings_pressed)
+	quit_button.pressed.connect(_on_quit_pressed)
 
-func toggle_pause():
-	if get_tree().paused:
-		get_tree().paused = false
-		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-		hide()
-	else:
-		get_tree().paused = true
-		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-		show()
+	if settings_menu.has_signal("back_pressed"):
+		settings_menu.back_pressed.connect(_close_settings)
+
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("pause"):
+		if settings_open:
+			_close_settings()
+		elif visible:
+			_resume()
+		else:
+			_pause()
+		get_viewport().set_input_as_handled()
+
+func _pause() -> void:
+	visible = true
+	get_tree().paused = true
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	v_box.visible = true
+	resume_button.grab_focus()
+
+func _resume() -> void:
+	visible = false
+	get_tree().paused = false
+	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+
+func _on_resume_pressed() -> void:
+	_resume()
+
+func _on_settings_pressed() -> void:
+	settings_open = true
+	v_box.visible = false
+	settings_menu.visible = true
+
+func _close_settings() -> void:
+	Settings.save_settings()
+	settings_open = false
+	settings_menu.visible = false
+	v_box.visible = true
+	settings_button.grab_focus()
+
+func _on_quit_pressed() -> void:
+	get_tree().paused = false
+	get_tree().quit()
