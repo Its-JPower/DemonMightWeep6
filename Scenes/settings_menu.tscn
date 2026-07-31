@@ -1,10 +1,9 @@
 [gd_scene format=3 uid="uid://duwqgyaubfpss"]
 
 [ext_resource type="Theme" uid="uid://67i73kjitock" path="res://assets/theme.tres" id="1_8ef0u"]
-[ext_resource type="Script" uid="uid://dlsh6upu03dh3" path="res://scripts/settings_menu.gd" id="1_icv2g"]
+[ext_resource type="Script" uid="uid://dlsh6upu03dh3" path="res://Scripts/settings_menu.gd" id="1_icv2g"]
 
-[node name="SettingsMenu" type="Control" unique_id=1680711219]
-layout_mode = 3
+[node name="SettingsMenu" type="VBoxContainer" unique_id=1015341804]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -13,115 +12,149 @@ grow_vertical = 2
 theme = ExtResource("1_8ef0u")
 script = ExtResource("1_icv2g")
 
-[node name="Background" type="ColorRect" parent="." unique_id=68945436]
+[node name="TabBar" type="TabBar" parent="." unique_id=1447606824]
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="Indicator" type="ColorRect" parent="TabBar" unique_id=219334990]
+custom_minimum_size = Vector2(0, 3)
 layout_mode = 1
-anchors_preset = 15
+anchors_preset = 12
+anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = -3.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
+color = Color(0.7882353, 0.11372549, 0.12941177, 1)
+
+[node name="Panels" type="Control" parent="." unique_id=1658211132]
+layout_mode = 2
+size_flags_vertical = 6
+theme = ExtResource("1_8ef0u")
+
+[node name="AudioPanel" type="VBoxContainer" parent="Panels" unique_id=981570541]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -40.0
+offset_bottom = 40.0
+grow_horizontal = 2
+grow_vertical = 2
+offset_transform_position = Vector2(118.12, 0)
+theme = ExtResource("1_8ef0u")
+theme_override_constants/separation = 16
+
+[node name="Master" type="HBoxContainer" parent="Panels/AudioPanel" unique_id=340348769]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="MasterLabel" type="Label" parent="Panels/AudioPanel/Master" unique_id=386517968]
+layout_mode = 2
+text = "Master"
+
+[node name="VSeparator2" type="VSeparator" parent="Panels/AudioPanel/Master" unique_id=1400395558]
+layout_mode = 2
+
+[node name="MasterSlider" type="HSlider" parent="Panels/AudioPanel/Master" unique_id=1358619848]
+layout_mode = 2
+size_flags_horizontal = 3
+offset_transform_enabled = true
+theme = ExtResource("1_8ef0u")
+max_value = 1.0
+step = 0.01
+value = 1.0
+
+[node name="Music" type="HBoxContainer" parent="Panels/AudioPanel" unique_id=795489856]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="MusicLabel" type="Label" parent="Panels/AudioPanel/Music" unique_id=257179889]
+layout_mode = 2
+text = "Music    "
+
+[node name="VSeparator" type="VSeparator" parent="Panels/AudioPanel/Music" unique_id=1519198223]
+layout_mode = 2
+offset_transform_enabled = true
+offset_transform_position = Vector2(1, 0)
+
+[node name="MusicSlider" type="HSlider" parent="Panels/AudioPanel/Music" unique_id=875263633]
+layout_mode = 2
+size_flags_horizontal = 3
+offset_transform_enabled = true
+offset_transform_position = Vector2(1, 0)
+offset_transform_scale = Vector2(0.99, 0.99)
+theme = ExtResource("1_8ef0u")
+max_value = 1.0
+step = 0.01
+value = 1.0
+
+[node name="SFX" type="HBoxContainer" parent="Panels/AudioPanel" unique_id=1995541127]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="SFXLabel" type="Label" parent="Panels/AudioPanel/SFX" unique_id=251789943]
+layout_mode = 2
+text = "SFX        "
+
+[node name="VSeparator3" type="VSeparator" parent="Panels/AudioPanel/SFX" unique_id=913761083]
+layout_mode = 2
+offset_transform_enabled = true
+offset_transform_position = Vector2(2.5, 0)
+offset_transform_visual_only = false
+
+[node name="SFXSlider" type="HSlider" parent="Panels/AudioPanel/SFX" unique_id=248419949]
+layout_mode = 2
+size_flags_horizontal = 3
+offset_transform_enabled = true
+offset_transform_position = Vector2(2.5, 0)
+offset_transform_scale = Vector2(0.975, 0.975)
+theme = ExtResource("1_8ef0u")
+max_value = 1.0
+step = 0.01
+value = 1.0
+
+[node name="VideoPanel" type="VBoxContainer" parent="Panels" unique_id=559828575]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -24.0
+offset_bottom = 24.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_8ef0u")
-color = Color(0.039215688, 0.039215688, 0.047058824, 1)
 
-[node name="MainLayout" type="HBoxContainer" parent="." unique_id=1037111859]
-layout_mode = 0
-offset_right = 179.0
-offset_bottom = 80.0
-theme = ExtResource("1_8ef0u")
-
-[node name="TabList" type="VBoxContainer" parent="MainLayout" unique_id=1609757005]
+[node name="FullscreenCheck" type="CheckButton" parent="Panels/VideoPanel" unique_id=1498500269]
 layout_mode = 2
 theme = ExtResource("1_8ef0u")
 
-[node name="Indicator" type="ColorRect" parent="MainLayout/TabList" unique_id=655968880]
-layout_mode = 2
-theme = ExtResource("1_8ef0u")
-color = Color(0.039215688, 0.039215688, 0.047058824, 1)
-
-[node name="AudioTab" type="Button" parent="MainLayout/TabList" unique_id=1998555827]
-layout_mode = 2
-theme = ExtResource("1_8ef0u")
-text = "AUDIO"
-flat = true
-
-[node name="VideoTab" type="Button" parent="MainLayout/TabList" unique_id=250442826]
-layout_mode = 2
-theme = ExtResource("1_8ef0u")
-text = "VIDEO"
-flat = true
-
-[node name="ControlsTab" type="Button" parent="MainLayout/TabList" unique_id=1068057714]
-layout_mode = 2
-theme = ExtResource("1_8ef0u")
-text = "CONTROLS"
-flat = true
-
-[node name="Divider" type="VSeparator" parent="MainLayout" unique_id=1526668870]
+[node name="ResolutionOption" type="OptionButton" parent="Panels/VideoPanel" unique_id=795123280]
 layout_mode = 2
 theme = ExtResource("1_8ef0u")
 
-[node name="Panels" type="Control" parent="MainLayout" unique_id=1658211132]
-layout_mode = 2
-theme = ExtResource("1_8ef0u")
-
-[node name="AudioPanel" type="VBoxContainer" parent="MainLayout/Panels" unique_id=981570541]
-layout_mode = 0
-offset_left = -20.0
-offset_top = 40.0
-offset_right = -12.0
-offset_bottom = 96.0
-theme = ExtResource("1_8ef0u")
-
-[node name="MasterSlider" type="HSlider" parent="MainLayout/Panels/AudioPanel" unique_id=1358619848]
-layout_mode = 2
-theme = ExtResource("1_8ef0u")
-max_value = 1.0
-step = 0.01
-
-[node name="MusicSlider" type="HSlider" parent="MainLayout/Panels/AudioPanel" unique_id=875263633]
-layout_mode = 2
-theme = ExtResource("1_8ef0u")
-max_value = 1.0
-step = 0.01
-
-[node name="SFXSlider" type="HSlider" parent="MainLayout/Panels/AudioPanel" unique_id=248419949]
-layout_mode = 2
-theme = ExtResource("1_8ef0u")
-max_value = 1.0
-step = 0.01
-
-[node name="VideoPanel" type="VBoxContainer" parent="MainLayout/Panels" unique_id=559828575]
-layout_mode = 0
+[node name="ControlsPanel" type="VBoxContainer" parent="Panels" unique_id=2031611795]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
 anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -20.0
-offset_top = 31.0
-offset_right = 24.0
+anchor_bottom = 0.5
+offset_top = -22.0
+offset_bottom = 22.0
+grow_horizontal = 2
+grow_vertical = 2
 theme = ExtResource("1_8ef0u")
 
-[node name="FullscreenCheck" type="CheckButton" parent="MainLayout/Panels/VideoPanel" unique_id=1498500269]
-layout_mode = 2
-theme = ExtResource("1_8ef0u")
-
-[node name="ResolutionOption" type="OptionButton" parent="MainLayout/Panels/VideoPanel" unique_id=795123280]
-layout_mode = 2
-theme = ExtResource("1_8ef0u")
-
-[node name="ControlsPanel" type="VBoxContainer" parent="MainLayout/Panels" unique_id=2031611795]
-layout_mode = 0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -20.0
-offset_top = 31.0
-offset_right = 4.0
-theme = ExtResource("1_8ef0u")
-
-[node name="SensitivitySlider" type="HSlider" parent="MainLayout/Panels/ControlsPanel" unique_id=710351400]
+[node name="SensitivitySlider" type="HSlider" parent="Panels/ControlsPanel" unique_id=710351400]
 layout_mode = 2
 theme = ExtResource("1_8ef0u")
 max_value = 1.0
 step = 0.01
 
-[node name="InvertYCheck" type="CheckBox" parent="MainLayout/Panels/ControlsPanel" unique_id=524115538]
+[node name="InvertYCheck" type="CheckBox" parent="Panels/ControlsPanel" unique_id=524115538]
 layout_mode = 2
 theme = ExtResource("1_8ef0u")

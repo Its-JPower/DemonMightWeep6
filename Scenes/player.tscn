@@ -153,21 +153,21 @@ transform = Transform3D(1, 0, 0, 0, 0.9659259, 0.25881907, 0, -0.25881907, 0.965
 
 [node name="StyleRankHUD" parent="CameraPivotYaw/CameraPivotPitch/SpringArm/Camera3D" unique_id=1509040864 instance=ExtResource("6_ke2ow")]
 
-[node name="SettingsMenu" parent="CameraPivotYaw/CameraPivotPitch/SpringArm/Camera3D" unique_id=1680711219 instance=ExtResource("8_y6uwr")]
-z_index = 1
-anchors_preset = 0
-anchor_right = 0.0
-anchor_bottom = 0.0
-grow_horizontal = 1
-grow_vertical = 1
-
 [node name="CanvasLayer" parent="CameraPivotYaw/CameraPivotPitch/SpringArm/Camera3D" unique_id=1287517820 instance=ExtResource("6_l71n6")]
+layer = 0
 
 [node name="ResumeBtn" parent="CameraPivotYaw/CameraPivotPitch/SpringArm/Camera3D/CanvasLayer/VBoxContainer" parent_id_path=PackedInt32Array(1287517820, 902470907) index="1" unique_id=94943413]
 script = null
 
 [node name="SettingsBtn" parent="CameraPivotYaw/CameraPivotPitch/SpringArm/Camera3D/CanvasLayer/VBoxContainer" parent_id_path=PackedInt32Array(1287517820, 902470907) index="2" unique_id=1295542249]
 script = ExtResource("10_83xs0")
+
+[node name="SettingsMenu" parent="CameraPivotYaw/CameraPivotPitch/SpringArm/Camera3D/CanvasLayer" unique_id=1680711219 instance=ExtResource("8_y6uwr")]
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+grow_horizontal = 1
+grow_vertical = 1
 
 [node name="StateMachine" type="Node" parent="." unique_id=270104057]
 script = ExtResource("2_cvnsp")

@@ -2,7 +2,7 @@
 extends CanvasLayer
 
 @onready var v_box: VBoxContainer = $VBoxContainer
-@onready var settings_menu: Control = $"../SettingsMenu"   # sibling under Camera3D
+@onready var settings_menu: Control = $SettingsMenu   # sibling under Camera3D
 @onready var resume_button: Button = $VBoxContainer/ResumeBtn
 @onready var settings_button: Button = $VBoxContainer/SettingsBtn
 @onready var quit_button: Button = $VBoxContainer/QuitBtn
@@ -19,8 +19,8 @@ func _ready() -> void:
 	settings_button.pressed.connect(_on_settings_pressed)
 	quit_button.pressed.connect(_on_quit_pressed)
 
-	if settings_menu.has_signal("back_pressed"):
-		settings_menu.back_pressed.connect(_close_settings)
+	#if settings_menu.has_signal("back_pressed"):
+		#settings_menu.back_pressed.connect(_close_settings)
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("pause"):

@@ -1,17 +1,13 @@
 # SettingsMenu.gd
 extends Control
 
-@onready var tab_buttons: Array[Button] = [
-	$MainLayout/TabList/AudioTab,
-	$MainLayout/TabList/VideoTab,
-	$MainLayout/TabList/ControlsTab,
-]
+@onready var tab_bar: TabBar = $TabBar
 @onready var panels: Array[Control] = [
-	$MainLayout/Panels/AudioPanel,
-	$MainLayout/Panels/VideoPanel,
-	$MainLayout/Panels/ControlsPanel,
+	$Panels/AudioPanel,
+	$Panels/VideoPanel,
+	$Panels/ControlsPanel,
 ]
-@onready var indicator: ColorRect = $MainLayout/TabList/Indicator
+@onready var indicator: ColorRect = $TabBar/Indicator
 
 const ACTIVE_COLOR := Color.WHITE
 const INACTIVE_COLOR := Color(0.45, 0.45, 0.48)
@@ -19,16 +15,20 @@ const INACTIVE_COLOR := Color(0.45, 0.45, 0.48)
 var current_tab: int = 0
 
 func _ready() -> void:
-	for i in tab_buttons.size():
-		tab_buttons[i].pressed.connect(_on_tab_pressed.bind(i))
-		tab_buttons[i].focus_mode = Control.FOCUS_ALL
-	_select_tab(0, true)
+	tab_bar.clear_tabs()
+	tab_bar.add_tab("AUDIO")
+	tab_bar.add_tab("VIDEO")
+	tab_bar.add_tab("CONTROLS")
+
+	tab_bar.tab_changed.connect(_on_tab_changed)
+	call_deferred("_select_tab", 0, true)
+
 	#back_button.pressed.connect(func(): 
 		#Settings.save_settings()
 		#back_pressed.emit()
 	#)
 
-func _on_tab_pressed(index: int) -> void:
+func _on_tab_changed(index: int) -> void:
 	if index == current_tab:
 		return
 	_select_tab(index)
@@ -39,24 +39,23 @@ func _select_tab(index: int, instant: bool = false) -> void:
 	for i in panels.size():
 		panels[i].visible = (i == index)
 
-	for i in tab_buttons.size():
-		tab_buttons[i].add_theme_color_override(
-			"font_color",
-			ACTIVE_COLOR if i == index else INACTIVE_COLOR
-		)
-
 	_move_indicator(index, instant)
 
 func _move_indicator(index: int, instant: bool) -> void:
-	var target_y := tab_buttons[index].position.y
+	var tab_rect := tab_bar.get_tab_rect(index)
+	var target_x := tab_rect.position.x
+	var target_width := tab_rect.size.x
+
 	if instant:
-		indicator.position.y = target_y
+		indicator.position.x = target_x
+		indicator.size.x = target_width
 		return
 
 	var tween := create_tween().set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
-	tween.tween_property(indicator, "position:y", target_y, 0.22)
+	tween.set_parallel(true)
+	tween.tween_property(indicator, "position:x", target_x, 0.22)
+	tween.tween_property(indicator, "size:x", target_width, 0.22)
 
 # add to SettingsMenu.gd
 #signal back_pressed
-
 #@onready var back_button: Button = $BackButton  # wherever you place it in layout
