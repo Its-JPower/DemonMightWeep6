@@ -163,11 +163,7 @@ script = null
 script = ExtResource("10_83xs0")
 
 [node name="SettingsMenu" parent="CameraPivotYaw/CameraPivotPitch/SpringArm/Camera3D/CanvasLayer" unique_id=1680711219 instance=ExtResource("8_y6uwr")]
-anchors_preset = 0
-anchor_right = 0.0
-anchor_bottom = 0.0
-grow_horizontal = 1
-grow_vertical = 1
+visible = false
 
 [node name="StateMachine" type="Node" parent="." unique_id=270104057]
 script = ExtResource("2_cvnsp")

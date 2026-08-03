@@ -1,13 +1,14 @@
 # SettingsMenu.gd
 extends Control
 
-@onready var tab_bar: TabBar = $TabBar
+@onready var tab_bar: TabBar = $VBoxContainer/TabBar
+
 @onready var panels: Array[Control] = [
-	$Panels/AudioPanel,
-	$Panels/VideoPanel,
-	$Panels/ControlsPanel,
+	$VBoxContainer/Panels/AudioPanel,
+	$VBoxContainer/Panels/VideoPanel,
+	$VBoxContainer/Panels/ControlsPanel,
 ]
-@onready var indicator: ColorRect = $TabBar/Indicator
+@onready var indicator: ColorRect = $VBoxContainer/TabBar/Indicator
 
 const ACTIVE_COLOR := Color.WHITE
 const INACTIVE_COLOR := Color(0.45, 0.45, 0.48)
@@ -15,10 +16,6 @@ const INACTIVE_COLOR := Color(0.45, 0.45, 0.48)
 var current_tab: int = 0
 
 func _ready() -> void:
-	tab_bar.clear_tabs()
-	tab_bar.add_tab("AUDIO")
-	tab_bar.add_tab("VIDEO")
-	tab_bar.add_tab("CONTROLS")
 
 	tab_bar.tab_changed.connect(_on_tab_changed)
 	call_deferred("_select_tab", 0, true)

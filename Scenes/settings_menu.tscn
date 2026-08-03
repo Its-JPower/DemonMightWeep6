@@ -3,20 +3,30 @@
 [ext_resource type="Theme" uid="uid://67i73kjitock" path="res://assets/theme.tres" id="1_8ef0u"]
 [ext_resource type="Script" uid="uid://dlsh6upu03dh3" path="res://Scripts/settings_menu.gd" id="1_icv2g"]
 
-[node name="SettingsMenu" type="VBoxContainer" unique_id=1015341804]
+[node name="SettingsMenu" type="CenterContainer" unique_id=1965036577]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 theme = ExtResource("1_8ef0u")
 script = ExtResource("1_icv2g")
 
-[node name="TabBar" type="TabBar" parent="." unique_id=1447606824]
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=116304364]
 layout_mode = 2
-size_flags_vertical = 0
 
-[node name="Indicator" type="ColorRect" parent="TabBar" unique_id=219334990]
+[node name="TabBar" type="TabBar" parent="VBoxContainer" unique_id=1447606824]
+layout_mode = 2
+current_tab = 0
+clip_tabs = false
+tab_count = 3
+tab_0/title = "Audio"
+tab_1/title = "Video"
+tab_2/title = "Control"
+
+[node name="Indicator" type="ColorRect" parent="VBoxContainer/TabBar" unique_id=219334990]
 custom_minimum_size = Vector2(0, 3)
 layout_mode = 1
 anchors_preset = 12
@@ -29,37 +39,29 @@ grow_vertical = 0
 mouse_filter = 2
 color = Color(0.7882353, 0.11372549, 0.12941177, 1)
 
-[node name="Panels" type="Control" parent="." unique_id=1658211132]
+[node name="Panels" type="AspectRatioContainer" parent="VBoxContainer" unique_id=1840844845]
 layout_mode = 2
-size_flags_vertical = 6
+size_flags_vertical = 3
 theme = ExtResource("1_8ef0u")
 
-[node name="AudioPanel" type="VBoxContainer" parent="Panels" unique_id=981570541]
-layout_mode = 1
-anchors_preset = 14
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_top = -40.0
-offset_bottom = 40.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="AudioPanel" type="VBoxContainer" parent="VBoxContainer/Panels" unique_id=981570541]
+layout_mode = 2
 offset_transform_position = Vector2(118.12, 0)
 theme = ExtResource("1_8ef0u")
 theme_override_constants/separation = 16
 
-[node name="Master" type="HBoxContainer" parent="Panels/AudioPanel" unique_id=340348769]
+[node name="Master" type="HBoxContainer" parent="VBoxContainer/Panels/AudioPanel" unique_id=340348769]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="MasterLabel" type="Label" parent="Panels/AudioPanel/Master" unique_id=386517968]
+[node name="MasterLabel" type="Label" parent="VBoxContainer/Panels/AudioPanel/Master" unique_id=386517968]
 layout_mode = 2
 text = "Master"
 
-[node name="VSeparator2" type="VSeparator" parent="Panels/AudioPanel/Master" unique_id=1400395558]
+[node name="VSeparator2" type="VSeparator" parent="VBoxContainer/Panels/AudioPanel/Master" unique_id=1400395558]
 layout_mode = 2
 
-[node name="MasterSlider" type="HSlider" parent="Panels/AudioPanel/Master" unique_id=1358619848]
+[node name="MasterSlider" type="HSlider" parent="VBoxContainer/Panels/AudioPanel/Master" unique_id=1358619848]
 layout_mode = 2
 size_flags_horizontal = 3
 offset_transform_enabled = true
@@ -68,20 +70,20 @@ max_value = 1.0
 step = 0.01
 value = 1.0
 
-[node name="Music" type="HBoxContainer" parent="Panels/AudioPanel" unique_id=795489856]
+[node name="Music" type="HBoxContainer" parent="VBoxContainer/Panels/AudioPanel" unique_id=795489856]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="MusicLabel" type="Label" parent="Panels/AudioPanel/Music" unique_id=257179889]
+[node name="MusicLabel" type="Label" parent="VBoxContainer/Panels/AudioPanel/Music" unique_id=257179889]
 layout_mode = 2
 text = "Music    "
 
-[node name="VSeparator" type="VSeparator" parent="Panels/AudioPanel/Music" unique_id=1519198223]
+[node name="VSeparator" type="VSeparator" parent="VBoxContainer/Panels/AudioPanel/Music" unique_id=1519198223]
 layout_mode = 2
 offset_transform_enabled = true
 offset_transform_position = Vector2(1, 0)
 
-[node name="MusicSlider" type="HSlider" parent="Panels/AudioPanel/Music" unique_id=875263633]
+[node name="MusicSlider" type="HSlider" parent="VBoxContainer/Panels/AudioPanel/Music" unique_id=875263633]
 layout_mode = 2
 size_flags_horizontal = 3
 offset_transform_enabled = true
@@ -92,21 +94,21 @@ max_value = 1.0
 step = 0.01
 value = 1.0
 
-[node name="SFX" type="HBoxContainer" parent="Panels/AudioPanel" unique_id=1995541127]
+[node name="SFX" type="HBoxContainer" parent="VBoxContainer/Panels/AudioPanel" unique_id=1995541127]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="SFXLabel" type="Label" parent="Panels/AudioPanel/SFX" unique_id=251789943]
+[node name="SFXLabel" type="Label" parent="VBoxContainer/Panels/AudioPanel/SFX" unique_id=251789943]
 layout_mode = 2
 text = "SFX        "
 
-[node name="VSeparator3" type="VSeparator" parent="Panels/AudioPanel/SFX" unique_id=913761083]
+[node name="VSeparator3" type="VSeparator" parent="VBoxContainer/Panels/AudioPanel/SFX" unique_id=913761083]
 layout_mode = 2
 offset_transform_enabled = true
 offset_transform_position = Vector2(2.5, 0)
 offset_transform_visual_only = false
 
-[node name="SFXSlider" type="HSlider" parent="Panels/AudioPanel/SFX" unique_id=248419949]
+[node name="SFXSlider" type="HSlider" parent="VBoxContainer/Panels/AudioPanel/SFX" unique_id=248419949]
 layout_mode = 2
 size_flags_horizontal = 3
 offset_transform_enabled = true
@@ -117,44 +119,30 @@ max_value = 1.0
 step = 0.01
 value = 1.0
 
-[node name="VideoPanel" type="VBoxContainer" parent="Panels" unique_id=559828575]
-layout_mode = 1
-anchors_preset = 14
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_top = -24.0
-offset_bottom = 24.0
-grow_horizontal = 2
-grow_vertical = 2
-theme = ExtResource("1_8ef0u")
-
-[node name="FullscreenCheck" type="CheckButton" parent="Panels/VideoPanel" unique_id=1498500269]
+[node name="VideoPanel" type="VBoxContainer" parent="VBoxContainer/Panels" unique_id=559828575]
+visible = false
 layout_mode = 2
 theme = ExtResource("1_8ef0u")
 
-[node name="ResolutionOption" type="OptionButton" parent="Panels/VideoPanel" unique_id=795123280]
+[node name="FullscreenCheck" type="CheckButton" parent="VBoxContainer/Panels/VideoPanel" unique_id=1498500269]
 layout_mode = 2
 theme = ExtResource("1_8ef0u")
 
-[node name="ControlsPanel" type="VBoxContainer" parent="Panels" unique_id=2031611795]
-layout_mode = 1
-anchors_preset = 14
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_top = -22.0
-offset_bottom = 22.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="ResolutionOption" type="OptionButton" parent="VBoxContainer/Panels/VideoPanel" unique_id=795123280]
+layout_mode = 2
 theme = ExtResource("1_8ef0u")
 
-[node name="SensitivitySlider" type="HSlider" parent="Panels/ControlsPanel" unique_id=710351400]
+[node name="ControlsPanel" type="VBoxContainer" parent="VBoxContainer/Panels" unique_id=2031611795]
+visible = false
+layout_mode = 2
+theme = ExtResource("1_8ef0u")
+
+[node name="SensitivitySlider" type="HSlider" parent="VBoxContainer/Panels/ControlsPanel" unique_id=710351400]
 layout_mode = 2
 theme = ExtResource("1_8ef0u")
 max_value = 1.0
 step = 0.01
 
-[node name="InvertYCheck" type="CheckBox" parent="Panels/ControlsPanel" unique_id=524115538]
+[node name="InvertYCheck" type="CheckBox" parent="VBoxContainer/Panels/ControlsPanel" unique_id=524115538]
 layout_mode = 2
 theme = ExtResource("1_8ef0u")
