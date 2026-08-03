@@ -65,7 +65,7 @@ func _do_stab() -> void:
 	player.velocity.x = stab_direction.x * STAB_LUNGE
 	player.velocity.z = stab_direction.z * STAB_LUNGE
 	sword.enable_hitbox()
-	player.anim_player.play("Sword_Dash_RM", -1, 1.0)
+	player.anim_player.play("Million_Stabs", 1.0, 1.0)
 
 func _on_hit(enemy: Enemy) -> void:
 	if has_hit:

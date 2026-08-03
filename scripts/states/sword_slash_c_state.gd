@@ -68,7 +68,6 @@ func exit() -> void:
 		sword.hit_landed.disconnect(_on_hit)
 
 func _end_state() -> void:
-	player.anim_player.play("Sword_Regular_C_Rec", -1, 1.0)
 	var dir = player.get_movement_input()
 	if dir.length() > 0.1:
 		if player.is_sprinting:
