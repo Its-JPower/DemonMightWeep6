@@ -7,24 +7,24 @@ const SLAM_SPEED := 25.0
 const SLAM_GRAVITY_MULTIPLIER := 3.0
 const SLAM_DURATION_MAX := 2.0
 const HIT_RADIUS := 1.5
-const STARTUP_FREEZE := 0.12    # brief airborne pause before dropping — classic slam feel
+
+# Time (seconds) into "Down_Slam" where the arms reach the raised pose.
+# Set this to match your animation's actual up-swing keyframe.
+@export var ARMS_UP_TIME := 1.5
 
 var timer := 0.0
-var startup_timer := 0.0
 var has_landed := false
 var hit_enemies := []
 var _in_startup := true
-
 var state_name := "DownSlamState"
 
 func enter() -> void:
 	timer = 0.0
-	startup_timer = 0.0
 	has_landed = false
 	_in_startup = true
 	hit_enemies.clear()
 	player.anim_player.play("Down_Slam", -1, 1.0)
-	# Freeze briefly mid-air for dramatic effect
+	player.anim_player.speed_scale = 1.0
 	player.velocity = Vector3.ZERO
 	sword.enable_hitbox()
 	if not sword.hit_landed.is_connected(_on_hit):
@@ -34,11 +34,12 @@ func physics_process(delta: float) -> void:
 	timer += delta
 
 	if _in_startup:
-		startup_timer += delta
-		player.velocity = Vector3.ZERO   # hang in the air
+		player.velocity = Vector3.ZERO   # hang in the air during the up-swing
 		player.move_and_slide()
-		if startup_timer >= STARTUP_FREEZE:
+		if player.anim_player.current_animation_position >= ARMS_UP_TIME:
 			_in_startup = false
+			player.anim_player.seek(ARMS_UP_TIME, true)
+			player.anim_player.speed_scale = 0.0   # hold the raised-sword pose
 			player.velocity.y = -SLAM_SPEED
 		return
 
@@ -57,6 +58,7 @@ func physics_process(delta: float) -> void:
 
 	if player.is_on_floor() and not has_landed:
 		has_landed = true
+		player.anim_player.speed_scale = 1.0   # release the pose, arms swing down
 		sword.disable_hitbox()
 		_on_land()
 		return
@@ -96,8 +98,11 @@ func _on_impact_anim_finished(_anim_name: String) -> void:
 
 func exit() -> void:
 	sword.disable_hitbox()
+	player.anim_player.speed_scale = 1.0
 	if sword.hit_landed.is_connected(_on_hit):
 		sword.hit_landed.disconnect(_on_hit)
+	if player.anim_player.animation_finished.is_connected(_on_impact_anim_finished):
+		player.anim_player.animation_finished.disconnect(_on_impact_anim_finished)
 
 func _end_state() -> void:
 	if player.is_on_floor():

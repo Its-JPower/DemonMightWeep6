@@ -11,5 +11,5 @@ func _process(delta: float) -> void:
 	pass
 
 func _on_play_pressed():
-	# Load the loading screen scene
-	get_tree().change_scene_to_file("res://Scenes/test_map_scene.tscn")  # remove title screen
+
+	get_tree().change_scene_to_file("res://Scenes/test_map_scene.tscn")
