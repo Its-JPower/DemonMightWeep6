@@ -23,7 +23,7 @@ func enter() -> void:
 	has_landed = false
 	_in_startup = true
 	hit_enemies.clear()
-	player.anim_player.play("Sword_Regular_A", -1, 1.0)
+	player.anim_player.play("Down_Slam", -1, 1.0)
 	# Freeze briefly mid-air for dramatic effect
 	player.velocity = Vector3.ZERO
 	sword.enable_hitbox()
