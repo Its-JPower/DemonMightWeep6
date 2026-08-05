@@ -15,6 +15,8 @@
 [ext_resource type="Script" uid="uid://bf1dvnj6bd2to" path="res://Scripts/states/jump_state.gd" id="6_smehm"]
 [ext_resource type="Script" uid="uid://blc71b6bedo5l" path="res://Scripts/states/abdomen_piercer_state.gd" id="7_fjrip"]
 [ext_resource type="Script" uid="uid://b0upo36onthnu" path="res://Scripts/states/fall_state.gd" id="8_smehm"]
+[ext_resource type="PackedScene" uid="uid://duwqgyaubfpss" path="res://Scenes/settings_menu.tscn" id="8_y6uwr"]
+[ext_resource type="Script" uid="uid://ft3abigxrh83" path="res://Scripts/settings_btn.gd" id="10_83xs0"]
 [ext_resource type="Script" uid="uid://c6sjh3iy3ebgv" path="res://Scripts/states/land_state.gd" id="11_d2wvv"]
 [ext_resource type="Script" uid="uid://bu1c4jpoiwplk" path="res://Scripts/states/upper_slash_state.gd" id="12_3v2ag"]
 [ext_resource type="Script" uid="uid://8dplhjlnsmxq" path="res://Scripts/states/sword_slash_a_state.gd" id="15_qfm1y"]
@@ -152,6 +154,16 @@ transform = Transform3D(1, 0, 0, 0, 0.9659259, 0.25881907, 0, -0.25881907, 0.965
 [node name="StyleRankHUD" parent="CameraPivotYaw/CameraPivotPitch/SpringArm/Camera3D" unique_id=1509040864 instance=ExtResource("6_ke2ow")]
 
 [node name="CanvasLayer" parent="CameraPivotYaw/CameraPivotPitch/SpringArm/Camera3D" unique_id=1287517820 instance=ExtResource("6_l71n6")]
+layer = 0
+
+[node name="ResumeBtn" parent="CameraPivotYaw/CameraPivotPitch/SpringArm/Camera3D/CanvasLayer/VBoxContainer" parent_id_path=PackedInt32Array(1287517820, 902470907) index="1" unique_id=94943413]
+script = null
+
+[node name="SettingsBtn" parent="CameraPivotYaw/CameraPivotPitch/SpringArm/Camera3D/CanvasLayer/VBoxContainer" parent_id_path=PackedInt32Array(1287517820, 902470907) index="2" unique_id=1295542249]
+script = ExtResource("10_83xs0")
+
+[node name="SettingsMenu" parent="CameraPivotYaw/CameraPivotPitch/SpringArm/Camera3D/CanvasLayer" unique_id=1680711219 instance=ExtResource("8_y6uwr")]
+visible = false
 
 [node name="StateMachine" type="Node" parent="." unique_id=270104057]
 script = ExtResource("2_cvnsp")
@@ -207,6 +219,9 @@ script = ExtResource("22_a38lo")
 
 [node name="RisingSlashState" type="Node" parent="StateMachine" unique_id=1534637852]
 script = ExtResource("23_4ni07")
+
+[connection signal="pressed" from="CameraPivotYaw/CameraPivotPitch/SpringArm/Camera3D/CanvasLayer/VBoxContainer/SettingsBtn" to="CameraPivotYaw/CameraPivotPitch/SpringArm/Camera3D/CanvasLayer" method="_on_pressed"]
+[connection signal="pressed" from="CameraPivotYaw/CameraPivotPitch/SpringArm/Camera3D/CanvasLayer/VBoxContainer/SettingsBtn" to="CameraPivotYaw/CameraPivotPitch/SpringArm/Camera3D/CanvasLayer/VBoxContainer/SettingsBtn" method="_on_pressed"]
 
 [editable path="Mesh"]
 [editable path="CameraPivotYaw/CameraPivotPitch/SpringArm/Camera3D/CanvasLayer"]

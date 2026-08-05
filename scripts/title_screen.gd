@@ -12,8 +12,4 @@ func _process(delta: float) -> void:
 
 func _on_play_pressed():
 	# Load the loading screen scene
-	var loading = load("res://scenes/loading_screen.tscn").instantiate()
-	loading.target_scene = "res://scenes/test_map_scene.tscn"  # tell it where to go next
-	
-	get_tree().root.add_child(loading)
-	get_tree().current_scene.queue_free()  # remove title screen
+	get_tree().change_scene_to_file("res://Scenes/test_map_scene.tscn")  # remove title screen
