@@ -15,6 +15,8 @@ extends CharacterBody3D
 @export var lock_on_timeout := 3.0        # seconds of no attack before dropping lock
 @export var lock_on_cam_speed := 5.0      # how fast camera swings to target
 
+@export var shake_decay := 5.0            # how fast camera shake settles back to zero
+
 var lock_on_target: Node3D = null         # currently locked enemy
 var _lock_on_idle_timer := 0.0            # counts up when not attacking
 
@@ -46,6 +48,8 @@ var last_rotation_mode  := RotationMode.MOVEMENT
 var _realigning_camera := false
 var _realign_timer := 0.0
 const REALIGN_DURATION := 0.3
+
+var _shake_strength := 0.0
 
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
@@ -96,6 +100,17 @@ func _process(delta: float) -> void:
 		_camera_pivot_yaw.rotate_y(-_joy_look.x * JOY_SENSITIVITY * delta)
 		_camera_pivot_pitch.rotate_x(-_joy_look.y * JOY_SENSITIVITY * delta)
 		_camera_pivot_pitch.rotation.x = clamp(_camera_pivot_pitch.rotation.x, -0.6, 0.4)
+
+	if _shake_strength > 0.01:
+		_camera.h_offset = randf_range(-1.0, 1.0) * _shake_strength
+		_camera.v_offset = randf_range(-1.0, 1.0) * _shake_strength
+		_shake_strength = move_toward(_shake_strength, 0.0, shake_decay * delta)
+	else:
+		_camera.h_offset = 0.0
+		_camera.v_offset = 0.0
+
+func camera_shake(strength: float) -> void:
+	_shake_strength = max(_shake_strength, strength)
 
 func _physics_process(delta: float) -> void:
 	if velocity.y < 0:
