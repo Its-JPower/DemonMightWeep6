@@ -13,6 +13,7 @@ var state_name := "SwordSlashAState"
 const BUFFER_OPEN := 0.45   # fraction of duration when buffer window opens
 
 func enter() -> void:
+	player.play_hit_sfx()
 	player.velocity.x = 0.0
 	player.velocity.z = 0.0
 	player._lock_on_idle_timer = 0.0

@@ -17,6 +17,12 @@ extends CharacterBody3D
 
 @export var shake_decay := 5.0            # how fast camera shake settles back to zero
 
+@export var hit_sfx: Array[AudioStream] = []
+@export var hit_sfx_pitch_range := Vector2(0.95, 1.05)
+@onready var _hit_sfx_player: AudioStreamPlayer3D = %HitSFXPlayer
+
+
+
 var lock_on_target: Node3D = null         # currently locked enemy
 var _lock_on_idle_timer := 0.0            # counts up when not attacking
 
@@ -55,6 +61,33 @@ func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	state_machine.init(self)
 	_fix_ual1_tracks()
+
+@export var kill_sfx: Array[AudioStream] = []
+@onready var _kill_sfx_player: AudioStreamPlayer3D = %KillSFXPlayer
+
+@export var enemy_sfx: Array[AudioStream] = []
+@onready var _hit_sfx_enemies: AudioStreamPlayer3D = %HitSFXEnemies
+
+func play_kill_sfx() -> void:
+	if kill_sfx.is_empty():
+		return
+	_kill_sfx_player.stream = kill_sfx.pick_random()
+	_kill_sfx_player.pitch_scale = randf_range(0.95, 1.05)
+	_kill_sfx_player.play()
+
+func play_hit_sfx() -> void:
+	if hit_sfx.is_empty():
+		return
+	_hit_sfx_player.stream = hit_sfx.pick_random()
+	_hit_sfx_player.pitch_scale = randf_range(hit_sfx_pitch_range.x, hit_sfx_pitch_range.y)
+	_hit_sfx_player.play()
+	
+func play_hit_sfx_enemy() -> void:
+	if enemy_sfx.is_empty():
+		return
+	_hit_sfx_enemies.stream = enemy_sfx.pick_random()
+	_hit_sfx_enemies.pitch_scale = randf_range(0.95, 1.05)
+	_hit_sfx_enemies.play()
 
 func _fix_ual1_tracks() -> void:
 	for lib_name in anim_player.get_animation_library_list():

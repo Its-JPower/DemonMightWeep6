@@ -3,6 +3,7 @@ extends Node3D
 
 
 @onready var hitbox: Area3D = $"edged-force/SwordHitbox"
+@onready var player: Player = $"../../../.."
 
 var active := false
 var hit_enemies: Array[Enemy] = []
@@ -26,5 +27,6 @@ func _on_body_entered(body: Node3D) -> void:
 	if not active:
 		return
 	if body is Enemy and body not in hit_enemies:
+		player.play_hit_sfx_enemy()
 		hit_enemies.append(body)
 		hit_landed.emit(body)

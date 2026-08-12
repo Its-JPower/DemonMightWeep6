@@ -15,6 +15,7 @@ const HIT2_END := 0.5
 var hitbox_phase := 0
 
 func enter() -> void:
+	player.play_hit_sfx()
 	player.velocity.x = 0.0
 	player.velocity.z = 0.0
 	player._lock_on_idle_timer = 0.0
