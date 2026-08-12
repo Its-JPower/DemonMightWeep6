@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://i3o4bdjqn47" path="res://Scripts/sword.gd" id="3_f1ej7"]
 [ext_resource type="Script" uid="uid://4k51j4v87low" path="res://Scripts/states/idle_state.gd" id="3_tuyoq"]
 [ext_resource type="AnimationLibrary" uid="uid://b0r7k8cwdoyh6" path="res://assets/animation_resources/Stash 2.res" id="3_tx1dd"]
+[ext_resource type="Texture2D" uid="uid://c8ll74fk7d042" path="res://assets/title_screen/Donte_TitleScreen_man_tex.png" id="3_vfarp"]
 [ext_resource type="PackedScene" uid="uid://d18kxv66x46a1" path="res://assets/title_screen/edged-force.glb" id="4_0gysh"]
 [ext_resource type="PackedScene" uid="uid://cwd0i0y8vl5cj" path="res://Scenes/player_ui.tscn" id="4_jej6c"]
 [ext_resource type="Script" uid="uid://ddvyxmtmnykt6" path="res://Scripts/states/walk_state.gd" id="4_tuyoq"]
@@ -27,6 +28,9 @@
 [ext_resource type="Script" uid="uid://c8vobqamjfrop" path="res://Scripts/states/air_slash_c_state.gd" id="22_a38lo"]
 [ext_resource type="Script" uid="uid://dxyyjldlarlbo" path="res://Scripts/states/rising_slash_state.gd" id="23_4ni07"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y6uwr"]
+albedo_texture = ExtResource("3_vfarp")
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_b1vkl"]
 size = Vector3(112.820404, 6.885498, 2.3624115)
 
@@ -43,7 +47,7 @@ script = ExtResource("1_v0iea")
 [node name="Mesh" parent="." unique_id=808791566 instance=ExtResource("2_f1ek2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.7973151, 0)
 
-[node name="Skeleton3D" parent="Mesh" index="0" unique_id=730149645]
+[node name="Skeleton3D" parent="Mesh" index="0" unique_id=1679529487]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
 bones/2/position = Vector3(5.551115e-16, 0.05010003, 0.9167)
 bones/2/rotation = Quaternion(0.7904686, 9.127004e-09, 1.1778896e-08, 0.61250275)
@@ -102,8 +106,11 @@ bones/62/rotation = Quaternion(0.036589622, -0.00013122692, -4.7918757e-06, 0.99
 bones/63/rotation = Quaternion(-0.5290731, -0.00032809633, 0.00034345736, 0.8485761)
 bones/64/rotation = Quaternion(-0.00013714515, 0.96430665, -0.2647875, -0.00049954205)
 
+[node name="male_player_002" parent="Mesh/Skeleton3D" index="0" unique_id=1374084518]
+material_override = SubResource("StandardMaterial3D_y6uwr")
+
 [node name="BoneAttachment3D" type="BoneAttachment3D" parent="Mesh/Skeleton3D" index="1" unique_id=1621594055]
-transform = Transform3D(8.746448e-07, -0.9593811, 0.28211397, 0.9999998, 7.246753e-07, -5.0071293e-07, 3.0324176e-07, 0.28211388, 0.9593808, -0.7398937, 1.4408004, -0.0259463)
+transform = Transform3D(-0.5194971, -0.24122804, -0.8197146, 0.8540575, -0.17647906, -0.48932692, -0.02662308, -0.9542872, 0.2977031, -0.034623414, 1.9579111, -0.3392503)
 bone_name = "hand_r"
 bone_idx = 35
 
@@ -121,11 +128,12 @@ transform = Transform3D(1, 2.9802322e-08, 1.3969839e-09, 8.940697e-08, 1, 4.6566
 transform = Transform3D(0.9854013, -0.1702176, -0.0014356414, 0.17021734, 0.9854066, -4.2568136e-05, 0.0014218476, -0.00020244469, 0.9999973, -53.217537, -7.7868843, 2.4052887)
 shape = SubResource("BoxShape3D_b1vkl")
 
-[node name="AnimationPlayer" parent="Mesh" index="1" unique_id=1352243201]
+[node name="AnimationPlayer" parent="Mesh" index="1" unique_id=149465459]
 "libraries/Stash 2" = ExtResource("3_tx1dd")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1823396936]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05102539, 0)
+top_level = true
 shape = SubResource("CapsuleShape3D_cvnsp")
 
 [node name="CameraPivotYaw" type="Node3D" parent="." unique_id=2032851110]

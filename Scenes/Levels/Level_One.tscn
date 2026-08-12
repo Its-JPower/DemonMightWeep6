@@ -1,8 +1,0 @@
-[gd_scene format=3 uid="uid://ci3hx55wasdaq"]
-
-[ext_resource type="PackedScene" uid="uid://b4ke5ampc7ssx" path="res://assets/Levels/Pizzeria/Pizzeria/Models/Pizzeria.glb" id="1_ke65a"]
-
-[node name="Node3D" type="Node3D" unique_id=1708936572]
-
-[node name="Pizzeria" parent="." unique_id=219739636 instance=ExtResource("1_ke65a")]
-transform = Transform3D(0.9999726, 0.0073439265, -0.00096125633, -0.0073477197, 0.999965, -0.0040019425, 0.0009318212, 0.0040088985, 0.99999154, 17.040796, 0, 4.9929276)
