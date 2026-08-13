@@ -1,21 +1,71 @@
 [gd_scene format=3 uid="uid://dcdob7x4rqre2"]
 
-[ext_resource type="PackedScene" uid="uid://b4ke5ampc7ssx" path="res://assets/Levels/Pizzeria/Pizzeria/Models/Pizzeria.glb" id="1_ra4wj"]
-[ext_resource type="PackedScene" uid="uid://c8dmjl15wp2dr" path="res://Scenes/player.tscn" id="2_k86v5"]
+[ext_resource type="PackedScene" uid="uid://b4ke5ampc7ssx" path="res://assets/Levels/Pizzeria/Pizzeria/Models/Pizzeria.glb" id="1_ssu1u"]
+[ext_resource type="Texture2D" uid="uid://beiqnjlx2pfvg" path="res://assets/Levels/Pizzeria/Pizzeria/Models/Pizzeria_Scene_Road.png" id="2_citd2"]
+[ext_resource type="PackedScene" uid="uid://c8dmjl15wp2dr" path="res://Scenes/player.tscn" id="3_citd2"]
 
-[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_g4v7s"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_yf5fn"]
 
-[node name="Node3D" type="Node3D" unique_id=2033481056]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2c7va"]
+albedo_texture = ExtResource("2_citd2")
 
-[node name="Player" parent="." unique_id=1620402980 instance=ExtResource("2_k86v5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.223986, 21.820496, 20.591843)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_giv8c"]
+albedo_texture = ExtResource("2_citd2")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=653702799]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_aoprw"]
+albedo_texture = ExtResource("2_citd2")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=288046931]
-transform = Transform3D(100, 0, 0, 0, 100, 0, 0, 0, 100, 5.9875145, 20.630207, 3.3249702)
-top_level = true
-shape = SubResource("WorldBoundaryShape3D_g4v7s")
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_yf5fn"]
 
-[node name="Pizzeria" parent="StaticBody3D" unique_id=219739636 instance=ExtResource("1_ra4wj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3077351, 0, 0.10673654)
+[sub_resource type="BoxShape3D" id="BoxShape3D_57qmd"]
+size = Vector3(73.10286, 21.52243, 76.15692)
+
+[node name="Pizzeria" unique_id=219739636 instance=ExtResource("1_ssu1u")]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="building_12_002" parent_id_path=PackedInt32Array(91619507) index="0" unique_id=1062027593]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="building_12_002/StaticBody3D" index="0" unique_id=1051333915]
+shape = SubResource("BoxShape3D_yf5fn")
+
+[node name="Road_009" parent="." index="487" unique_id=792141210]
+material_override = SubResource("StandardMaterial3D_2c7va")
+
+[node name="Road_010" parent="." index="488" unique_id=765164641]
+material_override = SubResource("StandardMaterial3D_giv8c")
+
+[node name="Road_012" parent="." index="490" unique_id=787199187]
+material_override = SubResource("StandardMaterial3D_aoprw")
+
+[node name="Player" parent="." index="737" unique_id=1620402980 instance=ExtResource("3_citd2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.104641, 60.45465, -14.620573)
+
+[node name="World Floor" type="StaticBody3D" parent="." index="738" unique_id=396286157]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 19.889133, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World Floor" index="0" unique_id=1910125183]
+transform = Transform3D(100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0.5554333, 0)
+shape = SubResource("WorldBoundaryShape3D_yf5fn")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="739" unique_id=1027935440]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0" unique_id=1430652987]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 45.20114, 28.515896, -91.798996)
+shape = SubResource("BoxShape3D_57qmd")
+
+[node name="StaticBody3D2" type="StaticBody3D" parent="." index="740" unique_id=50382692]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D2" index="0" unique_id=1528396156]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -51.766792, 28.515896, -91.798996)
+shape = SubResource("BoxShape3D_57qmd")
+
+[node name="StaticBody3D3" type="StaticBody3D" parent="." index="741" unique_id=1909595312]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D3" index="0" unique_id=640812236]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 45.20114, 28.515896, 96.71507)
+shape = SubResource("BoxShape3D_57qmd")
+
+[node name="StaticBody3D4" type="StaticBody3D" parent="." index="742" unique_id=1314758222]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D4" index="0" unique_id=1371641233]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -52.733025, 28.515896, 96.7401)
+shape = SubResource("BoxShape3D_57qmd")
