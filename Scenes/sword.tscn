@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://d18kxv66x46a1" path="res://assets/title_screen/edged-force.glb" id="2_d6wag"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_b1vkl"]
-size = Vector3(112.820404, 6.885498, 2.3624115)
+size = Vector3(95.46035, 7.0076294, 2.3624115)
 
 [node name="Sword" type="Node3D" unique_id=178248241]
 transform = Transform3D(1, 2.1316282e-14, 0, 1.4210855e-13, 1.0000002, 0, 5.684342e-14, 2.9802322e-08, 1.0000002, 0, 0, 0)
@@ -14,8 +14,8 @@ script = ExtResource("1_6wdhb")
 transform = Transform3D(-4.3256434e-05, 0.00045099354, -0.009989732, -0.0008197302, -0.009956366, -0.00044593777, -0.009966249, 0.00081696175, 8.003587e-05, -0.027447462, 0.31812608, 0.4422289)
 
 [node name="SwordHitbox" type="Area3D" parent="edged-force" unique_id=1193363387]
-transform = Transform3D(1, 2.9802322e-08, 1.3969839e-09, 8.940697e-08, 1, 4.656613e-10, -2.7939677e-09, 6.519258e-09, 1.0000005, 49.83902, 15.448849, -1.1240387)
+transform = Transform3D(0.98380834, -0.17905034, -0.008013235, 0.17904417, 0.98384136, -0.0015048182, 0.008153192, 4.5805937e-05, 0.99996734, 16.31926, 14.828825, -1.006888)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="edged-force/SwordHitbox" unique_id=382368351]
-transform = Transform3D(0.9854013, -0.1702176, -0.0014356414, 0.17021734, 0.9854066, -4.2568136e-05, 0.0014218476, -0.00020244469, 0.9999973, -53.217537, -7.7868843, 2.4052887)
+transform = Transform3D(0.99996305, 0.004914716, 0.0065490147, -0.0049158186, 0.9999893, 0.00027030054, -0.0065476876, -0.00030218298, 0.9999769, -35.93251, -3.5037732, 2.291017)
 shape = SubResource("BoxShape3D_b1vkl")

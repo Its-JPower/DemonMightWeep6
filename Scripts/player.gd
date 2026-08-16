@@ -63,31 +63,29 @@ func _ready() -> void:
 	_fix_ual1_tracks()
 
 @export var kill_sfx: Array[AudioStream] = []
-@onready var _kill_sfx_player: AudioStreamPlayer3D = %KillSFXPlayer
 
 @export var enemy_sfx: Array[AudioStream] = []
-@onready var _hit_sfx_enemies: AudioStreamPlayer3D = %HitSFXEnemies
+@export var sfx_pitch_range := Vector2(0.95, 1.05)
 
-func play_kill_sfx() -> void:
-	if kill_sfx.is_empty():
-		return
-	_kill_sfx_player.stream = kill_sfx.pick_random()
-	_kill_sfx_player.pitch_scale = randf_range(0.95, 1.05)
-	_kill_sfx_player.play()
 
 func play_hit_sfx() -> void:
-	if hit_sfx.is_empty():
+	_play_one_shot(hit_sfx)
+
+func play_kill_sfx() -> void:
+	_play_one_shot(kill_sfx)
+
+func _play_one_shot(pool: Array[AudioStream]) -> void:
+	if pool.is_empty():
 		return
-	_hit_sfx_player.stream = hit_sfx.pick_random()
-	_hit_sfx_player.pitch_scale = randf_range(hit_sfx_pitch_range.x, hit_sfx_pitch_range.y)
-	_hit_sfx_player.play()
+	var p := AudioStreamPlayer3D.new()
+	add_child(p)
+	p.stream = pool.pick_random()
+	p.pitch_scale = randf_range(sfx_pitch_range.x, sfx_pitch_range.y)
+	p.finished.connect(p.queue_free)
+	p.play()
 	
 func play_hit_sfx_enemy() -> void:
-	if enemy_sfx.is_empty():
-		return
-	_hit_sfx_enemies.stream = enemy_sfx.pick_random()
-	_hit_sfx_enemies.pitch_scale = randf_range(0.95, 1.05)
-	_hit_sfx_enemies.play()
+	_play_one_shot(enemy_sfx)
 
 func _fix_ual1_tracks() -> void:
 	for lib_name in anim_player.get_animation_library_list():

@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://buwku5wspb71k"]
 
 [ext_resource type="Script" uid="uid://3ygro2cqvg7g" path="res://Scripts/melee_enemy.gd" id="1_tq73k"]
+[ext_resource type="PackedScene" uid="uid://cibntgh6fx8gb" path="res://Scenes/health_bar.tscn" id="2_mgs6e"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_xnaus"]
 
@@ -11,8 +12,9 @@ height = 1.9438477
 height = 0.34417725
 radius = 5.536621
 
-[node name="MeleeEnemy" type="CharacterBody3D" unique_id=541755684]
+[node name="MeleeEnemy" type="CharacterBody3D" unique_id=541755684 node_paths=PackedStringArray("health_bar")]
 script = ExtResource("1_tq73k")
+health_bar = NodePath("HealthBar")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=434351853]
 mesh = SubResource("CapsuleMesh_xnaus")
@@ -31,3 +33,6 @@ shape = SubResource("CylinderShape3D_tq73k")
 [node name="AttackTimer" type="Timer" parent="." unique_id=789538500]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=533437349]
+
+[node name="HealthBar" parent="." unique_id=321230190 instance=ExtResource("2_mgs6e")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.415, 0)

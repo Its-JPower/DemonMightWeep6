@@ -3,6 +3,7 @@ extends CharacterBody3D
 
 @export var max_health := 100.0
 @export var knockback_resistance := 1.0  # 1.0 = normal, 2.0 = half knockback
+@export var health_bar: HealthBar3D
 
 var health := max_health
 var knockback_velocity := Vector3.ZERO
@@ -12,12 +13,18 @@ signal died
 
 func _ready() -> void:
 	health = max_health
+	if health_bar:
+		health_bar.set_health(health, max_health)
+		health_changed.connect(health_bar.set_health)
+	
+signal health_changed(current: float, max: float)
 
 func take_damage(amount: float, knockback: Vector3 = Vector3.ZERO, vertical_knockback: float = 0.0) -> void:
-	health -= amount
+	health = max(health - amount, 0.0)
 	knockback_velocity = knockback / knockback_resistance
-	knockback_velocity.y = vertical_knockback / knockback_resistance  # overrides y entirely
+	knockback_velocity.y = vertical_knockback / knockback_resistance
 	emit_signal("damaged", amount)
+	emit_signal("health_changed", health, max_health)
 	_on_damaged(amount)
 	if health <= 0:
 		_on_died()

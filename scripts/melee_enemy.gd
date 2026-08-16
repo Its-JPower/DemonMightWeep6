@@ -146,7 +146,7 @@ func _flash_red() -> void:
 	await get_tree().create_timer(0.15).timeout
 	mesh.set_surface_override_material(0, original_material)
 
-func _on_died() -> void:
-	player.play_kill_sfx()
+func _on_died() -> void:	
+	#player.play_kill_sfx()
 	# play death anim before queue_free, drop loot, etc.
 	super()

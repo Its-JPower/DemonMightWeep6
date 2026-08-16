@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://cibntgh6fx8gb"]
+
+[ext_resource type="Script" uid="uid://dyise5s3vj0me" path="res://Scripts/HealthBar3D.gd" id="1_78m4n"]
+
+[sub_resource type="ImageTexture" id="ImageTexture_mgs6e"]
+
+[node name="HealthBar" type="Node3D" unique_id=321230190]
+script = ExtResource("1_78m4n")
+
+[node name="Background" type="Sprite3D" parent="." unique_id=1758685362]
+billboard = 1
+no_depth_test = true
+texture = SubResource("ImageTexture_mgs6e")
+
+[node name="Fill" type="Sprite3D" parent="." unique_id=323275504]
+billboard = 1
+no_depth_test = true
+texture = SubResource("ImageTexture_mgs6e")
