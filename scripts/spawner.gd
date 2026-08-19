@@ -48,6 +48,12 @@ var _current_interval: float
 var _current_count: float
 var _spawn_index: int = 0
 
+func warmup_enemies() -> void:
+	for scene in enemy_scenes:
+		var e := scene.instantiate()
+		add_child(e)
+		await get_tree().process_frame
+		e.queue_free()
 
 func _ready() -> void:
 	_cycle_timer = Timer.new()

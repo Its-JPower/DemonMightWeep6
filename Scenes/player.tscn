@@ -35,6 +35,7 @@
 [ext_resource type="Script" uid="uid://8dplhjlnsmxq" path="res://Scripts/states/sword_slash_a_state.gd" id="15_qfm1y"]
 [ext_resource type="Script" uid="uid://dvmcxlt1svjua" path="res://Scripts/states/sword_slash_b_state.gd" id="16_fulsm"]
 [ext_resource type="Script" uid="uid://c723ibwwkmuba" path="res://Scripts/states/sword_slash_c_state.gd" id="17_4r5pv"]
+[ext_resource type="Texture2D" uid="uid://cep87kbb24mff" path="res://assets/title_screen/Donte_With_Animations_man_tex.png" id="17_7ldla"]
 [ext_resource type="Script" uid="uid://craks73e1kgxx" path="res://Scripts/states/down_slam_state.gd" id="18_igrcy"]
 [ext_resource type="Script" uid="uid://b4arnmky3mhx3" path="res://Scripts/states/million_stabs_state.gd" id="19_4r5pv"]
 [ext_resource type="Script" uid="uid://46evunog7rgk" path="res://Scripts/states/air_slash_a_state.gd" id="20_60mlk"]
@@ -42,6 +43,9 @@
 [ext_resource type="Script" uid="uid://c8vobqamjfrop" path="res://Scripts/states/air_slash_c_state.gd" id="22_a38lo"]
 [ext_resource type="Script" uid="uid://dxyyjldlarlbo" path="res://Scripts/states/rising_slash_state.gd" id="23_4ni07"]
 [ext_resource type="AudioStream" uid="uid://dw0j0obj62tdk" path="res://assets/audio/donte/heh-jackpot.mp3" id="31_xuaoq"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qay8w"]
+albedo_texture = ExtResource("17_7ldla")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_b1vkl"]
 size = Vector3(112.820404, 6.885498, 2.3624115)
@@ -128,6 +132,9 @@ bones/61/rotation = Quaternion(0.9924843, 1.7650686e-08, 6.7108935e-08, 0.122372
 bones/62/rotation = Quaternion(0.036589622, -0.00013122692, -4.7918757e-06, 0.9993304)
 bones/63/rotation = Quaternion(-0.5290731, -0.00032809633, 0.00034345736, 0.8485761)
 bones/64/rotation = Quaternion(-0.00013714515, 0.96430665, -0.2647875, -0.00049954205)
+
+[node name="male_player_002" parent="Mesh/Skeleton3D" index="0" unique_id=1100027592]
+surface_material_override/0 = SubResource("StandardMaterial3D_qay8w")
 
 [node name="BoneAttachment3D" type="BoneAttachment3D" parent="Mesh/Skeleton3D" index="1" unique_id=1621594055]
 transform = Transform3D(0.13499436, -0.901105, 0.4120517, -0.089493394, -0.4252468, -0.9006419, 0.9867965, 0.084705606, -0.1380489, -0.85990405, 1.4199456, 0.044019487)

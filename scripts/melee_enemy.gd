@@ -14,7 +14,7 @@ extends Enemy
 
 @onready var mesh: MeshInstance3D = $MeshInstance3D  # adjust path to your mesh node
 
-var red_material: StandardMaterial3D = null
+const red_material: StandardMaterial3D = preload("uid://dc364wgj8xedm")
 var original_material: Material = null
 var stun_timer: Timer = null
 
@@ -23,11 +23,6 @@ var is_attacking := false
 
 func _ready() -> void:
 	super()                         # sets health = max_health
-	red_material = StandardMaterial3D.new()
-	red_material.albedo_color = Color.RED
-	red_material.emission_enabled = true
-	red_material.emission = Color.RED
-	red_material.emission_energy_multiplier = 1.5
 
 	attack_timer.wait_time = attack_cooldown
 	attack_timer.one_shot = true

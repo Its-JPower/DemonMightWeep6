@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dkr7481vjq6yi" path="res://assets/title_screen/city.glb" id="4_mykxm"]
 [ext_resource type="Texture2D" uid="uid://d2croxutjjyln" path="res://assets/DMW6.png" id="5_tklts"]
 [ext_resource type="PackedScene" uid="uid://belfbytosbe20" path="res://Scenes/donte.tscn" id="6_u26n3"]
+[ext_resource type="Texture2D" uid="uid://cep87kbb24mff" path="res://assets/title_screen/Donte_With_Animations_man_tex.png" id="7_6vd4x"]
 
 [sub_resource type="Environment" id="Environment_8l4an"]
 background_mode = 1
@@ -18,6 +19,9 @@ volumetric_fog_density = 0.278
 volumetric_fog_albedo = Color(0.5404561, 0.6722285, 0.8844716, 1)
 volumetric_fog_emission = Color(0.35145283, 0.62191993, 0.95743185, 1)
 volumetric_fog_emission_energy = 0.2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mgs6e"]
+albedo_texture = ExtResource("7_6vd4x")
 
 [node name="Title" type="CanvasLayer" unique_id=823185846]
 script = ExtResource("1_e54dn")
@@ -88,6 +92,9 @@ texture = ExtResource("5_tklts")
 
 [node name="donte" parent="." unique_id=1347159811 instance=ExtResource("6_u26n3")]
 transform = Transform3D(0.08, 0, 0, 0, 0.08, 0, 0, 0, 0.08, -2.6379087, 0.8275474, 2.4434862)
+
+[node name="male_player_002" parent="donte/Skeleton3D" parent_id_path=PackedInt32Array(1347159811, 751771092) index="0" unique_id=1100027592]
+surface_material_override/0 = SubResource("StandardMaterial3D_mgs6e")
 
 [connection signal="pressed" from="Camera3D/CenterContainer/VBoxContainer/PlayButton" to="." method="_on_play_pressed"]
 

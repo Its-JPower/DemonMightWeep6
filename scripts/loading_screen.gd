@@ -8,6 +8,8 @@ var target_scene: String = "res://scenes/title_screen.tscn"  # default target
 func _ready():
 	ResourceLoader.load_threaded_request(target_scene)
 
+
+
 func _process(_delta):
 	var progress = []
 	var status = ResourceLoader.load_threaded_get_status(target_scene, progress)
