@@ -2,13 +2,13 @@
 
 [ext_resource type="Theme" uid="uid://67i73kjitock" path="res://assets/theme.tres" id="1_8ef0u"]
 [ext_resource type="Script" uid="uid://dlsh6upu03dh3" path="res://Scripts/settings_menu.gd" id="1_icv2g"]
+[ext_resource type="Script" uid="uid://b68m2oenr02h2" path="res://Scripts/audio_panel.gd" id="3_7y5a0"]
+[ext_resource type="Script" uid="uid://bv2i6u24q7l34" path="res://Scripts/video_panel.gd" id="4_h2y1r"]
+[ext_resource type="Script" uid="uid://ckn72cgm6nnhf" path="res://Scripts/controls_panel.gd" id="5_3etfd"]
 
-[node name="SettingsMenu" type="CenterContainer" unique_id=1965036577]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="SettingsMenu" type="VBoxContainer" unique_id=484957905]
+offset_right = 305.0
+offset_bottom = 108.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme = ExtResource("1_8ef0u")
@@ -19,6 +19,7 @@ layout_mode = 2
 
 [node name="TabBar" type="TabBar" parent="VBoxContainer" unique_id=1447606824]
 layout_mode = 2
+size_flags_vertical = 0
 current_tab = 0
 clip_tabs = false
 tab_count = 3
@@ -49,6 +50,11 @@ layout_mode = 2
 offset_transform_position = Vector2(118.12, 0)
 theme = ExtResource("1_8ef0u")
 theme_override_constants/separation = 16
+script = ExtResource("3_7y5a0")
+
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer/Panels/AudioPanel" unique_id=620654189]
+layout_mode = 2
+theme = ExtResource("1_8ef0u")
 
 [node name="Master" type="HBoxContainer" parent="VBoxContainer/Panels/AudioPanel" unique_id=340348769]
 layout_mode = 2
@@ -62,9 +68,10 @@ text = "Master"
 layout_mode = 2
 
 [node name="MasterSlider" type="HSlider" parent="VBoxContainer/Panels/AudioPanel/Master" unique_id=1358619848]
+custom_minimum_size = Vector2(167, 0)
 layout_mode = 2
 size_flags_horizontal = 3
-offset_transform_enabled = true
+size_flags_vertical = 4
 theme = ExtResource("1_8ef0u")
 max_value = 1.0
 step = 0.01
@@ -123,26 +130,77 @@ value = 1.0
 visible = false
 layout_mode = 2
 theme = ExtResource("1_8ef0u")
+script = ExtResource("4_h2y1r")
 
-[node name="FullscreenCheck" type="CheckButton" parent="VBoxContainer/Panels/VideoPanel" unique_id=1498500269]
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer/Panels/VideoPanel" unique_id=1071223885]
 layout_mode = 2
 theme = ExtResource("1_8ef0u")
+
+[node name="DisplayModeOption" type="OptionButton" parent="VBoxContainer/Panels/VideoPanel" unique_id=836979557]
+layout_mode = 2
+theme = ExtResource("1_8ef0u")
+selected = 0
+item_count = 3
+popup/item_0/text = "Fullscreen"
+popup/item_0/id = 0
+popup/item_1/text = "Borderless"
+popup/item_1/id = 1
+popup/item_2/text = "Windowed"
+popup/item_2/id = 2
 
 [node name="ResolutionOption" type="OptionButton" parent="VBoxContainer/Panels/VideoPanel" unique_id=795123280]
 layout_mode = 2
 theme = ExtResource("1_8ef0u")
+selected = 4
+item_count = 6
+popup/item_0/text = "256x144"
+popup/item_0/id = 0
+popup/item_1/text = "320x180"
+popup/item_1/id = 1
+popup/item_2/text = "640x360"
+popup/item_2/id = 2
+popup/item_3/text = "1280x720"
+popup/item_3/id = 3
+popup/item_4/text = "1920x1080"
+popup/item_4/id = 4
+popup/item_5/text = "2560x1440"
+popup/item_5/id = 5
 
 [node name="ControlsPanel" type="VBoxContainer" parent="VBoxContainer/Panels" unique_id=2031611795]
 visible = false
 layout_mode = 2
 theme = ExtResource("1_8ef0u")
+script = ExtResource("5_3etfd")
 
-[node name="SensitivitySlider" type="HSlider" parent="VBoxContainer/Panels/ControlsPanel" unique_id=710351400]
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer/Panels/ControlsPanel" unique_id=476859892]
 layout_mode = 2
 theme = ExtResource("1_8ef0u")
-max_value = 1.0
+
+[node name="Sensitivity" type="VBoxContainer" parent="VBoxContainer/Panels/ControlsPanel" unique_id=315399081]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/Panels/ControlsPanel/Sensitivity" unique_id=511400327]
+layout_mode = 2
+text = "Mouse Sensitivity"
+
+[node name="SensitivitySlider" type="HSlider" parent="VBoxContainer/Panels/ControlsPanel/Sensitivity" unique_id=710351400]
+layout_mode = 2
+theme = ExtResource("1_8ef0u")
+min_value = 0.1
+max_value = 3.0
 step = 0.01
+value = 0.1
 
-[node name="InvertYCheck" type="CheckBox" parent="VBoxContainer/Panels/ControlsPanel" unique_id=524115538]
+[node name="InvertY" type="HBoxContainer" parent="VBoxContainer/Panels/ControlsPanel" unique_id=950314495]
 layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/Panels/ControlsPanel/InvertY" unique_id=1082000464]
+layout_mode = 2
+text = "Invert Mouse Y |"
+
+[node name="InvertYCheck" type="CheckBox" parent="VBoxContainer/Panels/ControlsPanel/InvertY" unique_id=524115538]
+layout_mode = 2
+offset_transform_enabled = true
+offset_transform_position = Vector2(0, -2)
 theme = ExtResource("1_8ef0u")
+alignment = 1
