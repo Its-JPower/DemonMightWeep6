@@ -1,0 +1,57 @@
+[gd_scene format=3 uid="uid://cae3wa5t6uay"]
+
+[ext_resource type="Script" uid="uid://b4b8ofo11pewr" path="res://scripts/boss.gd" id="1_0154r"]
+[ext_resource type="Script" uid="uid://b8pn2ky40t3bc" path="res://Scripts/boss_state_machine.gd" id="2_wwfse"]
+[ext_resource type="Script" uid="uid://baa8ucmrsir2p" path="res://Scripts/boss_state.gd" id="3_cxrok"]
+[ext_resource type="Script" uid="uid://cn8d1ot747dqs" path="res://Scripts/boss_idle_state.gd" id="4_ukjjc"]
+[ext_resource type="Script" uid="uid://c62fd42fn1ejk" path="res://Scripts/boss_telegraph_state.gd" id="5_mh6p8"]
+[ext_resource type="Script" uid="uid://du3n44sve50lh" path="res://Scripts/weak_point.gd" id="5_n725y"]
+[ext_resource type="Script" uid="uid://bxnnwlgtcpcql" path="res://Scripts/boss_attack_state.gd" id="6_qtle2"]
+[ext_resource type="Script" uid="uid://bydarajvodxn6" path="res://Scripts/boss_recover_state.gd" id="7_yq25j"]
+[ext_resource type="Script" uid="uid://diyq8ij7pqpw0" path="res://Scripts/boss_staggered_state.gd" id="8_odcco"]
+[ext_resource type="Script" uid="uid://t5samlk16v6" path="res://SCripts/boss_death_state.gd" id="9_q76ad"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_g4v7s"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_yf5fn"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_g4v7s"]
+
+[node name="Boss" type="CharacterBody3D" unique_id=1398006732]
+script = ExtResource("1_0154r")
+
+[node name="BossStateMachine" type="Node" parent="." unique_id=414079519]
+script = ExtResource("2_wwfse")
+
+[node name="BossState" type="Node" parent="BossStateMachine" unique_id=793653628]
+script = ExtResource("3_cxrok")
+
+[node name="BossIdleState" type="Node" parent="BossStateMachine" unique_id=1066530790]
+script = ExtResource("4_ukjjc")
+
+[node name="BossTelegraphState" type="Node" parent="BossStateMachine" unique_id=651786654]
+script = ExtResource("5_mh6p8")
+
+[node name="BossAttackState" type="Node" parent="BossStateMachine" unique_id=626733078]
+script = ExtResource("6_qtle2")
+
+[node name="BossRecoverState" type="Node" parent="BossStateMachine" unique_id=1907041217]
+script = ExtResource("7_yq25j")
+
+[node name="BossStaggeredState" type="Node" parent="BossStateMachine" unique_id=794254481]
+script = ExtResource("8_odcco")
+
+[node name="BossDeathState" type="Node" parent="BossStateMachine" unique_id=1847312512]
+script = ExtResource("9_q76ad")
+
+[node name="WeakPoint1" type="Area3D" parent="." unique_id=1970066425]
+script = ExtResource("5_n725y")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="WeakPoint1" unique_id=1681462777]
+mesh = SubResource("SphereMesh_g4v7s")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="WeakPoint1" unique_id=1290234973]
+shape = SubResource("SphereShape3D_yf5fn")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1692174352]
+shape = SubResource("CapsuleShape3D_g4v7s")

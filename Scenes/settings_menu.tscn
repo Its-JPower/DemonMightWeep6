@@ -151,20 +151,14 @@ popup/item_2/id = 2
 [node name="ResolutionOption" type="OptionButton" parent="VBoxContainer/Panels/VideoPanel" unique_id=795123280]
 layout_mode = 2
 theme = ExtResource("1_8ef0u")
-selected = 4
-item_count = 6
-popup/item_0/text = "256x144"
+selected = 2
+item_count = 3
+popup/item_0/text = "1280x720"
 popup/item_0/id = 0
-popup/item_1/text = "320x180"
+popup/item_1/text = "1920x1080"
 popup/item_1/id = 1
-popup/item_2/text = "640x360"
+popup/item_2/text = "2560x1440"
 popup/item_2/id = 2
-popup/item_3/text = "1280x720"
-popup/item_3/id = 3
-popup/item_4/text = "1920x1080"
-popup/item_4/id = 4
-popup/item_5/text = "2560x1440"
-popup/item_5/id = 5
 
 [node name="ControlsPanel" type="VBoxContainer" parent="VBoxContainer/Panels" unique_id=2031611795]
 visible = false
