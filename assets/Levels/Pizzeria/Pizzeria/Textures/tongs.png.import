@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://b2wqo0tqlavk5"
-path.s3tc="res://.godot/imported/tongs.png-4b084b3e2e532d4f907408ea751891b9.s3tc.ctex"
+path.s3tc="res://.godot/imported/tongs.png-89ec17483ec50c9bc83c0101cf6e088c.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://assets/Levels/Pizzeria/Pizzeria/textures/tongs.png"
-dest_files=["res://.godot/imported/tongs.png-4b084b3e2e532d4f907408ea751891b9.s3tc.ctex"]
+source_file="res://assets/Levels/Pizzeria/Pizzeria/Textures/tongs.png"
+dest_files=["res://.godot/imported/tongs.png-89ec17483ec50c9bc83c0101cf6e088c.s3tc.ctex"]
 
 [params]
 

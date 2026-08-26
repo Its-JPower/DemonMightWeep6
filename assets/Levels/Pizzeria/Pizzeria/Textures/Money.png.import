@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cecvpfaj6pj7f"
-path.s3tc="res://.godot/imported/Money.png-7d7fcb82d5cab946e3082fe82f1db2ff.s3tc.ctex"
+path.s3tc="res://.godot/imported/Money.png-42eace84e82fb908f3dd8132e799089d.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://assets/Levels/Pizzeria/Pizzeria/textures/Money.png"
-dest_files=["res://.godot/imported/Money.png-7d7fcb82d5cab946e3082fe82f1db2ff.s3tc.ctex"]
+source_file="res://assets/Levels/Pizzeria/Pizzeria/Textures/Money.png"
+dest_files=["res://.godot/imported/Money.png-42eace84e82fb908f3dd8132e799089d.s3tc.ctex"]
 
 [params]
 

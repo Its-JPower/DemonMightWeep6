@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://ctbsx8kpoeudv"
-path.s3tc="res://.godot/imported/Sauces_bottle_01.png-65039c2ff23cae11d00ffc840d847813.s3tc.ctex"
+path.s3tc="res://.godot/imported/Sauces_bottle_01.png-d2faa5ca8ce53f79f7b2479ac838d0fb.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://assets/Levels/Pizzeria/Pizzeria/textures/Sauces_bottle_01.png"
-dest_files=["res://.godot/imported/Sauces_bottle_01.png-65039c2ff23cae11d00ffc840d847813.s3tc.ctex"]
+source_file="res://assets/Levels/Pizzeria/Pizzeria/Textures/Sauces_bottle_01.png"
+dest_files=["res://.godot/imported/Sauces_bottle_01.png-d2faa5ca8ce53f79f7b2479ac838d0fb.s3tc.ctex"]
 
 [params]
 

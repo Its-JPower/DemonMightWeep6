@@ -1,10 +1,24 @@
-[gd_scene format=3 uid="uid://dcdob7x4rqre2"]
+[gd_scene format=4 uid="uid://dcdob7x4rqre2"]
 
 [ext_resource type="PackedScene" uid="uid://b4ke5ampc7ssx" path="res://assets/Levels/Pizzeria/Pizzeria/Models/Pizzeria.glb" id="1_ssu1u"]
 [ext_resource type="Texture2D" uid="uid://beiqnjlx2pfvg" path="res://assets/Levels/Pizzeria/Pizzeria/Models/Pizzeria_Scene_Road.png" id="2_citd2"]
 [ext_resource type="PackedScene" uid="uid://c8dmjl15wp2dr" path="res://Scenes/player.tscn" id="3_citd2"]
+[ext_resource type="Texture2D" uid="uid://dhboffn4spg2o" path="res://assets/Levels/Pizzeria/Pizzeria/Models/Pizzeria_Metal_02.jpg" id="4_giv8c"]
+[ext_resource type="Texture2D" uid="uid://cwjj7krex8sal" path="res://assets/Levels/Pizzeria/Pizzeria/Models/Pizzeria_Wire.png" id="5_aoprw"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_yf5fn"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qqfah"]
+transparency = 1
+albedo_color = Color(0.14509805, 0.64705884, 0.94509804, 0.27450982)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fw6pi"]
+transparency = 1
+albedo_color = Color(0.101960786, 0.5764706, 0.827451, 0.40784314)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_j6faq"]
+transparency = 1
+albedo_color = Color(0.40784314, 0.6117647, 1, 0.34509805)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2c7va"]
 albedo_texture = ExtResource("2_citd2")
@@ -18,29 +32,181 @@ albedo_texture = ExtResource("2_citd2")
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_yf5fn"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_57qmd"]
-size = Vector3(73.10286, 21.52243, 76.15692)
+size = Vector3(73.81657, 21.52243, 76.15692)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cbcra"]
+resource_name = "Metal_02"
+cull_mode = 2
+albedo_texture = ExtResource("4_giv8c")
+texture_filter = 2
+metadata/_gltf_primary_texture_coord = 0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gbt3j"]
+resource_name = "Wire"
+transparency = 4
+cull_mode = 2
+albedo_texture = ExtResource("5_aoprw")
+metadata/_gltf_primary_texture_coord = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_qwn4p"]
+_surfaces = [{
+"aabb": AABB(-1.8109722, -1.2965677, -0.06836386, 3.6328068, 2.6182146, 0.1367277),
+"format": 34896613377,
+"index_count": 258,
+"index_data": PackedByteArray("AAABAAIAAwACAAEAAAAEAAEAAwAFAAIABAAAAAYABwAFAAMABAAGAAcABwAGAAUACAAJAAoACwAKAAkACAAMAAkACwANAAoADAAIAA4ADwANAAsADAAOAA8ADwAOAA0AEAARABIAEAATABEAFAAQABIAEwAVABEAEwAWABUAFAASABcAGAAUABcAFgAYABkAFgAZABUAGAAXABkAEQAaABIAFQAbABEAEQAbABoAGQAcABUAFQAcABsAFwAdABkAGQAdABwAEgAeABcAEgAaAB4AFwAeAB0AHAAfABsAGwAgABoAGwAfACAAGgAhAB4AGgAgACEAHgAiAB0AHgAhACIAHQAjABwAHAAjAB8AHQAiACMAIAAkACEAHwAkACAAIQAkACIAIwAkAB8AIgAkACMAJQAmACcAJQAoACYAKQAlACcAKAAqACYAKAArACoAKQAnACwALQApACwAKwAtAC4AKwAuACoALQAsAC4AJgAvACcAKgAwACYAJgAwAC8ALgAxACoAKgAxADAALAAyAC4ALgAyADEAJwAzACwAJwAvADMALAAzADIAMQA0ADAAMAA1AC8AMAA0ADUALwA2ADMALwA1ADYAMwA3ADIAMwA2ADcAMgA4ADEAMQA4ADQAMgA3ADgANQA5ADYANAA5ADUANgA5ADcAOAA5ADQANwA5ADgA"),
+"name": "Metal_02",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 58,
+"vertex_data": PackedByteArray("YwRq7fdNAADW+gfw/38AAGMEB/D/fwAA1vpq7QeyAADW+mrt+U0AAGMEau0FsgAAYwTN6v9/AADW+s3q/38AAGMEKw/3TQAA1vrHEf9/AABjBMcR/38AANb6Kw8HsgAA1vorD/lNAABjBCsPBbIAAGMEjgz/fwAA1vqODP9/AAD7BwAA/38AAH8Ff/qD6QAAYQh/+v9/AABfBQAAZ98AAF8FAACXIAAA1AB/+jbBAAAmAQAA9roAAH8Ff/p7FgAAJgEAAAlFAADUAH/6yj4AACkJG/r/fwAAqgUZ+v//AAAAABb6Ic8AAAAAFvrfMAAAqgUZ+gAAAAB8BZD98esAAHAIkv3/fwAAfAWQ/Q8UAAC2AI39Rz0AALYAjf23wgAALAT///9/AADQ/gAA/38AAFT8f/qD6QAANv9/+v9/AAA0/AAAZ98AADT8AACXIAAAqfd/+jbBAAD89wAA9roAAFT8f/p7FgAA/PcAAAlFAACp93/6yj4AAP//G/r/fwAAf/wZ+v7/AADV9hb6Ic8AANX2FvrfMAAAf/wZ+gAAAABS/JD98esAAEX/kv3/fwAAUvyQ/Q8UAACL9439Rz0AAIv3jf23wgAAAfv///9/AAA=")
+}, {
+"aabb": AABB(-1.7486675, -1.135132, -0.011364004, 3.4973214, 2.260446, 0.022727888),
+"format": 34896613377,
+"index_count": 12,
+"index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUA"),
+"name": "Wire",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 8,
+"vertex_data": PackedByteArray("/////wAAAAAAAAAAAAAAAAAA//8AAAAA//8AAAAAAAD///////8AAAAAAAD+/wAA//8AAP7/AAAAAP////8AAA==")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_aey76"]
+resource_name = "Pizzeria_Fence_01"
+_surfaces = [{
+"aabb": AABB(-1.8109722, -1.2965677, -0.06836386, 3.6328068, 2.6182146, 0.1367277),
+"attribute_data": PackedByteArray("tYlDH+mJAADpiUMftYkAAP+JAAAyikMfMooAAP+JQx+1iQAA6YlDH+mJAAC1iUMfMooAAP+JQx//iQAAMopDH5TlY5X+/yaVlOUmlf//Y5V4iQAArIlDH6yJAAB4iUMfPIoAAHCKQx9wigAAPIpDH/7/Y5WU5SaV/v8mlZTlY5X+iXOXZoqMgPmJjIBhinOX1Htzl1p7jIDae4yAYHtzlzGKc5ewiYyAN4qMgLeJc5c3iveceIpanGGKX5z0ieibRooSnfSJAZywifeccIlanKKJEp2HiV+cYHtzl9p7jIBae4yA1Htzl4eJc5fviYyAgomMgOmJc5fde5KAVHtAgEJ7koDXe0CA74n4m++Jgpx/iVecQnuSgNd7QIDde5KAVHtAgOyJkoB7iUGAaImTgOqJQYCiiZKAOYpAgEaKkoCviUCAgIqTgP2JQYD7iZKAbYpBgK+JBZ30iZWcOYoFnWiKV5z5iYKc+Yn4m3yJY5zriY2cp4n+nEGK/pz8iY2ca4pjnP6Jc5dmioyA+YmMgGGKc5fUe3OXWnuMgNp7jIBge3OXMYpzl7CJjIA3ioyAt4lzlzeK95x4ilqcYYpfnPSJ6JtGihKd9IkBnLCJ95xwiVqcookSnYeJX5xge3OX2nuMgFp7jIDUe3OXh4lzl++JjICCiYyA6Ylzl917koBUe0CAQnuSgNd7QIDvifib74mCnH+JV5xCe5KA13tAgN17koBUe0CA7ImSgHuJQYBoiZOA6olBgKKJkoA5ikCARoqSgK+JQICAipOA/YlBgPuJkoBtikGAr4kFnfSJlZw5igWdaIpXnPmJgpz5ifibfIljnOuJjZynif6cQYr+nPyJjZxrimOc"),
+"format": 34896613399,
+"index_count": 258,
+"index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUACAAJAAoACAALAAkADAANAA4ADAAPAA0AEAARABIAEAATABEAFAAVABYAFAAXABUAGAAZABoAGAAbABkAHAAdAB4AHAAfAB0AIAAhACIAIAAjACEAJAAlACYAJAAnACUAKAApACoAKAArACkALAAtAC4ALgAtAC8ALAAwAC0ALgAvADEAMgAwACwAMQAvADMAMgA0ADAAMQAzADUANQA0ADIANQAzADQANgA3ADgANgA5ADcAOgA7ADwAOgA9ADsAPgA/AEAAPgBBAD8AQgBDAEQARQBGAEcARQBIAEYASQBKAEsASQBMAEoATQBOAE8ATQBQAE4AUQBSAFMAUQBUAFIAVQBWAFcAWABZAFoAWwBcAF0AXgBfAGAAYQBiAGMAYQBkAGIAZQBmAGcAZQBoAGYAaQBqAGsAaQBsAGoAbQBuAG8AbwBuAHAAbQBxAG4AbwBwAHIAcwBxAG0AcgBwAHQAcwB1AHEAcgB0AHYAdgB1AHMAdgB0AHUAdwB4AHkAdwB6AHgAewB8AH0AewB+AHwAfwCAAIEAfwCCAIAAgwCEAIUAhgCHAIgAhgCJAIcAigCLAIwAigCNAIsAjgCPAJAAjgCRAI8AkgCTAJQAkgCVAJMAlgCXAJgAmQCaAJsAnACdAJ4AnwCgAKEA"),
+"material": SubResource("StandardMaterial3D_cbcra"),
+"name": "Metal_02",
+"primitive": 3,
+"uv_scale": Vector4(12.947231, 10.940128, 0, 0),
+"vertex_count": 162,
+"vertex_data": PackedByteArray("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")
+}, {
+"aabb": AABB(-1.7486675, -1.135132, -0.011364004, 3.4973214, 2.260446, 0.022727888),
+"attribute_data": PackedByteArray("///yL6rj//+q4/Iv/v/+////8i+q4////v/+/6rj8i8="),
+"format": 34896613399,
+"index_count": 12,
+"index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUA"),
+"material": SubResource("StandardMaterial3D_gbt3j"),
+"name": "Wire",
+"primitive": 3,
+"uv_scale": Vector4(93.85358, 7.2919216, 0, 0),
+"vertex_count": 8,
+"vertex_data": PackedByteArray("/////wAAAIAAAAAAAAAAgAAA//8AAACA//8AAAAAAID///////8AAAAAAAD+/wAA//8AAP7/AAAAAP////8AAP9/////f////3////9///////9/////f////3////9/")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_qwn4p")
 
 [node name="Pizzeria" unique_id=219739636 instance=ExtResource("1_ssu1u")]
 
-[node name="StaticBody3D" type="StaticBody3D" parent="building_12_002" parent_id_path=PackedInt32Array(91619507) index="0" unique_id=1062027593]
+[node name="building_11_003" parent="." index="88" unique_id=1587379803]
+transform = Transform3D(5.8608675, 0, 0, 0, 5.8608675, 0, 0, 0, 5.8608675, 44.019165, 26.35486, -59.4355)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="building_12_002" parent_id_path=PackedInt32Array(1270954172) index="0" unique_id=1062027593]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="building_12_002/StaticBody3D" index="0" unique_id=1051333915]
 shape = SubResource("BoxShape3D_yf5fn")
 
-[node name="Road_009" parent="." index="487" unique_id=792141210]
+[node name="Cube_005" parent="." index="248" unique_id=696696663]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.577473, -24.31663, -33.04534)
+
+[node name="Cube_027" parent="." index="270" unique_id=886155650]
+transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, 1, 14.252433, 13.476515, 39.064342)
+
+[node name="Door" parent="." index="321" unique_id=1493734417]
+surface_material_override/1 = SubResource("StandardMaterial3D_qqfah")
+
+[node name="Door_001" parent="." index="322" unique_id=929548285]
+surface_material_override/1 = SubResource("StandardMaterial3D_fw6pi")
+
+[node name="Glass" parent="." index="354" unique_id=1956811234]
+surface_material_override/0 = SubResource("StandardMaterial3D_j6faq")
+
+[node name="Road_009" parent="." index="487" unique_id=1435160001]
 material_override = SubResource("StandardMaterial3D_2c7va")
 
-[node name="Road_010" parent="." index="488" unique_id=765164641]
+[node name="Road_010" parent="." index="488" unique_id=1523760605]
 material_override = SubResource("StandardMaterial3D_giv8c")
 
-[node name="Road_012" parent="." index="490" unique_id=787199187]
+[node name="Road_012" parent="." index="490" unique_id=199624314]
 material_override = SubResource("StandardMaterial3D_aoprw")
+
+[node name="streetlight_016" parent="." index="677" unique_id=1950808596]
+transform = Transform3D(-8.34465e-07, 0, 0.99999994, 0, 1, 0, -0.99999994, 0, -8.34465e-07, 32.682564, -48.44227, 56.751152)
+
+[node name="Tree" parent="." index="701" unique_id=811734615]
+transform = Transform3D(0.09949991, 0, 0, 0, 0.09949991, 0, 0, 0, 0.09949991, -3.007079, -69.46994, 6.751736)
+
+[node name="Tree_001" parent="." index="702" unique_id=643321168]
+transform = Transform3D(0.097952105, 0, 0.02964281, 0, 0.102339186, 0, -0.02964281, 0, 0.097952105, 4.476625, -49.22705, -29.436573)
+
+[node name="Tree_002" parent="." index="703" unique_id=1689507736]
+transform = Transform3D(0.03183254, 0, -0.08933127, 0, 0.09483346, 0, 0.08933127, 0, 0.03183254, 4.476625, -49.22705, -21.102453)
+
+[node name="Tree_003" parent="." index="704" unique_id=748807315]
+transform = Transform3D(0.046004288, 0, -0.09046113, 0, 0.10148699, 0, 0.09046113, 0, 0.046004288, 4.476625, -49.22705, -13.382116)
+
+[node name="Tree_004" parent="." index="705" unique_id=756350001]
+transform = Transform3D(0.07910028, 0, 0.06525364, 0, 0.10254215, 0, -0.06525364, 0, 0.07910028, 8.781682, -49.22705, -3.8244228)
+
+[node name="Tree_005" parent="." index="706" unique_id=1748376981]
+transform = Transform3D(0.07567045, 0, 0.058867943, 0, 0.09587205, 0, -0.058867943, 0, 0.07567045, 8.781682, -49.22705, 6.3250933)
+
+[node name="Tree_006" parent="." index="707" unique_id=1582141549]
+transform = Transform3D(0.08958725, 0, -0.060222548, 0, 0.107947335, 0, 0.060222548, 0, 0.08958725, 8.781682, -49.22705, 15.683801)
+
+[node name="Tree_007" parent="." index="708" unique_id=1178747144]
+transform = Transform3D(0.014532095, 0, 0.098432966, 0, 0.09949991, 0, -0.098432966, 0, 0.014532095, 8.781682, -49.22705, 26.722034)
+
+[node name="Tree_008" parent="." index="709" unique_id=588570174]
+transform = Transform3D(-0.034088023, 0, -0.10517476, 0, 0.11056093, 0, 0.10517476, 0, -0.034088023, 34.34304, -49.323914, 37.483635)
+
+[node name="Tree_009" parent="." index="710" unique_id=932239501]
+transform = Transform3D(-0.11404731, 0, -0.039125636, 0, 0.120571956, 0, 0.039125636, 0, -0.11404731, 34.59163, -49.323677, 18.868704)
+
+[node name="Tree_010" parent="." index="711" unique_id=1183212008]
+transform = Transform3D(-0.064084984, 0, -0.07746931, 0, 0.100540414, 0, 0.07746931, 0, -0.064084984, 34.963913, -49.323616, 2.1042843)
+
+[node name="Tree_011" parent="." index="712" unique_id=85837082]
+transform = Transform3D(-0.11100311, 0, 0.055671535, 0, 0.12418131, 0, -0.055671535, 0, -0.11100311, 34.727173, -49.324795, 9.096453)
+
+[node name="Tree_012" parent="." index="713" unique_id=291845545]
+transform = Transform3D(0.046004288, 0, -0.09046113, 0, 0.10148699, 0, 0.09046113, 0, 0.046004288, 4.476625, -49.22705, 72.351456)
+
+[node name="Tree_013" parent="." index="714" unique_id=1570145692]
+transform = Transform3D(0.0838684, 0, -0.038547833, 0, 0.092303, 0, 0.038547833, 0, 0.0838684, 4.476625, -49.22705, 98.8248)
+
+[node name="Tree_014" parent="." index="715" unique_id=400883200]
+transform = Transform3D(0.09382903, 0, -0.047557645, 0, 0.105193235, 0, 0.047557645, 0, 0.09382903, 4.476625, -49.22705, 126.71035)
+
+[node name="Tree_015" parent="." index="716" unique_id=976935668]
+transform = Transform3D(0.109916285, 0, 0.008374134, 0, 0.11023482, 0, -0.008374134, 0, 0.109916285, -10.207449, -49.22705, 72.351456)
+
+[node name="Tree_016" parent="." index="717" unique_id=1146870752]
+transform = Transform3D(0.067816906, 0, 0.06261558, 0, 0.092303, 0, -0.06261558, 0, 0.067816906, -10.207449, -49.22705, 98.8248)
+
+[node name="Tree_017" parent="." index="718" unique_id=725678824]
+transform = Transform3D(0.07996258, 0, 0.06834912, 0, 0.105193235, 0, -0.06834912, 0, 0.07996258, -10.207449, -49.22705, 126.71035)
+
+[node name="Tree_018" parent="." index="719" unique_id=1110667348]
+transform = Transform3D(0.06376403, 0, -0.08992143, 0, 0.11023482, 0, 0.08992143, 0, 0.06376403, -10.207449, -49.22705, 25.455484)
+
+[node name="Tree_019" parent="." index="720" unique_id=1599832354]
+transform = Transform3D(0.10772519, 0, 0.044185776, 0, 0.10185297, 0, -0.044185776, 0, 0.10772519, -10.207449, -49.22705, 7.7772446)
+
+[node name="Tree_020" parent="." index="721" unique_id=1408090529]
+transform = Transform3D(0.10772519, 0, 0.044185776, 0, 0.10185297, 0, -0.044185776, 0, 0.10772519, -10.207449, -49.22705, -12.217287)
 
 [node name="Player" parent="." index="737" unique_id=1620402980 instance=ExtResource("3_citd2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.104641, 60.45465, -14.620573)
 
 [node name="World Floor" type="StaticBody3D" parent="." index="738" unique_id=396286157]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 19.889133, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 20.06791, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="World Floor" index="0" unique_id=1910125183]
 transform = Transform3D(100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0.5554333, 0)
@@ -69,3 +235,73 @@ shape = SubResource("BoxShape3D_57qmd")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D4" index="0" unique_id=1371641233]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -52.733025, 28.515896, 96.7401)
 shape = SubResource("BoxShape3D_57qmd")
+
+[node name="StaticBody3D5" type="StaticBody3D" parent="." index="743" unique_id=1467676950]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D5" index="0" unique_id=1406602306]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -52.37617, 28.515896, 2.0424557)
+shape = SubResource("BoxShape3D_57qmd")
+
+[node name="Fence_02" type="MeshInstance3D" parent="." index="744" unique_id=542562471]
+transform = Transform3D(0, 0, -1.0557631, 0, 1.0557631, 0, 1.0557631, 0, 0, 33.2009, 21.950865, -13.562153)
+mesh = SubResource("ArrayMesh_aey76")
+
+[node name="Fence_03" type="MeshInstance3D" parent="." index="745" unique_id=507751672]
+transform = Transform3D(0, 0, -1.0557631, 0, 1.0557631, 0, 1.0557631, 0, 0, 33.2009, 21.950865, -17.247492)
+mesh = SubResource("ArrayMesh_aey76")
+
+[node name="Fence_04" type="MeshInstance3D" parent="." index="746" unique_id=1098905096]
+transform = Transform3D(0, 0, -1.0557631, 0, 1.0557631, 0, 1.0557631, 0, 0, 33.2009, 21.950865, -20.94211)
+mesh = SubResource("ArrayMesh_aey76")
+
+[node name="Fence_05" type="MeshInstance3D" parent="." index="747" unique_id=1610641476]
+transform = Transform3D(0, 0, -1.0557631, 0, 1.0557631, 0, 1.0557631, 0, 0, 33.2009, 21.950865, -24.64573)
+mesh = SubResource("ArrayMesh_aey76")
+
+[node name="Fence_06" type="MeshInstance3D" parent="." index="748" unique_id=139776245]
+transform = Transform3D(0, 0, -1.0557631, 0, 1.0557631, 0, 1.0557631, 0, 0, 33.2009, 21.950865, -28.340345)
+mesh = SubResource("ArrayMesh_aey76")
+
+[node name="Fence_07" type="MeshInstance3D" parent="." index="749" unique_id=1740108356]
+transform = Transform3D(0, 0, -1.0557631, 0, 1.0557631, 0, 1.0557631, 0, 0, 33.2009, 21.950865, -32.02569)
+mesh = SubResource("ArrayMesh_aey76")
+
+[node name="Fence_08" type="MeshInstance3D" parent="." index="750" unique_id=630250376]
+transform = Transform3D(0, 0, -1.055763, 0.016062569, 1.0556409, 0, 1.0556409, -0.016062569, 0, 33.2009, 21.852331, -35.877556)
+mesh = SubResource("ArrayMesh_aey76")
+
+[node name="Fence_09" type="MeshInstance3D" parent="." index="751" unique_id=1618165232]
+transform = Transform3D(0, 0, -1.0557631, 0, 1.0557631, 0, 1.0557631, 0, 0, 33.2009, 21.950865, -39.673912)
+mesh = SubResource("ArrayMesh_aey76")
+
+[node name="Fence_10" type="MeshInstance3D" parent="." index="752" unique_id=513901061]
+transform = Transform3D(0, 0, -1.0557631, 0, 1.0557631, 0, 1.0557631, 0, 0, 33.2009, 21.950865, -43.36853)
+mesh = SubResource("ArrayMesh_aey76")
+
+[node name="Fence_11" type="MeshInstance3D" parent="." index="753" unique_id=964699733]
+transform = Transform3D(0, 0, -1.0557631, 0, 1.0557631, 0, 1.0557631, 0, 0, 33.2009, 21.950865, -47.053867)
+mesh = SubResource("ArrayMesh_aey76")
+
+[node name="Fence_12" type="MeshInstance3D" parent="." index="754" unique_id=1634688980]
+transform = Transform3D(0, 0, -1.0557631, 0, 1.0557631, 0, 1.0557631, 0, 0, 33.2009, 21.950865, -50.748486)
+mesh = SubResource("ArrayMesh_aey76")
+
+[node name="Fence_13" type="MeshInstance3D" parent="." index="755" unique_id=1922207728]
+transform = Transform3D(0, 0, -1.055763, 0.016062569, 1.0556409, 0, 1.0556409, -0.016062569, 0, 33.2009, 21.852331, 56.704533)
+mesh = SubResource("ArrayMesh_aey76")
+
+[node name="Fence_14" type="MeshInstance3D" parent="." index="756" unique_id=921006369]
+transform = Transform3D(0, 0, -1.0557631, 0, 1.0557631, 0, 1.0557631, 0, 0, 33.2009, 21.950865, 52.908176)
+mesh = SubResource("ArrayMesh_aey76")
+
+[node name="Fence_15" type="MeshInstance3D" parent="." index="757" unique_id=558390979]
+transform = Transform3D(0, 0, -1.0557631, 0, 1.0557631, 0, 1.0557631, 0, 0, 33.2009, 21.950865, 49.21356)
+mesh = SubResource("ArrayMesh_aey76")
+
+[node name="Fence_16" type="MeshInstance3D" parent="." index="758" unique_id=2010864588]
+transform = Transform3D(0, 0, -1.0557631, 0, 1.0557631, 0, 1.0557631, 0, 0, 33.2009, 21.950865, 45.52822)
+mesh = SubResource("ArrayMesh_aey76")
+
+[node name="Fence_17" type="MeshInstance3D" parent="." index="759" unique_id=754864679]
+transform = Transform3D(0, 0, -1.0557631, 0, 1.0557631, 0, 1.0557631, 0, 0, 33.2009, 21.950865, 41.833603)
+mesh = SubResource("ArrayMesh_aey76")

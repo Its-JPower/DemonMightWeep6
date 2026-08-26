@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://badcw7sg1mqp5"
-path.s3tc="res://.godot/imported/Decorative_Sign.png-181d8a37e8d31c0ec655da9287840b2d.s3tc.ctex"
+path.s3tc="res://.godot/imported/Decorative_Sign.png-a6109ea6f64b0c9e9e672564f3f8804e.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://assets/Levels/Pizzeria/Pizzeria/textures/Decorative_Sign.png"
-dest_files=["res://.godot/imported/Decorative_Sign.png-181d8a37e8d31c0ec655da9287840b2d.s3tc.ctex"]
+source_file="res://assets/Levels/Pizzeria/Pizzeria/Textures/Decorative_Sign.png"
+dest_files=["res://.godot/imported/Decorative_Sign.png-a6109ea6f64b0c9e9e672564f3f8804e.s3tc.ctex"]
 
 [params]
 

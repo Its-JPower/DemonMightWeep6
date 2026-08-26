@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://ig0rjopuc2x3"
-path.s3tc="res://.godot/imported/wood_planks.jpg-b7326cc1d98b35ebd753b8c477127105.s3tc.ctex"
+path.s3tc="res://.godot/imported/wood_planks.jpg-dfd1d3bfcd1438b91f7ea55cce096741.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://assets/Levels/Pizzeria/Pizzeria/textures/wood_planks.jpg"
-dest_files=["res://.godot/imported/wood_planks.jpg-b7326cc1d98b35ebd753b8c477127105.s3tc.ctex"]
+source_file="res://assets/Levels/Pizzeria/Pizzeria/Textures/wood_planks.jpg"
+dest_files=["res://.godot/imported/wood_planks.jpg-dfd1d3bfcd1438b91f7ea55cce096741.s3tc.ctex"]
 
 [params]
 

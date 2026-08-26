@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bs2igq00fpfli"
-path.s3tc="res://.godot/imported/Office_Ceiling.jpg-ede3dab6ffab0f17c6e9dda4a2deaa7a.s3tc.ctex"
+path.s3tc="res://.godot/imported/Office_Ceiling.jpg-6190e58f0fad34c845baf27dc02c0dd6.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://assets/Levels/Pizzeria/Pizzeria/textures/Office_Ceiling.jpg"
-dest_files=["res://.godot/imported/Office_Ceiling.jpg-ede3dab6ffab0f17c6e9dda4a2deaa7a.s3tc.ctex"]
+source_file="res://assets/Levels/Pizzeria/Pizzeria/Textures/Office_Ceiling.jpg"
+dest_files=["res://.godot/imported/Office_Ceiling.jpg-6190e58f0fad34c845baf27dc02c0dd6.s3tc.ctex"]
 
 [params]
 

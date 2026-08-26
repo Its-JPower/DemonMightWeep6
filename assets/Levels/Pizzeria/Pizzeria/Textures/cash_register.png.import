@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cxp11eqwc5pqu"
-path.s3tc="res://.godot/imported/cash_register.png-d53595a10c4bad8df5fe7e3ec4696eb6.s3tc.ctex"
+path.s3tc="res://.godot/imported/cash_register.png-ba00442770b9e3cc984bd5e2dd7aeb87.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://assets/Levels/Pizzeria/Pizzeria/textures/cash_register.png"
-dest_files=["res://.godot/imported/cash_register.png-d53595a10c4bad8df5fe7e3ec4696eb6.s3tc.ctex"]
+source_file="res://assets/Levels/Pizzeria/Pizzeria/Textures/cash_register.png"
+dest_files=["res://.godot/imported/cash_register.png-ba00442770b9e3cc984bd5e2dd7aeb87.s3tc.ctex"]
 
 [params]
 

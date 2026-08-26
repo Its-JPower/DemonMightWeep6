@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dwo0trufibyjy"
-path.s3tc="res://.godot/imported/building_16.png-266d4feab1ecd0288ea59cf0d9eb3eef.s3tc.ctex"
+path.s3tc="res://.godot/imported/building_16.png-db4fda85a46f0648c17dcf7197da656b.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://assets/Levels/Pizzeria/Pizzeria/textures/building_16.png"
-dest_files=["res://.godot/imported/building_16.png-266d4feab1ecd0288ea59cf0d9eb3eef.s3tc.ctex"]
+source_file="res://assets/Levels/Pizzeria/Pizzeria/Textures/building_16.png"
+dest_files=["res://.godot/imported/building_16.png-db4fda85a46f0648c17dcf7197da656b.s3tc.ctex"]
 
 [params]
 
