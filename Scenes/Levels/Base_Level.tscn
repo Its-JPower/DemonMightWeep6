@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://bhscx5djpc5ij"]
+
+[ext_resource type="PackedScene" uid="uid://dcdob7x4rqre2" path="res://Scenes/Levels/pizzeria.tscn" id="1_ingmi"]
+[ext_resource type="Texture2D" uid="uid://cgiu2e5uut386" path="res://assets/Levels/Pizzeria/Pizzeria/Skybox.png" id="2_crl8b"]
+[ext_resource type="PackedScene" uid="uid://c8dmjl15wp2dr" path="res://Scenes/player.tscn" id="3_qjqsl"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_qr0ht"]
+panorama = ExtResource("2_crl8b")
+
+[sub_resource type="Sky" id="Sky_sn0t7"]
+sky_material = SubResource("PanoramaSkyMaterial_qr0ht")
+
+[sub_resource type="Environment" id="Environment_riqys"]
+background_mode = 2
+sky = SubResource("Sky_sn0t7")
+
+[node name="Node3D" type="Node3D" unique_id=1602786845]
+
+[node name="Pizzeria" parent="." unique_id=219739636 instance=ExtResource("1_ingmi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, -20.789791, 1)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=993432376]
+environment = SubResource("Environment_riqys")
+
+[node name="Player" parent="." unique_id=1620402980 instance=ExtResource("3_qjqsl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.978073, 0.66557467, -23.415726)
