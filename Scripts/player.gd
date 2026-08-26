@@ -5,9 +5,9 @@ extends CharacterBody3D
 @onready var _camera_pivot_yaw : Node3D = %CameraPivotYaw
 @onready var _camera_pivot_pitch: Node3D = %CameraPivotPitch
 @onready var _spring_arm : SpringArm3D = %SpringArm
-@onready var state_machine: StateMachine = $StateMachine
 @onready var player_model: Node3D = $Mesh
 @onready var anim_player: AnimationPlayer = $Mesh/AnimationPlayer
+@onready var state_machine: StateMachine = $StateMachine
 
 @export_range(0.0, 1.0) var mouse_sensitivity = 0.0025
 @export var tilt_limit = deg_to_rad(75)
@@ -58,6 +58,7 @@ const REALIGN_DURATION := 0.3
 var _shake_strength := 0.0
 
 func _ready() -> void:
+	health = max_health
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	state_machine.init(self)
 	_fix_ual1_tracks()
@@ -144,6 +145,8 @@ func camera_shake(strength: float) -> void:
 	_shake_strength = max(_shake_strength, strength)
 
 func _physics_process(delta: float) -> void:
+	if _invuln_timer > 0.0:
+		_invuln_timer -= delta
 	if velocity.y < 0:
 		last_fall_speed = -velocity.y
 	state_machine.physics_process(delta)
@@ -323,3 +326,28 @@ func rotate_model_toward_camera(delta: float) -> void:
 		return
 	var target_basis := Basis.looking_at(forward, Vector3.UP)
 	player_model.global_basis = player_model.global_basis.slerp(target_basis, ROTATION_SPEED * delta)
+
+signal health_changed(current: float, max: float)
+signal died
+
+@export var max_health: float = 100.0
+@export var hit_shake_strength: float = 0.15
+@export var invuln_time: float = 0.5
+
+var health: float
+var _invuln_timer: float = 0.0
+
+func take_damage(amount: float) -> void:
+	if _invuln_timer > 0.0:
+		return
+	health = max(health - amount, 0.0)
+	health_changed.emit(health, max_health)
+	camera_shake(hit_shake_strength)
+	play_hit_sfx()
+	_invuln_timer = invuln_time
+	if health <= 0.0:
+		died.emit()
+		state_machine.transition_to("DeathState")
+	else:
+		state_machine.transition_to("HurtState")
+		# state_machine.transition_to("Death") — depends on your player state names

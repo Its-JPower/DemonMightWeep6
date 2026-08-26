@@ -1,15 +1,16 @@
 class_name BossRecoverState
 extends BossState
 
+var timer: float = 0.0
+
 func _init() -> void:
 	state_name = "Recover"
 
-var timer: float = 0.0
-
 func enter() -> void:
 	timer = 0.0
+	boss.animation_player.play("recover")
 
 func physics_process(delta: float) -> void:
 	timer += delta
-	if timer >= state_machine.states["Attack"].current_attack.recover_time:
+	if timer >= boss.recover_time:
 		state_machine.transition_to("Idle")

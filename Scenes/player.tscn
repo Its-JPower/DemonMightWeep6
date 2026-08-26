@@ -1,48 +1,50 @@
 [gd_scene format=3 uid="uid://c8dmjl15wp2dr"]
 
-[ext_resource type="Script" uid="uid://cb2g1lhebocn" path="res://Scripts/player.gd" id="1_v0iea"]
-[ext_resource type="Script" uid="uid://crdi13g4wqmmd" path="res://Scripts/state_machine.gd" id="2_cvnsp"]
+[ext_resource type="Script" uid="uid://cb2g1lhebocn" path="res://scripts/player.gd" id="1_v0iea"]
+[ext_resource type="Script" uid="uid://crdi13g4wqmmd" path="res://scripts/state_machine.gd" id="2_cvnsp"]
 [ext_resource type="PackedScene" uid="uid://bdr00mnylssoe" path="res://assets/title_screen/Donte_With_Animations.glb" id="2_f1ek2"]
 [ext_resource type="AudioStream" uid="uid://8i4vjmbampgf" path="res://assets/audio/donte/hueah.mp3" id="2_ypfnu"]
-[ext_resource type="Script" uid="uid://i3o4bdjqn47" path="res://Scripts/sword.gd" id="3_f1ej7"]
-[ext_resource type="Script" uid="uid://4k51j4v87low" path="res://Scripts/states/idle_state.gd" id="3_tuyoq"]
+[ext_resource type="Script" uid="uid://i3o4bdjqn47" path="res://scripts/sword.gd" id="3_f1ej7"]
+[ext_resource type="Script" uid="uid://4k51j4v87low" path="res://scripts/states/idle_state.gd" id="3_tuyoq"]
 [ext_resource type="AnimationLibrary" uid="uid://b0r7k8cwdoyh6" path="res://assets/animation_resources/Stash 2.res" id="3_tx1dd"]
 [ext_resource type="AudioStream" uid="uid://cgbokermg5cby" path="res://assets/audio/donte/yeuah.mp3" id="3_xuaoq"]
 [ext_resource type="PackedScene" uid="uid://d18kxv66x46a1" path="res://assets/title_screen/edged-force.glb" id="4_0gysh"]
-[ext_resource type="PackedScene" uid="uid://cwd0i0y8vl5cj" path="res://Scenes/player_ui.tscn" id="4_jej6c"]
-[ext_resource type="Script" uid="uid://ddvyxmtmnykt6" path="res://Scripts/states/walk_state.gd" id="4_tuyoq"]
+[ext_resource type="PackedScene" uid="uid://cwd0i0y8vl5cj" path="res://scenes/player_ui.tscn" id="4_jej6c"]
+[ext_resource type="Script" uid="uid://ddvyxmtmnykt6" path="res://scripts/states/walk_state.gd" id="4_tuyoq"]
 [ext_resource type="AudioStream" uid="uid://bjf02lteushg4" path="res://assets/audio/donte/HEEHEE.mp3" id="5_8gxox"]
-[ext_resource type="Script" uid="uid://crthkaqtidon3" path="res://Scripts/states/run_state.gd" id="5_fjrip"]
+[ext_resource type="Script" uid="uid://crthkaqtidon3" path="res://scripts/states/run_state.gd" id="5_fjrip"]
 [ext_resource type="AudioStream" uid="uid://dg46amiusyak5" path="res://assets/audio/donte/jack-jack-jjackpot.mp3" id="6_11gg7"]
-[ext_resource type="PackedScene" uid="uid://bxquvfoplu42h" path="res://Scenes/style_rank_hud.tscn" id="6_ke2ow"]
-[ext_resource type="PackedScene" uid="uid://c6ne0o4c30a64" path="res://Scenes/pause_menu.tscn" id="6_l71n6"]
-[ext_resource type="Script" uid="uid://bf1dvnj6bd2to" path="res://Scripts/states/jump_state.gd" id="6_smehm"]
-[ext_resource type="Script" uid="uid://blc71b6bedo5l" path="res://Scripts/states/abdomen_piercer_state.gd" id="7_fjrip"]
+[ext_resource type="PackedScene" uid="uid://bxquvfoplu42h" path="res://scenes/style_rank_hud.tscn" id="6_ke2ow"]
+[ext_resource type="PackedScene" uid="uid://c6ne0o4c30a64" path="res://scenes/pause_menu.tscn" id="6_l71n6"]
+[ext_resource type="Script" uid="uid://bf1dvnj6bd2to" path="res://scripts/states/jump_state.gd" id="6_smehm"]
+[ext_resource type="Script" uid="uid://blc71b6bedo5l" path="res://scripts/states/abdomen_piercer_state.gd" id="7_fjrip"]
 [ext_resource type="AudioStream" uid="uid://bpat0w6ylyht2" path="res://assets/audio/donte/sorry-but-im-not-on-the-menu.mp3" id="7_qpa8y"]
 [ext_resource type="AudioStream" uid="uid://fm2x3w7lnn2c" path="res://assets/audio/donte/givemetheyamaha.mp3" id="8_sbwqj"]
-[ext_resource type="Script" uid="uid://b0upo36onthnu" path="res://Scripts/states/fall_state.gd" id="8_smehm"]
-[ext_resource type="PackedScene" uid="uid://duwqgyaubfpss" path="res://Scenes/settings_menu.tscn" id="8_y6uwr"]
+[ext_resource type="Script" uid="uid://b0upo36onthnu" path="res://scripts/states/fall_state.gd" id="8_smehm"]
+[ext_resource type="PackedScene" uid="uid://duwqgyaubfpss" path="res://scenes/settings_menu.tscn" id="8_y6uwr"]
 [ext_resource type="AudioStream" uid="uid://mn5xapq51twy" path="res://assets/audio/donte/whensthelasttimeyoubrushedyourteeth.mp3" id="9_xwi16"]
-[ext_resource type="Script" uid="uid://ft3abigxrh83" path="res://Scripts/settings_btn.gd" id="10_83xs0"]
+[ext_resource type="Script" uid="uid://ft3abigxrh83" path="res://scripts/settings_btn.gd" id="10_83xs0"]
 [ext_resource type="AudioStream" uid="uid://cfnqyg72gl531" path="res://assets/audio/hit/GOREStab_SwordStabGore_HoveAud_SwordCombat_01.wav" id="10_ph33w"]
 [ext_resource type="AudioStream" uid="uid://bqic3dak2spqs" path="res://assets/audio/hit/GOREStab_SwordStabGore_HoveAud_SwordCombat_11.wav" id="11_7ldla"]
-[ext_resource type="Script" uid="uid://c6sjh3iy3ebgv" path="res://Scripts/states/land_state.gd" id="11_d2wvv"]
-[ext_resource type="Script" uid="uid://bu1c4jpoiwplk" path="res://Scripts/states/upper_slash_state.gd" id="12_3v2ag"]
+[ext_resource type="Script" uid="uid://c6sjh3iy3ebgv" path="res://scripts/states/land_state.gd" id="11_d2wvv"]
+[ext_resource type="Script" uid="uid://bu1c4jpoiwplk" path="res://scripts/states/upper_slash_state.gd" id="12_3v2ag"]
 [ext_resource type="AudioStream" uid="uid://b4woo2bp6xr13" path="res://assets/audio/hit/GOREStab_SwordStabGore_HoveAud_SwordCombat_17.wav" id="12_r7t2e"]
 [ext_resource type="AudioStream" uid="uid://cxt4aiq05qrs" path="res://assets/audio/hit/WEAPSwrd_SwordStabwRing_HoveAud_SwordCombat_01.wav" id="13_nmr2m"]
 [ext_resource type="AudioStream" uid="uid://b3rbdpo71oakm" path="res://assets/audio/hit/WEAPSwrd_SwordStabwRing_HoveAud_SwordCombat_11.wav" id="14_ax3m3"]
 [ext_resource type="AudioStream" uid="uid://csxem4idvm41d" path="res://assets/audio/hit/WEAPSwrd_SwordStabwRing_HoveAud_SwordCombat_17.wav" id="15_3vlem"]
-[ext_resource type="Script" uid="uid://8dplhjlnsmxq" path="res://Scripts/states/sword_slash_a_state.gd" id="15_qfm1y"]
-[ext_resource type="Script" uid="uid://dvmcxlt1svjua" path="res://Scripts/states/sword_slash_b_state.gd" id="16_fulsm"]
-[ext_resource type="Script" uid="uid://c723ibwwkmuba" path="res://Scripts/states/sword_slash_c_state.gd" id="17_4r5pv"]
+[ext_resource type="Script" uid="uid://8dplhjlnsmxq" path="res://scripts/states/sword_slash_a_state.gd" id="15_qfm1y"]
+[ext_resource type="Script" uid="uid://dvmcxlt1svjua" path="res://scripts/states/sword_slash_b_state.gd" id="16_fulsm"]
+[ext_resource type="Script" uid="uid://c723ibwwkmuba" path="res://scripts/states/sword_slash_c_state.gd" id="17_4r5pv"]
 [ext_resource type="Texture2D" uid="uid://cep87kbb24mff" path="res://assets/title_screen/Donte_With_Animations_man_tex.png" id="17_7ldla"]
-[ext_resource type="Script" uid="uid://craks73e1kgxx" path="res://Scripts/states/down_slam_state.gd" id="18_igrcy"]
-[ext_resource type="Script" uid="uid://b4arnmky3mhx3" path="res://Scripts/states/million_stabs_state.gd" id="19_4r5pv"]
-[ext_resource type="Script" uid="uid://46evunog7rgk" path="res://Scripts/states/air_slash_a_state.gd" id="20_60mlk"]
-[ext_resource type="Script" uid="uid://bbabv7ysedrtd" path="res://Scripts/states/air_slash_b_state.gd" id="21_i4ail"]
-[ext_resource type="Script" uid="uid://c8vobqamjfrop" path="res://Scripts/states/air_slash_c_state.gd" id="22_a38lo"]
-[ext_resource type="Script" uid="uid://dxyyjldlarlbo" path="res://Scripts/states/rising_slash_state.gd" id="23_4ni07"]
+[ext_resource type="Script" uid="uid://craks73e1kgxx" path="res://scripts/states/down_slam_state.gd" id="18_igrcy"]
+[ext_resource type="Script" uid="uid://b4arnmky3mhx3" path="res://scripts/states/million_stabs_state.gd" id="19_4r5pv"]
+[ext_resource type="Script" uid="uid://46evunog7rgk" path="res://scripts/states/air_slash_a_state.gd" id="20_60mlk"]
+[ext_resource type="Script" uid="uid://bbabv7ysedrtd" path="res://scripts/states/air_slash_b_state.gd" id="21_i4ail"]
+[ext_resource type="Script" uid="uid://c8vobqamjfrop" path="res://scripts/states/air_slash_c_state.gd" id="22_a38lo"]
+[ext_resource type="Script" uid="uid://dxyyjldlarlbo" path="res://scripts/states/rising_slash_state.gd" id="23_4ni07"]
 [ext_resource type="AudioStream" uid="uid://dw0j0obj62tdk" path="res://assets/audio/donte/heh-jackpot.mp3" id="31_xuaoq"]
+[ext_resource type="Script" uid="uid://cchw2cgjnx6cr" path="res://scripts/hurt_state.gd" id="44_hhpqf"]
+[ext_resource type="Script" uid="uid://dfsgccnqwgotf" path="res://scripts/death_state.gd" id="45_g5jhy"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qay8w"]
 albedo_texture = ExtResource("17_7ldla")
@@ -59,14 +61,24 @@ radius = 0.2
 
 [node name="Player" type="CharacterBody3D" unique_id=1620402980 groups=["player"]]
 script = ExtResource("1_v0iea")
+mouse_sensitivity = null
+tilt_limit = null
+lock_on_timeout = null
+lock_on_cam_speed = null
+shake_decay = null
 hit_sfx = Array[AudioStream]([ExtResource("2_ypfnu"), ExtResource("3_xuaoq")])
+hit_sfx_pitch_range = null
 kill_sfx = Array[AudioStream]([ExtResource("31_xuaoq"), ExtResource("5_8gxox"), ExtResource("6_11gg7"), ExtResource("7_qpa8y"), ExtResource("8_sbwqj"), ExtResource("9_xwi16")])
 enemy_sfx = Array[AudioStream]([ExtResource("10_ph33w"), ExtResource("11_7ldla"), ExtResource("12_r7t2e"), ExtResource("13_nmr2m"), ExtResource("14_ax3m3"), ExtResource("15_3vlem")])
+sfx_pitch_range = null
+max_health = null
+hit_shake_strength = null
+invuln_time = null
 
 [node name="Mesh" parent="." unique_id=808791566 instance=ExtResource("2_f1ek2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.7973151, 0)
 
-[node name="Skeleton3D" parent="Mesh" index="0" unique_id=751771092]
+[node name="Skeleton3D" parent="Mesh" index="0" unique_id=1265366976]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
 bones/2/position = Vector3(5.551115e-16, 0.05010003, 0.9167)
 bones/2/rotation = Quaternion(0.7904686, 9.127004e-09, 1.1778896e-08, 0.61250275)
@@ -133,7 +145,7 @@ bones/62/rotation = Quaternion(0.036589622, -0.00013122692, -4.7918757e-06, 0.99
 bones/63/rotation = Quaternion(-0.5290731, -0.00032809633, 0.00034345736, 0.8485761)
 bones/64/rotation = Quaternion(-0.00013714515, 0.96430665, -0.2647875, -0.00049954205)
 
-[node name="male_player_002" parent="Mesh/Skeleton3D" index="0" unique_id=1100027592]
+[node name="male_player_002" parent="Mesh/Skeleton3D" index="0" unique_id=907653407]
 surface_material_override/0 = SubResource("StandardMaterial3D_qay8w")
 
 [node name="BoneAttachment3D" type="BoneAttachment3D" parent="Mesh/Skeleton3D" index="1" unique_id=1621594055]
@@ -155,7 +167,7 @@ transform = Transform3D(1, 2.9802322e-08, 1.3969839e-09, 8.940697e-08, 1, 4.6566
 transform = Transform3D(0.9854013, -0.1702176, -0.0014356414, 0.17021734, 0.9854066, -4.2568136e-05, 0.0014218476, -0.00020244469, 0.9999973, -53.217537, -7.7868843, 2.4052887)
 shape = SubResource("BoxShape3D_b1vkl")
 
-[node name="AnimationPlayer" parent="Mesh" index="1" unique_id=2002640850]
+[node name="AnimationPlayer" parent="Mesh" index="1" unique_id=82192868]
 "libraries/Stash 2" = ExtResource("3_tx1dd")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1823396936]
@@ -251,6 +263,14 @@ script = ExtResource("22_a38lo")
 
 [node name="RisingSlashState" type="Node" parent="StateMachine" unique_id=1534637852]
 script = ExtResource("23_4ni07")
+
+[node name="HurtState" type="Node" parent="StateMachine" unique_id=345780962]
+script = ExtResource("44_hhpqf")
+metadata/_custom_type_script = "uid://b7256iffjigj1"
+
+[node name="DeathState" type="Node" parent="StateMachine" unique_id=987769518]
+script = ExtResource("45_g5jhy")
+metadata/_custom_type_script = "uid://b7256iffjigj1"
 
 [node name="HitSFXPlayer" type="AudioStreamPlayer3D" parent="." unique_id=1900938467]
 unique_name_in_owner = true

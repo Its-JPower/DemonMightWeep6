@@ -1,19 +1,17 @@
 [gd_scene format=3 uid="uid://cae3wa5t6uay"]
 
-[ext_resource type="Script" uid="uid://b4b8ofo11pewr" path="res://Scripts/boss.gd" id="1_0154r"]
+[ext_resource type="Script" uid="uid://b4b8ofo11pewr" path="res://scripts/boss.gd" id="1_0154r"]
 [ext_resource type="PackedScene" uid="uid://e8tb7m3x6m8y" path="res://assets/spider_boss/Huntsman_Spider(Rigged).glb" id="2_nuv35"]
-[ext_resource type="Script" uid="uid://b8pn2ky40t3bc" path="res://Scripts/boss_state_machine.gd" id="2_wwfse"]
-[ext_resource type="Script" uid="uid://baa8ucmrsir2p" path="res://Scripts/boss_state.gd" id="3_cxrok"]
-[ext_resource type="Script" uid="uid://cn8d1ot747dqs" path="res://Scripts/boss_idle_state.gd" id="4_ukjjc"]
-[ext_resource type="Script" uid="uid://c62fd42fn1ejk" path="res://Scripts/boss_telegraph_state.gd" id="5_mh6p8"]
-[ext_resource type="Script" uid="uid://du3n44sve50lh" path="res://Scripts/weak_point.gd" id="5_n725y"]
-[ext_resource type="Script" uid="uid://bxnnwlgtcpcql" path="res://Scripts/boss_attack_state.gd" id="6_qtle2"]
-[ext_resource type="Script" uid="uid://bydarajvodxn6" path="res://Scripts/boss_recover_state.gd" id="7_yq25j"]
-[ext_resource type="Script" uid="uid://diyq8ij7pqpw0" path="res://Scripts/boss_staggered_state.gd" id="8_odcco"]
-[ext_resource type="Script" uid="uid://t5samlk16v6" path="res://Scripts/boss_death_state.gd" id="9_q76ad"]
+[ext_resource type="Script" uid="uid://b8pn2ky40t3bc" path="res://scripts/boss_state_machine.gd" id="2_wwfse"]
+[ext_resource type="Script" uid="uid://baa8ucmrsir2p" path="res://scripts/boss_state.gd" id="3_cxrok"]
+[ext_resource type="Script" uid="uid://cn8d1ot747dqs" path="res://scripts/boss_idle_state.gd" id="4_ukjjc"]
+[ext_resource type="Script" uid="uid://du3n44sve50lh" path="res://scripts/weak_point.gd" id="5_n725y"]
+[ext_resource type="Script" uid="uid://bxnnwlgtcpcql" path="res://scripts/boss_attack_state.gd" id="6_qtle2"]
+[ext_resource type="Script" uid="uid://diyq8ij7pqpw0" path="res://scripts/boss_staggered_state.gd" id="8_odcco"]
+[ext_resource type="Script" uid="uid://t5samlk16v6" path="res://scripts/boss_death_state.gd" id="9_q76ad"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_5648x"]
-height = 1.1862793
+height = 0.959198
 radius = 0.95654297
 
 [sub_resource type="SphereMesh" id="SphereMesh_g4v7s"]
@@ -21,27 +19,27 @@ radius = 0.95654297
 [sub_resource type="SphereShape3D" id="SphereShape3D_yf5fn"]
 
 [node name="Boss" type="CharacterBody3D" unique_id=1398006732]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
 script = ExtResource("1_0154r")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1692174352]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6235916, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.47510833, 0)
 shape = SubResource("CylinderShape3D_5648x")
 
 [node name="Spider" parent="." unique_id=441253970 instance=ExtResource("2_nuv35")]
 
-[node name="Skeleton3D" parent="Spider/Armature" parent_id_path=PackedInt32Array(441253970, 1782952457) index="0" unique_id=1577736190]
+[node name="Skeleton3D" parent="Spider/Armature" parent_id_path=PackedInt32Array(441253970, 1701219389) index="0" unique_id=1688119284]
 bones/0/position = Vector3(0, -0.021212133, 0)
-bones/0/rotation = Quaternion(-1.1641538e-10, 0, 0, 1)
 bones/1/rotation = Quaternion(0.67782104, 0.26971036, 0.6406497, -0.23954748)
-bones/2/rotation = Quaternion(0.29318497, -0.0814701, 0.07924308, 0.9492764)
-bones/3/rotation = Quaternion(0.21361355, -0.07433289, 0.24473628, 0.9428404)
-bones/4/rotation = Quaternion(0.29802758, 0.002988647, 0.0071650026, 0.95452577)
-bones/5/rotation = Quaternion(0.88251734, -0.004879062, -0.0006671562, -0.47025418)
+bones/2/rotation = Quaternion(0.293185, -0.08147008, 0.07924305, 0.9492764)
+bones/3/rotation = Quaternion(0.21361354, -0.0743329, 0.24473628, 0.9428404)
+bones/4/rotation = Quaternion(0.29802758, 0.0029886533, 0.00716502, 0.95452577)
+bones/5/rotation = Quaternion(0.8825173, -0.0048790593, -0.0006671559, -0.47025427)
 bones/6/rotation = Quaternion(0.67782104, -0.26971036, -0.6406497, -0.23954748)
-bones/7/rotation = Quaternion(0.29318503, 0.08147003, -0.079242945, 0.9492764)
-bones/8/rotation = Quaternion(0.21361353, 0.074332885, -0.24473627, 0.94284046)
-bones/9/rotation = Quaternion(0.29802752, -0.002988765, -0.0071649794, 0.9545257)
-bones/10/rotation = Quaternion(0.8825175, 0.004878976, 0.00066721876, -0.47025385)
+bones/7/rotation = Quaternion(0.29318503, 0.08147002, -0.079242975, 0.9492764)
+bones/8/rotation = Quaternion(0.21361353, 0.07433288, -0.24473624, 0.94284046)
+bones/9/rotation = Quaternion(0.29802752, -0.0029887646, -0.0071650175, 0.9545257)
+bones/10/rotation = Quaternion(0.8825176, 0.0048790053, 0.0006671971, -0.47025377)
 bones/11/rotation = Quaternion(0.42149657, 0.36514366, 0.8160901, -0.15168281)
 bones/12/rotation = Quaternion(0.1387331, 0.012761994, 0.14967373, 0.9788708)
 bones/13/rotation = Quaternion(0.552473, -0.07184232, -0.11785077, 0.822024)
@@ -53,10 +51,10 @@ bones/19/rotation = Quaternion(-0.066528, 0.0100365775, 0.027120143, 0.9973655)
 bones/20/rotation = Quaternion(-0.8203192, -0.0060984874, -0.013195778, 0.5717213)
 bones/21/rotation = Quaternion(-1.5462804e-07, 0.6077129, 0.7941568, -1.1832607e-07)
 bones/22/rotation = Quaternion(-1.8092376e-07, -0.36955342, 0.9292095, -7.1954695e-08)
-bones/23/rotation = Quaternion(-0.31948456, -0.062368628, 0.010653259, 0.9454767)
-bones/24/rotation = Quaternion(0.82113254, -0.074757054, -0.017762238, 0.56554157)
-bones/25/rotation = Quaternion(-0.32827, 0.0634349, -0.010551592, 0.9423925)
-bones/26/rotation = Quaternion(0.8200776, 0.07495568, 0.017739369, 0.56704485)
+bones/23/rotation = Quaternion(-0.31948447, -0.06236862, 0.010653248, 0.9454768)
+bones/24/rotation = Quaternion(0.8211325, -0.07475707, -0.017762223, 0.5655417)
+bones/25/rotation = Quaternion(-0.32827, 0.063434884, -0.010551591, 0.9423924)
+bones/26/rotation = Quaternion(0.82007754, 0.074955665, 0.017739372, 0.56704485)
 bones/27/position = Vector3(0.9984388, -0.7554883, -0.7420032)
 bones/29/position = Vector3(-0.9984388, -0.7554883, -0.7420032)
 bones/31/position = Vector3(0.96162415, -0.7643374, 0.74366355)
@@ -69,16 +67,16 @@ bones/41/position = Vector3(-0.17933819, -0.55632645, 0.8054036)
 bones/41/rotation = Quaternion(-0.0086552305, 0.70705384, 0.70705384, -0.0086552305)
 bones/43/rotation = Quaternion(1.5591597e-18, 0.99999994, 2.9802326e-08, -0.00032980836)
 
-[node name="Bone_002" parent="Spider/Armature/Skeleton3D" index="0" unique_id=1645411612]
+[node name="Bone_002" parent="Spider/Armature/Skeleton3D" index="0" unique_id=1059275185]
 transform = Transform3D(-1, -1.4210855e-14, -3.8941437e-07, -3.7587785e-07, -0.26137006, 0.9652387, -1.01781254e-07, 0.9652387, 0.26137, 0, -0.021212133, 0)
 
-[node name="Circle" parent="Spider" index="1" unique_id=130571531]
+[node name="Circle" parent="Spider" index="1" unique_id=256048230]
 visible = false
 
-[node name="Plane" parent="Spider" index="2" unique_id=1739275716]
+[node name="Plane" parent="Spider" index="2" unique_id=713907402]
 visible = false
 
-[node name="AnimationPlayer" parent="Spider" index="3" unique_id=1243114509]
+[node name="AnimationPlayer" parent="Spider" index="3" unique_id=271523299]
 autoplay = &"Idle"
 
 [node name="BossStateMachine" type="Node" parent="." unique_id=414079519]
@@ -90,14 +88,8 @@ script = ExtResource("3_cxrok")
 [node name="BossIdleState" type="Node" parent="BossStateMachine" unique_id=1066530790]
 script = ExtResource("4_ukjjc")
 
-[node name="BossTelegraphState" type="Node" parent="BossStateMachine" unique_id=651786654]
-script = ExtResource("5_mh6p8")
-
 [node name="BossAttackState" type="Node" parent="BossStateMachine" unique_id=626733078]
 script = ExtResource("6_qtle2")
-
-[node name="BossRecoverState" type="Node" parent="BossStateMachine" unique_id=1907041217]
-script = ExtResource("7_yq25j")
 
 [node name="BossStaggeredState" type="Node" parent="BossStateMachine" unique_id=794254481]
 script = ExtResource("8_odcco")
@@ -106,6 +98,7 @@ script = ExtResource("8_odcco")
 script = ExtResource("9_q76ad")
 
 [node name="WeakPoint1" type="Area3D" parent="." unique_id=1970066425]
+visible = false
 script = ExtResource("5_n725y")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="WeakPoint1" unique_id=1681462777]
@@ -113,5 +106,9 @@ mesh = SubResource("SphereMesh_g4v7s")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="WeakPoint1" unique_id=1290234973]
 shape = SubResource("SphereShape3D_yf5fn")
+
+[node name="CollisionPolygon3D" type="CollisionPolygon3D" parent="." unique_id=799974789]
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="." unique_id=981015999]
 
 [editable path="Spider"]
