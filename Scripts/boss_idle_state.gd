@@ -7,6 +7,7 @@ func _init() -> void:
 var timer: float = 0.0
 
 func enter() -> void:
+	boss.anim_player.play("Idle")
 	timer = 0.0
 
 func physics_process(delta: float) -> void:

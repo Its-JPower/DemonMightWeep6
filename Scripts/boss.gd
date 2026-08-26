@@ -16,6 +16,7 @@ var stagger_meter: float = 0.0
 var is_staggered: bool = false
 
 @onready var state_machine: BossStateMachine = $BossStateMachine
+@onready var anim_player: AnimationPlayer = $Spider/AnimationPlayer
 
 func _ready() -> void:
 	health = max_health
