@@ -4,6 +4,7 @@ extends Node
 @export var initial_state: BossState
 
 var current_state: BossState
+var previous_state: BossState
 var states: Dictionary = {}
 
 @onready var boss: Boss = get_parent()
@@ -26,6 +27,12 @@ func transition_to(name: String) -> void:
 	if not states.has(name):
 		push_warning("BossStateMachine: no state '%s'" % name)
 		return
+	if current_state == null:
+		push_error("BossStateMachine: transition_to('%s') called with current_state == null — was initial_state set in the inspector?" % name)
+		current_state = states[name]
+		current_state.enter()
+		return
 	current_state.exit()
+	previous_state = current_state
 	current_state = states[name]
 	current_state.enter()

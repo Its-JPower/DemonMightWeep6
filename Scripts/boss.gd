@@ -22,12 +22,13 @@ var stagger_meter: float = 0.0
 var is_staggered: bool = false
 
 @onready var state_machine: BossStateMachine = $BossStateMachine
-@onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var animation_player: AnimationPlayer = $Spider/AnimationPlayer
 @onready var nav_agent: NavigationAgent3D = $NavigationAgent3D
 @onready var mesh: MeshInstance3D = $MeshInstance3D  # adjust path to your mesh node
 
 const red_material: StandardMaterial3D = preload("uid://dc364wgj8xedm")
 var original_material: Material = null
+
 func _ready() -> void:
 	super()
 	player = get_tree().get_first_node_in_group("player")
@@ -43,6 +44,11 @@ func _physics_process(delta: float) -> void:
 		knockback_velocity.z = move_toward(knockback_velocity.z, 0.0, 40.0 * delta)
 	else:
 		knockback_velocity = knockback_velocity.move_toward(Vector3.ZERO, 40.0 * delta)
+		if velocity.y < 0.0:
+			velocity.y = 0.0
+
+	velocity.y = knockback_velocity.y
+	move_and_slide()
 
 func _on_weak_point_hit(damage: float) -> void:
 	take_damage(damage)
@@ -92,9 +98,7 @@ func chase_player(delta: float) -> void:
 		dir = dir.normalized()
 		velocity.x = dir.x * move_speed + knockback_velocity.x
 		velocity.z = dir.z * move_speed + knockback_velocity.z
-	velocity.y = knockback_velocity.y
 	face_player(delta)
-	move_and_slide()
 
 func _on_damaged(_amount: float) -> void:
 	_flash_red()
