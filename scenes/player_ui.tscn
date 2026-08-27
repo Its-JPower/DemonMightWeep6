@@ -17,12 +17,6 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_jkj6h")
 
-[node name="StateUI" type="Label" parent="." unique_id=1514451887]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
-text = "gdfgdfg"
-
 [node name="CombatHUD" type="VBoxContainer" parent="." unique_id=1213170494]
 layout_mode = 1
 anchors_preset = -1

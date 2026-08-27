@@ -103,6 +103,7 @@ func _on_run_summary_ready(result: Dictionary) -> void:
 
 	var root: Control = get_meta("_root")
 	root.visible = true
+	add_to_group("modal_ui")   # tells other UI (e.g. the pause menu) to ignore input while this is up
 
 	_previous_mouse_mode = Input.mouse_mode
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE   # release the camera's captured cursor so the UI is clickable
@@ -147,6 +148,8 @@ func _add_stat_row(label_text: String, value_text: String) -> void:
 func _on_main_menu_pressed() -> void:
 	var entered_name := _name_edit.text.strip_edges()
 	Leaderboard.add_entry(entered_name if entered_name != "" else default_name, _last_result)
+
+	remove_from_group("modal_ui")   # cleanup, though the scene change makes this mostly moot
 
 	if pause_game_on_death:
 		get_tree().paused = false
