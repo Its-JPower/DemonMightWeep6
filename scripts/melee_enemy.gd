@@ -7,7 +7,7 @@ extends Enemy
 @export_group("Scoring")
 @export var kill_points: int = 75
 @onready var attack_timer: Timer = $AttackTimer
-@onready var anim_player: AnimationPlayer = $AnimationPlayer  # optional
+@onready var anim_player: AnimationPlayer = $Spider/AnimationPlayer
 @onready var mesh: MeshInstance3D = $MeshInstance3D  # adjust path to your mesh node
 const red_material: StandardMaterial3D = preload("uid://dc364wgj8xedm")
 var original_material: Material = null
@@ -57,14 +57,25 @@ func _physics_process(delta: float) -> void:
 		if look_dir.length() > 0.01:
 			look_at(global_position + look_dir, Vector3.UP)
 	move_and_slide()
+	_update_locomotion_animation()
+func _update_locomotion_animation() -> void:
+	if is_attacking or not anim_player:
+		return  # never interrupt the attack swing
+	var horizontal_speed := Vector2(velocity.x, velocity.z).length()
+	if horizontal_speed > 0.1:
+		if anim_player.has_animation("Walk") and anim_player.current_animation != "Walk":
+			anim_player.play("Walk")
+	else:
+		if anim_player.has_animation("Idle") and anim_player.current_animation != "Idle":
+			anim_player.play("Idle")
 func _try_attack() -> void:
 	if is_attacking or not attack_timer.is_stopped() or not stun_timer.is_stopped():
 		return
 	is_attacking = true
 	velocity.x = 0.0
 	velocity.z = 0.0
-	if anim_player and anim_player.has_animation("attack"):
-		anim_player.play("attack")
+	if anim_player and anim_player.has_animation("Attack"):
+		anim_player.play("Attack")
 	# deal damage at the midpoint of the swing (adjust timing as needed)
 	await get_tree().create_timer(attack_cooldown * 0.35).timeout
 	_deal_damage()

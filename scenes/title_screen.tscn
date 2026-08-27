@@ -1,14 +1,14 @@
 [gd_scene format=3 uid="uid://dtlw60fbyf22v"]
 
-[ext_resource type="Script" uid="uid://c5xgkokcj63yu" path="res://scripts/title_screen.gd" id="1_e54dn"]
+[ext_resource type="Script" uid="uid://c5xgkokcj63yu" path="res://Scripts/title_screen.gd" id="1_e54dn"]
 [ext_resource type="PackedScene" uid="uid://d18kxv66x46a1" path="res://assets/title_screen/edged-force.glb" id="2_3yumr"]
 [ext_resource type="Theme" uid="uid://67i73kjitock" path="res://assets/theme.tres" id="3_cs5ya"]
 [ext_resource type="PackedScene" uid="uid://dkr7481vjq6yi" path="res://assets/title_screen/city.glb" id="4_mykxm"]
 [ext_resource type="Texture2D" uid="uid://d2croxutjjyln" path="res://assets/DMW6.png" id="5_tklts"]
-[ext_resource type="PackedScene" uid="uid://belfbytosbe20" path="res://scenes/donte.tscn" id="6_u26n3"]
+[ext_resource type="PackedScene" uid="uid://belfbytosbe20" path="res://Scenes/donte.tscn" id="6_u26n3"]
 [ext_resource type="Texture2D" uid="uid://cep87kbb24mff" path="res://assets/title_screen/Donte_With_Animations_man_tex.png" id="7_6vd4x"]
 [ext_resource type="AudioStream" uid="uid://xa0brmubqxyl" path="res://assets/audio/music/Devil May Cry 5 SoundTrack - Devil Trigger (Gallery Version).mp3" id="8_n82rj"]
-[ext_resource type="Script" uid="uid://ca8fticabdi4w" path="res://scripts/leaderboard_ui.gd" id="9_mykxm"]
+[ext_resource type="Script" uid="uid://ca8fticabdi4w" path="res://Scripts/leaderboard_ui.gd" id="9_mykxm"]
 
 [sub_resource type="Environment" id="Environment_8l4an"]
 background_mode = 1
@@ -102,7 +102,7 @@ texture = ExtResource("5_tklts")
 [node name="donte" parent="." unique_id=1347159811 instance=ExtResource("6_u26n3")]
 transform = Transform3D(0.08, 0, 0, 0, 0.08, 0, 0, 0, 0.08, -2.6379087, 0.8275474, 2.4434862)
 
-[node name="Skeleton3D" parent="donte" index="0" unique_id=905618900]
+[node name="Skeleton3D" parent="donte" index="0" unique_id=1719946698]
 bones/2/position = Vector3(5.551115e-16, 0.05010003, 0.9167)
 bones/2/rotation = Quaternion(0.7904686, 9.127004e-09, 1.1778896e-08, 0.61250275)
 bones/4/rotation = Quaternion(-0.0772799, -6.326934e-08, -1.5767906e-08, 0.99700946)
@@ -162,7 +162,7 @@ bones/62/rotation = Quaternion(0.036589622, -0.00013122692, -4.7918757e-06, 0.99
 bones/63/rotation = Quaternion(-0.5290731, -0.00032809633, 0.00034345736, 0.8485761)
 bones/64/rotation = Quaternion(-0.00013714515, 0.96430665, -0.2647875, -0.00049954205)
 
-[node name="male_player_002" parent="donte/Skeleton3D" index="0" unique_id=890272985]
+[node name="male_player_002" parent="donte/Skeleton3D" index="0" unique_id=1081514429]
 surface_material_override/0 = SubResource("StandardMaterial3D_mgs6e")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1282063553]

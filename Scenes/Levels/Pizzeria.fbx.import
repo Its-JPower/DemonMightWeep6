@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://dgagqotjx2tk5"
-path="res://.godot/imported/Pizzeria.fbx-c658259c451453051a4fa4649e471de2.scn"
+path="res://.godot/imported/Pizzeria.fbx-42f7dfd428a7363bab6ba3f611523c85.scn"
 
 [deps]
 
-source_file="res://scenes/Levels/Pizzeria.fbx"
-dest_files=["res://.godot/imported/Pizzeria.fbx-c658259c451453051a4fa4649e471de2.scn"]
+source_file="res://Scenes/Levels/Pizzeria.fbx"
+dest_files=["res://.godot/imported/Pizzeria.fbx-42f7dfd428a7363bab6ba3f611523c85.scn"]
 
 [params]
 
