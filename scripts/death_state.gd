@@ -1,6 +1,8 @@
 class_name DeathState
 extends State
 
+var state_name: String = "DeathState"
+
 @export var death_animation: StringName = &"Death"
 
 func enter() -> void:

@@ -16,10 +16,11 @@ func physics_process(delta: float) -> void:
 	var dist = boss.global_position.distance_to(boss.player.global_position)
 	if dist > boss.attack_range:
 		boss.animation_player.play("Walk")
-		boss.chase_player(delta)
+		boss.chase_player(delta)  # calls move_and_slide internally
 		return
-	boss.velocity.x = 0.0
-	boss.velocity.z = 0.0
+	boss.velocity.x = boss.knockback_velocity.x
+	boss.velocity.y = boss.knockback_velocity.y
+	boss.velocity.z = boss.knockback_velocity.z
 	boss.move_and_slide()
 	boss.face_player(delta)
 	boss.animation_player.play("Idle")

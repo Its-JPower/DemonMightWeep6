@@ -21,7 +21,24 @@ extends CharacterBody3D
 @export var hit_sfx_pitch_range := Vector2(0.95, 1.05)
 @onready var _hit_sfx_player: AudioStreamPlayer3D = %HitSFXPlayer
 
+@export var kill_sfx: Array[AudioStream] = []
+@export var enemy_sfx: Array[AudioStream] = []
+@export var sfx_pitch_range := Vector2(0.95, 1.05)
 
+signal health_changed(current: float, max: float)
+signal died
+
+@export var max_health: float = 100.0
+@export var hit_shake_strength: float = 0.15
+@export var invuln_time: float = 0.5
+@export var knockback_friction: float = 40.0
+
+@export var hurt_state: State
+@export var death_state: State
+
+var health: float
+var _invuln_timer: float = 0.0
+var knockback_velocity: Vector3 = Vector3.ZERO
 
 var lock_on_target: Node3D = null         # currently locked enemy
 var _lock_on_idle_timer := 0.0            # counts up when not attacking
@@ -34,8 +51,6 @@ var ROTATION_SPEED := 6.7
 var ACCELERATION := 15.0
 var DECELERATION := 20.0
 var SPECIALING_IT_SPEED := 2.0
-
-
 
 const JOY_SENSITIVITY := 2.5
 
@@ -50,7 +65,7 @@ var is_aiming = false
 var is_specialing_it = false
 var _joy_look := Vector2.ZERO
 var last_fall_speed
-var last_rotation_mode  := RotationMode.MOVEMENT
+var last_rotation_mode := RotationMode.MOVEMENT
 var _realigning_camera := false
 var _realign_timer := 0.0
 const REALIGN_DURATION := 0.3
@@ -63,11 +78,20 @@ func _ready() -> void:
 	state_machine.init(self)
 	_fix_ual1_tracks()
 
-@export var kill_sfx: Array[AudioStream] = []
-
-@export var enemy_sfx: Array[AudioStream] = []
-@export var sfx_pitch_range := Vector2(0.95, 1.05)
-
+func take_damage(amount: float, knockback_dir: Vector3 = Vector3.ZERO, knockback_strength: float = 0.0) -> void:
+	if _invuln_timer > 0.0:
+		return
+	health = max(health - amount, 0.0)
+	health_changed.emit(health, max_health)
+	camera_shake(hit_shake_strength)
+	play_hit_sfx()
+	_invuln_timer = invuln_time
+	knockback_velocity = knockback_dir * knockback_strength
+	if health <= 0.0:
+		died.emit()
+		state_machine.transition_to(death_state)
+	else:
+		state_machine.transition_to(hurt_state)
 
 func play_hit_sfx() -> void:
 	_play_one_shot(hit_sfx)
@@ -84,7 +108,7 @@ func _play_one_shot(pool: Array[AudioStream]) -> void:
 	p.pitch_scale = randf_range(sfx_pitch_range.x, sfx_pitch_range.y)
 	p.finished.connect(p.queue_free)
 	p.play()
-	
+
 func play_hit_sfx_enemy() -> void:
 	_play_one_shot(enemy_sfx)
 
@@ -147,6 +171,7 @@ func camera_shake(strength: float) -> void:
 func _physics_process(delta: float) -> void:
 	if _invuln_timer > 0.0:
 		_invuln_timer -= delta
+	knockback_velocity = knockback_velocity.move_toward(Vector3.ZERO, knockback_friction * delta)
 	if velocity.y < 0:
 		last_fall_speed = -velocity.y
 	state_machine.physics_process(delta)
@@ -294,10 +319,6 @@ func _drop_lock_on() -> void:
 	print("rotation_mode after drop: ", rotation_mode)
 	_realigning_camera = true
 	_realign_timer = 0.0
-	lock_on_target = null
-	rotation_mode = last_rotation_mode
-	_realigning_camera = true
-	_realign_timer = 0.0
 
 func get_camera_forward() -> Vector3:
 	var forward = -_camera_pivot_yaw.global_transform.basis.z
@@ -326,28 +347,3 @@ func rotate_model_toward_camera(delta: float) -> void:
 		return
 	var target_basis := Basis.looking_at(forward, Vector3.UP)
 	player_model.global_basis = player_model.global_basis.slerp(target_basis, ROTATION_SPEED * delta)
-
-signal health_changed(current: float, max: float)
-signal died
-
-@export var max_health: float = 100.0
-@export var hit_shake_strength: float = 0.15
-@export var invuln_time: float = 0.5
-
-var health: float
-var _invuln_timer: float = 0.0
-
-func take_damage(amount: float) -> void:
-	if _invuln_timer > 0.0:
-		return
-	health = max(health - amount, 0.0)
-	health_changed.emit(health, max_health)
-	camera_shake(hit_shake_strength)
-	play_hit_sfx()
-	_invuln_timer = invuln_time
-	if health <= 0.0:
-		died.emit()
-		state_machine.transition_to("DeathState")
-	else:
-		state_machine.transition_to("HurtState")
-		# state_machine.transition_to("Death") — depends on your player state names

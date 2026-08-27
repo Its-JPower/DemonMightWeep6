@@ -31,4 +31,5 @@ func _apply_damage() -> void:
 		return
 	var dist = boss.global_position.distance_to(boss.player.global_position)
 	if dist <= boss.attack_range and boss.player.has_method("take_damage"):
-		boss.player.take_damage(boss.attack_damage)
+		var knockback_dir = (boss.player.global_position - boss.global_position).normalized()
+		boss.player.take_damage(boss.attack_damage, knockback_dir, 6.0)

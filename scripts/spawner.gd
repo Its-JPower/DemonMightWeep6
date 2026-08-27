@@ -2,14 +2,21 @@ class_name EnemySpawner
 extends Node3D
 
 signal enemy_spawned(enemy: Node3D)
-signal cycle_completed(cycle_number: int)
+signal wave_completed(wave_number: int)
+signal boss_wave_started(wave_number: int)
+signal boss_defeated(wave_number: int)
 signal spawner_finished()
 
 @export_group("Enemies")
 @export var enemy_scenes: Array[PackedScene] = []
 @export var spawn_weights: Array[float] = []
 
-@export_group("Cycle Settings")
+@export_group("Boss Waves")
+@export var boss_scenes: Array[PackedScene] = []
+@export var boss_wave_interval: int = 10       # every Nth wave is a boss wave
+@export var boss_spawn_point: Node3D = null    # falls back to spawn_points logic if null
+
+@export_group("Wave Settings")
 @export var spawn_count: int = 3
 @export var cycle_interval: float = 5.0
 @export var spawn_stagger: float = 0.2
@@ -26,6 +33,12 @@ signal spawner_finished()
 @export_flags_3d_physics var ground_mask: int = 1
 @export var raycast_height: float = 50.0
 
+@export_group("Occupancy Check")
+@export var check_occupancy: bool = true
+@export var occupancy_radius: float = 0.6
+@export_flags_3d_physics var occupancy_mask: int = 1
+@export var max_placement_attempts: int = 8
+
 @export_group("Spawn Facing")
 @export var face_target: Node3D = null
 @export_range(0, 360) var random_rotation_range: float = 360.0
@@ -41,6 +54,8 @@ signal spawner_finished()
 var active: bool = false
 var cycle_count: int = 0
 var live_enemies: Array[Node3D] = []
+var current_boss: Node3D = null
+var is_boss_wave: bool = false
 
 var _cycle_timer: Timer
 var _stagger_timer: Timer
@@ -72,8 +87,8 @@ func start() -> void:
 	cycle_count = 0
 	_current_interval = cycle_interval
 	_current_count = spawn_count
-	_log("Spawner started. max_cycles=%d  spawn_count=%d  wait_for_clearance=%s" % [
-		max_cycles, spawn_count, wait_for_clearance])
+	_log("Spawner started. max_cycles=%d  spawn_count=%d  boss_wave_interval=%d" % [
+		max_cycles, spawn_count, boss_wave_interval])
 	_run_cycle()
 
 
@@ -112,15 +127,21 @@ func _run_cycle() -> void:
 
 	cycle_count += 1
 	_spawn_index = 0
+	is_boss_wave = boss_wave_interval > 0 and cycle_count % boss_wave_interval == 0
+
+	if is_boss_wave:
+		_run_boss_wave()
+		return
+
 	var to_spawn: int = int(_current_count)
 	if max_live_enemies > 0:
 		var available := max_live_enemies - live_enemies.size()
 		if available < to_spawn:
-			_log("Cycle %d: capped spawn count %d → %d (max_live_enemies limit)" % [
+			_log("Wave %d: capped spawn count %d → %d (max_live_enemies limit)" % [
 				cycle_count, to_spawn, available])
 			to_spawn = mini(to_spawn, available)
 
-	_log("=== Cycle %d start — spawning %d enemies (interval=%.2fs stagger=%.2fs) ===" % [
+	_log("=== Wave %d start — spawning %d enemies (interval=%.2fs stagger=%.2fs) ===" % [
 		cycle_count, to_spawn, _current_interval, spawn_stagger])
 
 	if spawn_stagger > 0.0:
@@ -129,6 +150,47 @@ func _run_cycle() -> void:
 		for i in to_spawn:
 			_spawn_one()
 		_finish_cycle()
+
+
+func _run_boss_wave() -> void:
+	if boss_scenes.is_empty():
+		push_warning("EnemySpawner: boss wave triggered but boss_scenes is empty — skipping.")
+		_finish_cycle()
+		return
+
+	_log("=== BOSS WAVE %d ===" % cycle_count)
+	boss_wave_started.emit(cycle_count)
+
+	var scene: PackedScene = boss_scenes.pick_random()
+	var boss := scene.instantiate() as Node3D
+	if boss == null:
+		push_error("EnemySpawner: boss scene root is not a Node3D.")
+		_finish_cycle()
+		return
+
+	var parent: Node = spawn_parent if spawn_parent else get_parent()
+	parent.add_child(boss)
+
+	var pos: Vector3 = boss_spawn_point.global_position if boss_spawn_point else _pick_position()
+	boss.global_position = pos
+	_apply_rotation(boss)
+
+	current_boss = boss
+	live_enemies.append(boss)
+	boss.tree_exiting.connect(_on_enemy_removed.bind(boss))
+	if boss.has_signal("died"):
+		boss.died.connect(_on_boss_died.bind(cycle_count))
+
+	enemy_spawned.emit(boss)
+	_log("  Boss '%s' spawned at %s" % [boss.name, pos])
+	# no _finish_cycle() here — the wave holds open until the boss dies
+
+
+func _on_boss_died(wave_number: int) -> void:
+	_log("Boss defeated on wave %d." % wave_number)
+	current_boss = null
+	boss_defeated.emit(wave_number)
+	_finish_cycle()
 
 
 func _stagger_spawn(count: int) -> void:
@@ -168,18 +230,19 @@ func _spawn_one() -> void:
 
 
 func _finish_cycle() -> void:
-	cycle_completed.emit(cycle_count)
-	_log("Cycle %d complete. live_enemies=%d" % [cycle_count, live_enemies.size()])
+	wave_completed.emit(cycle_count)
+	_log("Wave %d complete. live_enemies=%d" % [cycle_count, live_enemies.size()])
 
 	if max_cycles > 0 and cycle_count >= max_cycles:
 		active = false
 		spawner_finished.emit()
-		_log("All %d cycles finished. Spawner done." % max_cycles)
+		_log("All %d waves finished. Spawner done." % max_cycles)
 		return
 
-	_current_count = maxf(_current_count * count_scale_per_cycle, 1.0)
-	_current_interval = maxf(_current_interval * interval_scale_per_cycle, 0.1)
-	_log("Next cycle in %.2fs  (next_count=%d)" % [_current_interval, int(_current_count)])
+	if not is_boss_wave:
+		_current_count = maxf(_current_count * count_scale_per_cycle, 1.0)
+		_current_interval = maxf(_current_interval * interval_scale_per_cycle, 0.1)
+	_log("Next wave in %.2fs  (next_count=%d)" % [_current_interval, int(_current_count)])
 	_cycle_timer.start(_current_interval)
 
 
@@ -195,6 +258,17 @@ func _apply_rotation(enemy: Node3D) -> void:
 
 
 func _pick_position() -> Vector3:
+	if check_occupancy:
+		for attempt in max_placement_attempts:
+			var candidate := _pick_position_raw()
+			if not _is_position_occupied(candidate):
+				return candidate
+		_log("  All %d placement attempts occupied — using last candidate anyway." % max_placement_attempts)
+		return _pick_position_raw()
+	return _pick_position_raw()
+
+
+func _pick_position_raw() -> Vector3:
 	var base: Vector3
 	if spawn_points.is_empty():
 		base = global_position
@@ -212,6 +286,20 @@ func _pick_position() -> Vector3:
 		base = _raycast_ground(base)
 
 	return base
+
+
+func _is_position_occupied(pos: Vector3) -> bool:
+	var space := get_world_3d().direct_space_state
+	var query := PhysicsShapeQueryParameters3D.new()
+	var shape := SphereShape3D.new()
+	shape.radius = occupancy_radius
+	query.shape = shape
+	query.transform = Transform3D(Basis(), pos)
+	query.collision_mask = occupancy_mask
+	query.collide_with_bodies = true
+	query.collide_with_areas = false
+	var result := space.intersect_shape(query, 1)
+	return not result.is_empty()
 
 
 func _raycast_ground(pos: Vector3) -> Vector3:
@@ -246,6 +334,8 @@ func _pick_scene() -> PackedScene:
 
 func _on_enemy_removed(enemy: Node3D) -> void:
 	live_enemies.erase(enemy)
+	if enemy == current_boss:
+		current_boss = null
 	_log("Enemy '%s' removed. live_enemies=%d" % [enemy.name, live_enemies.size()])
 
 
