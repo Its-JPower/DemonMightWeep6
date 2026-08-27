@@ -7,6 +7,7 @@ extends CanvasLayer
 @onready var settings_button: Button = $VBoxContainer/SettingsBtn
 @onready var quit_button: Button = $VBoxContainer/QuitBtn
 
+@onready var player: Player = $"../../../../.."
 
 var settings_open: bool = false
 
@@ -60,5 +61,7 @@ func _close_settings() -> void:
 	settings_button.grab_focus()
 
 func _on_quit_pressed() -> void:
+	if player:
+		Leaderboard.add_entry("Player", player.finish_run())   # or show this same popup instead
 	get_tree().paused = false
-	get_tree().quit()
+	get_tree().change_scene_to_file("res://path/to/main_menu.tscn")

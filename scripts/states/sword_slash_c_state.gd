@@ -13,7 +13,8 @@ const HIT1_END := 0.2
 const HIT2_START := 0.3
 const HIT2_END := 0.5
 var hitbox_phase := 0
-
+@export var hit_invuln_time: float = 0.5   # i-frame window granted on landing a hit — longest of the three
+@export var restart_cancel_fraction: float = 0.6   # fraction of C's duration (after the last hit window) where a buffered attack cancels recovery and restarts the combo at Slash A
 func enter() -> void:
 	player.play_hit_sfx()
 	player.velocity.x = 0.0
@@ -31,7 +32,6 @@ func enter() -> void:
 	if not sword.hit_landed.is_connected(_on_hit):
 		sword.hit_landed.connect(_on_hit)
 	sword.enable_hitbox()
-
 func physics_process(delta: float) -> void:
 	var dir = player.get_movement_input()
 	timer += delta
@@ -43,7 +43,6 @@ func physics_process(delta: float) -> void:
 		player.apply_movement(delta)
 	player.apply_gravity(delta)
 	_update_hitbox_windows()
-
 	if timer >= duration * BUFFER_OPEN:
 		if Input.is_action_pressed("special"):
 			if Input.is_action_just_pressed("attack"):
@@ -54,20 +53,21 @@ func physics_process(delta: float) -> void:
 					state_machine.transition_to(state_machine.get_node("UpperSlashState"))
 		elif Input.is_action_just_pressed("attack"):
 			attack_buffered = true
-
 	player.move_and_slide()
+	# Cancel the rest of the recovery early if a follow-up attack is buffered —
+	# no need to sit through the whole animation to chain back into Slash A.
+	if attack_buffered and not special_buffered and timer >= duration * restart_cancel_fraction:
+		state_machine.combo_index = 0
+		state_machine.combo_timer = 0.0
+		state_machine.transition_to(state_machine.get_node("SwordSlashAState"))
+		return
 	if timer >= duration:
 		if special_buffered:
 			state_machine.combo_index = 0
 			state_machine.combo_timer = 0.0
 			state_machine.transition_to(state_machine.get_node("UpperSlashState"))
-		elif attack_buffered:
-			state_machine.combo_index = 0
-			state_machine.combo_timer = 0.0
-			state_machine.transition_to(state_machine.get_node("MillionStabsState"))
 		else:
 			_end_state()
-
 func _update_hitbox_windows() -> void:
 	var t := timer / duration
 	match hitbox_phase:
@@ -83,19 +83,17 @@ func _update_hitbox_windows() -> void:
 			if t >= HIT2_END:
 				sword.disable_hitbox()
 				hitbox_phase = 3
-
 func _on_hit(enemy: Enemy) -> void:
 	if player.lock_on_target == null:
 		player.set_lock_on_target(enemy)
 	enemy.take_damage(PlayerStats.sword_slash_c_damage, Vector3.ZERO, 0.0)
+	player.register_hit_landed(hit_invuln_time)
 	DamageNumbers.spawn(PlayerStats.sword_slash_c_damage, enemy.global_position)
 	StyleRankManager.register_action(state_name, 10.0)
-
 func exit() -> void:
 	sword.disable_hitbox()
 	if sword.hit_landed.is_connected(_on_hit):
 		sword.hit_landed.disconnect(_on_hit)
-
 func _end_state() -> void:
 	var dir = player.get_movement_input()
 	if dir.length() > 0.1:

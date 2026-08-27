@@ -16,8 +16,6 @@ extends Control
 @onready var air_slash_c = $AirSlashC
 @onready var down_slam = $DownSlam
 @onready var abdomen_piercer = $AbdomenPiercer
-@onready var million_stabs = $MillionStabs
-@onready var lock_on = $"Lock-On"
 @onready var cam_lock = $CamLock
 
 var all_icons: Array
@@ -26,7 +24,7 @@ func _ready() -> void:
 	all_icons = [
 		special, slash_a, slash_b, slash_c, upper_slash, rising_slash,
 		air_slash_a, air_slash_b, air_slash_c, down_slam,
-		abdomen_piercer, million_stabs, lock_on, cam_lock
+		abdomen_piercer, cam_lock
 	]
 
 func _process(_delta: float) -> void:
@@ -42,7 +40,6 @@ func _update_hud() -> void:
 	var holding_special = Input.is_action_pressed("special")
 	var on_floor = player.is_on_floor()
 	# Lock-on and cam lock are always available
-	lock_on.show()
 	cam_lock.show()
 
 	match state_name:
@@ -61,7 +58,7 @@ func _update_hud() -> void:
 			slash_c.show()
 
 		"SwordSlashCState":
-			million_stabs.show()
+			pass
 
 		"UpperSlashState":
 			pass  # committed, nothing chainable
@@ -82,8 +79,6 @@ func _update_hud() -> void:
 				special.show()
 				air_slash_a.show()  # loop back
 
-		"MillionStabsState":
-			million_stabs.show()  # mash to continue
 
 		"FallState":
 			air_slash_a.show()

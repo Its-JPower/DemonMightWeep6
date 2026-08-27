@@ -1,14 +1,12 @@
 [gd_scene format=3 uid="uid://cwd0i0y8vl5cj"]
 
-[ext_resource type="Script" uid="uid://cxxf67e1814ve" path="res://Scripts/player_ui.gd" id="1_jkj6h"]
-[ext_resource type="Script" uid="uid://knghbp06a8ss" path="res://Scripts/combat_hud.gd" id="2_sk4pr"]
+[ext_resource type="Script" uid="uid://cxxf67e1814ve" path="res://scripts/player_ui.gd" id="1_jkj6h"]
+[ext_resource type="Script" uid="uid://knghbp06a8ss" path="res://scripts/combat_hud.gd" id="2_sk4pr"]
 [ext_resource type="Texture2D" uid="uid://6vqrdsnrryn2" path="res://assets/input_prompts/Keyboard_Mouse/Alt/T_Mouse_Right_Key_Alt.png" id="3_8isll"]
 [ext_resource type="Texture2D" uid="uid://d4im1s35d53sy" path="res://assets/input_prompts/Keyboard_Mouse/Alt/T_Mouse_Left_Key_Alt.png" id="3_48xfa"]
 [ext_resource type="Texture2D" uid="uid://ugja33yc6mva" path="res://assets/input_prompts/Keyboard_Mouse/Alt/T_Crtl_Key_Alt.png" id="5_bkx2g"]
 [ext_resource type="Texture2D" uid="uid://b1jvbb2vvs31w" path="res://assets/input_prompts/Keyboard_Mouse/Alt/T_W_Key_Held_Alt.png" id="5_n31oh"]
 [ext_resource type="Texture2D" uid="uid://bd1oa63lm6p73" path="res://assets/input_prompts/Keyboard_Mouse/Alt/T_S_Key_Held_Alt.png" id="5_wsb5h"]
-[ext_resource type="Texture2D" uid="uid://ctkn4idpx4khi" path="res://assets/input_prompts/Keyboard_Mouse/Alt/T_Tab_Key_Alt.png" id="6_n31oh"]
-[ext_resource type="Texture2D" uid="uid://bgo0ouxvupm2d" path="res://assets/input_prompts/Keyboard_Mouse/Alt/T_Mouse_Left_Key_Mash_Alt.png.png" id="7_g4s8q"]
 
 [node name="PlayerUI" type="Control" unique_id=869021254]
 layout_mode = 3
@@ -182,30 +180,6 @@ texture = ExtResource("3_48xfa")
 [node name="Label" type="Label" parent="CombatHUD/AbdomenPiercer" unique_id=424947428]
 layout_mode = 2
 text = "Abdomen Piercer"
-
-[node name="MillionStabs" type="HBoxContainer" parent="CombatHUD" unique_id=2081166444]
-visible = false
-layout_mode = 2
-
-[node name="TextureRect" type="TextureRect" parent="CombatHUD/MillionStabs" unique_id=1576900478]
-layout_mode = 2
-texture = ExtResource("7_g4s8q")
-
-[node name="Label" type="Label" parent="CombatHUD/MillionStabs" unique_id=1033927031]
-layout_mode = 2
-text = "Million Stabs"
-
-[node name="Lock-On" type="HBoxContainer" parent="CombatHUD" unique_id=237450430]
-visible = false
-layout_mode = 2
-
-[node name="TextureRect" type="TextureRect" parent="CombatHUD/Lock-On" unique_id=6019417]
-layout_mode = 2
-texture = ExtResource("6_n31oh")
-
-[node name="Label" type="Label" parent="CombatHUD/Lock-On" unique_id=237419102]
-layout_mode = 2
-text = "Lock-On"
 
 [node name="CamLock" type="HBoxContainer" parent="CombatHUD" unique_id=1288767989]
 visible = false

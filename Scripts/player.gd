@@ -27,17 +27,25 @@ extends CharacterBody3D
 
 signal health_changed(current: float, max: float)
 signal died
+signal run_summary_ready(result: Dictionary)
 
 @export var max_health: float = 100.0
 @export var hit_shake_strength: float = 0.15
 @export var invuln_time: float = 0.5
 @export var knockback_friction: float = 40.0
+@export var post_hit_invuln_time: float = 0.25   # brief invuln granted after landing a hit on an enemy
 
 @export var hurt_state: State
 @export var death_state: State
 
+@export_group("Healing")
+@export var health_regen_rate: float = 0.0      # HP restored per second once regen kicks in (0 = disabled)
+@export var health_regen_delay: float = 3.0     # seconds since last damage taken before regen starts
+@export var kill_heal_amount: float = 5.0       # flat HP restored per enemy kill (0 = disabled)
+
 var health: float
 var _invuln_timer: float = 0.0
+var _time_since_damage: float = 0.0
 var knockback_velocity: Vector3 = Vector3.ZERO
 
 var lock_on_target: Node3D = null         # currently locked enemy
@@ -71,27 +79,65 @@ var _realign_timer := 0.0
 const REALIGN_DURATION := 0.3
 
 var _shake_strength := 0.0
+var _run_saved := false        # guards against saving the leaderboard entry twice
 
 func _ready() -> void:
 	health = max_health
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	state_machine.init(self)
 	_fix_ual1_tracks()
+	_run_saved = false
+	Score.start_run()
 
 func take_damage(amount: float, knockback_dir: Vector3 = Vector3.ZERO, knockback_strength: float = 0.0) -> void:
 	if _invuln_timer > 0.0:
 		return
 	health = max(health - amount, 0.0)
 	health_changed.emit(health, max_health)
+	Score.register_damage(amount)
+	_time_since_damage = 0.0
 	camera_shake(hit_shake_strength)
 	play_hit_sfx()
 	_invuln_timer = invuln_time
 	knockback_velocity = knockback_dir * knockback_strength
 	if health <= 0.0:
 		died.emit()
+		finish_run()
 		state_machine.transition_to(death_state)
 	else:
 		state_machine.transition_to(hurt_state)
+
+## Ends the run and emits the summary for UI (e.g. a game-over popup) to
+## display and save. Safe to call more than once (e.g. once from death,
+## once from a "quit to menu" button) — only the first call does anything.
+## Returns the result dict (empty {} if already finished) so callers that
+## don't show a popup can save a fallback entry themselves, e.g.:
+##   Leaderboard.add_entry("Player", player.finish_run())
+func finish_run() -> Dictionary:
+	if _run_saved:
+		return {}
+	_run_saved = true
+	var result := Score.end_run()
+	run_summary_ready.emit(result)
+	return result
+
+## duration defaults to post_hit_invuln_time, but callers (attack states)
+## can pass a longer window for heavier hits, e.g. Slash C.
+func register_hit_landed(duration: float = post_hit_invuln_time) -> void:
+	_invuln_timer = max(_invuln_timer, duration)
+
+## Restores health, clamped to max_health. Emits health_changed like normal
+## damage/heal changes do, so the health bar UI updates automatically.
+func heal(amount: float) -> void:
+	if amount <= 0.0 or health <= 0.0:
+		return
+	health = min(health + amount, max_health)
+	health_changed.emit(health, max_health)
+
+## Call this from an enemy's death handler (they already hold a `player`
+## reference) to grant the on-kill heal.
+func heal_on_kill() -> void:
+	heal(kill_heal_amount)
 
 func play_hit_sfx() -> void:
 	_play_one_shot(hit_sfx)
@@ -171,6 +217,10 @@ func camera_shake(strength: float) -> void:
 func _physics_process(delta: float) -> void:
 	if _invuln_timer > 0.0:
 		_invuln_timer -= delta
+	_time_since_damage += delta
+	if health_regen_rate > 0.0 and health > 0.0 and health < max_health \
+			and _time_since_damage >= health_regen_delay:
+		heal(health_regen_rate * delta)
 	knockback_velocity = knockback_velocity.move_toward(Vector3.ZERO, knockback_friction * delta)
 	if velocity.y < 0:
 		last_fall_speed = -velocity.y

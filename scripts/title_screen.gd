@@ -13,3 +13,11 @@ func _process(delta: float) -> void:
 func _on_play_pressed():
 
 	get_tree().change_scene_to_file("res://Scenes/Levels/Base_Level.tscn")
+
+
+func _on_leaderboard_button_pressed() -> void:
+	$LeaderboardScreen.show_leaderboard()
+
+
+func _on_quit_button_pressed() -> void:
+	get_tree().quit()
