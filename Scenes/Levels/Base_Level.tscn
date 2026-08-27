@@ -12,6 +12,7 @@ sky_material = SubResource("PanoramaSkyMaterial_qr0ht")
 
 [sub_resource type="Environment" id="Environment_riqys"]
 background_mode = 2
+background_energy_multiplier = 1.99
 sky = SubResource("Sky_sn0t7")
 
 [node name="Node3D" type="Node3D" unique_id=1602786845]

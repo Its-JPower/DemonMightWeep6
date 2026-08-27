@@ -66,7 +66,7 @@ enemy_sfx = Array[AudioStream]([ExtResource("10_ph33w"), ExtResource("11_7ldla")
 [node name="Mesh" parent="." unique_id=808791566 instance=ExtResource("2_f1ek2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.7973151, 0)
 
-[node name="Skeleton3D" parent="Mesh" index="0" unique_id=751771092]
+[node name="Skeleton3D" parent="Mesh" index="0" unique_id=949427572]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
 bones/2/position = Vector3(5.551115e-16, 0.05010003, 0.9167)
 bones/2/rotation = Quaternion(0.7904686, 9.127004e-09, 1.1778896e-08, 0.61250275)
@@ -133,7 +133,7 @@ bones/62/rotation = Quaternion(0.036589622, -0.00013122692, -4.7918757e-06, 0.99
 bones/63/rotation = Quaternion(-0.5290731, -0.00032809633, 0.00034345736, 0.8485761)
 bones/64/rotation = Quaternion(-0.00013714515, 0.96430665, -0.2647875, -0.00049954205)
 
-[node name="male_player_002" parent="Mesh/Skeleton3D" index="0" unique_id=1100027592]
+[node name="male_player_002" parent="Mesh/Skeleton3D" index="0" unique_id=1004334162]
 surface_material_override/0 = SubResource("StandardMaterial3D_qay8w")
 
 [node name="BoneAttachment3D" type="BoneAttachment3D" parent="Mesh/Skeleton3D" index="1" unique_id=1621594055]
@@ -142,11 +142,11 @@ bone_name = "hand_r"
 bone_idx = 35
 
 [node name="Sword" type="Node3D" parent="Mesh/Skeleton3D/BoneAttachment3D" unique_id=1213822362]
-transform = Transform3D(1, 2.1316282e-14, 0, 1.4210855e-13, 1.0000002, 0, 5.684342e-14, 2.9802322e-08, 1.0000002, 0, 0, 0)
+transform = Transform3D(0.21217808, -0.30899423, 0.92709416, -0.9731302, -0.15363023, 0.1715101, 0.0894338, -0.9385738, -0.3332886, -0.03275369, -0.16820842, 0.10457909)
 script = ExtResource("3_f1ej7")
 
 [node name="edged-force" parent="Mesh/Skeleton3D/BoneAttachment3D/Sword" unique_id=2037802543 instance=ExtResource("4_0gysh")]
-transform = Transform3D(-4.3256434e-05, 0.00045099354, -0.009989732, -0.0008197302, -0.009956366, -0.00044593777, -0.009966249, 0.00081696175, 8.003587e-05, -0.027447462, 0.31812608, 0.4422289)
+transform = Transform3D(-0.0021518394, 0.0009724123, -0.009717201, -0.0006191273, -0.009943874, -0.00085799035, -0.009746086, 0.00041699433, 0.0021999644, -0.10730505, 0.22642559, 0.4437095)
 
 [node name="SwordHitbox" type="Area3D" parent="Mesh/Skeleton3D/BoneAttachment3D/Sword/edged-force" unique_id=1500443074]
 transform = Transform3D(1, 2.9802322e-08, 1.3969839e-09, 8.940697e-08, 1, 4.656613e-10, -2.7939677e-09, 6.519258e-09, 1.0000005, 49.83902, 15.448849, -1.1240387)
@@ -155,7 +155,7 @@ transform = Transform3D(1, 2.9802322e-08, 1.3969839e-09, 8.940697e-08, 1, 4.6566
 transform = Transform3D(0.9854013, -0.1702176, -0.0014356414, 0.17021734, 0.9854066, -4.2568136e-05, 0.0014218476, -0.00020244469, 0.9999973, -53.217537, -7.7868843, 2.4052887)
 shape = SubResource("BoxShape3D_b1vkl")
 
-[node name="AnimationPlayer" parent="Mesh" index="1" unique_id=2002640850]
+[node name="AnimationPlayer" parent="Mesh" index="1" unique_id=1718288888]
 "libraries/Stash 2" = ExtResource("3_tx1dd")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1823396936]
