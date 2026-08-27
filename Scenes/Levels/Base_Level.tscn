@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://dcdob7x4rqre2" path="res://Scenes/Levels/pizzeria.tscn" id="1_ingmi"]
 [ext_resource type="Texture2D" uid="uid://cgiu2e5uut386" path="res://assets/Levels/Pizzeria/Pizzeria/Skybox.png" id="2_crl8b"]
 [ext_resource type="PackedScene" uid="uid://c8dmjl15wp2dr" path="res://Scenes/player.tscn" id="3_qjqsl"]
+[ext_resource type="AudioStream" uid="uid://q3s3im1tr0tx" path="res://assets/audio/music/Goofy sings Bury the Light.mp3" id="4_ykxpg"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_qr0ht"]
 panorama = ExtResource("2_crl8b")
@@ -25,3 +26,8 @@ environment = SubResource("Environment_riqys")
 
 [node name="Player" parent="." unique_id=1620402980 instance=ExtResource("3_qjqsl")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.978073, 0.66557467, -23.415726)
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer" parent="." unique_id=1062392406]
+stream = ExtResource("4_ykxpg")
+autoplay = true
+parameters/looping = true

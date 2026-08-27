@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://q3s3im1tr0tx"
+path="res://.godot/imported/Goofy sings Bury the Light.mp3-e8cfc3469a6ae7780a6baa2819439f62.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/music/Goofy sings Bury the Light.mp3"
+dest_files=["res://.godot/imported/Goofy sings Bury the Light.mp3-e8cfc3469a6ae7780a6baa2819439f62.mp3str"]
+
+[params]
+
+loop=true
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
