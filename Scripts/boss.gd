@@ -18,7 +18,7 @@ var player: Node3D
 var stagger_meter: float = 0.0
 var is_staggered: bool = false
 @onready var state_machine: BossStateMachine = $BossStateMachine
-@onready var animation_player: AnimationPlayer = $Spider/AnimationPlayer
+@onready var animation_playera: AnimationPlayer = $Spider/AnimationPlayer
 @onready var mesh: MeshInstance3D = $MeshInstance3D  # adjust path to your mesh node
 const red_material: StandardMaterial3D = preload("uid://dc364wgj8xedm")
 var original_material: Material = null

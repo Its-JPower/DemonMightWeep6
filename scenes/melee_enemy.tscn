@@ -13,7 +13,6 @@ radius = 5.536621
 
 [node name="MeleeEnemy" type="CharacterBody3D" unique_id=541755684 node_paths=PackedStringArray("health_bar")]
 script = ExtResource("1_tq73k")
-max_health = 50.0
 health_bar = NodePath("HealthBar")
 
 [node name="Spider" parent="." unique_id=1613155337 instance=ExtResource("2_rspe1")]

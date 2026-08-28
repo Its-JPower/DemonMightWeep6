@@ -33,7 +33,7 @@ signal run_summary_ready(result: Dictionary)
 @export var hit_shake_strength: float = 0.15
 @export var invuln_time: float = 0.5
 @export var knockback_friction: float = 40.0
-@export var post_hit_invuln_time: float = 0.25   # brief invuln granted after landing a hit on an enemy
+@export var post_hit_invuln_time: float = 2.0   # brief invuln granted after landing a hit on an enemy
 
 @export var hurt_state: State
 @export var death_state: State
@@ -41,7 +41,7 @@ signal run_summary_ready(result: Dictionary)
 @export_group("Healing")
 @export var health_regen_rate: float = 0.0      # HP restored per second once regen kicks in (0 = disabled)
 @export var health_regen_delay: float = 3.0     # seconds since last damage taken before regen starts
-@export var kill_heal_amount: float = 5.0       # flat HP restored per enemy kill (0 = disabled)
+@export var kill_heal_amount: float = 30       # flat HP restored per enemy kill (0 = disabled)
 
 var health: float
 var _invuln_timer: float = 0.0

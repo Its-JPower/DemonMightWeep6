@@ -1,7 +1,7 @@
 class_name Enemy
 extends CharacterBody3D
 
-@export var max_health := 100.0
+@export var max_health := 40
 @export var knockback_resistance := 1.0  # 1.0 = normal, 2.0 = half knockback
 @export var health_bar: HealthBar3D
 @export var spawn_grace_period: float = 0.75   # seconds after spawn before this enemy can attack

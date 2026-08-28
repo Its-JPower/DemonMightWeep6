@@ -1,4 +1,4 @@
-class_name MeleeEnemy
+class_name boss
 extends Enemy
 @export var move_speed := 3.5
 @export var attack_damage := 15.0
